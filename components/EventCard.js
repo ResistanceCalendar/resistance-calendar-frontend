@@ -6,7 +6,7 @@ export default({ event}) => {
     <li>
       <Link route='event' params={{slug: event.slug}}>
         <a>
-          <img src="http://placehold.it/256x176"/>
+          <img src="https://placehold.it/256x176"/>
           <div className="title">{event.title}</div>
         </a>
       </Link>

@@ -1,6 +1,7 @@
 # Resistance Calendar
+staging: https://resistancecalendar-nfrsophbpy.now.sh
 
-# Quick-Start Guide
+## Setup
 
 ```sh
 npm install
@@ -13,7 +14,7 @@ npm run dev
 ```
 
 ## Deploy
-Make sure you are Login with [now](zeit.co/now) and ...
+Make sure you are Login with [now](zeit.co/now) first
 
 ```sh
 npm run build && now

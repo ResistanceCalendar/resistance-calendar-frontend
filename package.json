@@ -1,7 +1,7 @@
 {
-  "name": "NextSimpleStarter",
-  "version": "1.0.0",
-  "main": "index.js",
+  "name": "ResistanceCalendar",
+  "version": "0.0.1",
+  "main": "server.js",
   "repository": {},
   "license": "MIT",
   "dependencies": {
