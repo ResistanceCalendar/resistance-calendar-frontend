@@ -1,5 +1,5 @@
 # Resistance Calendar
-staging: https://resistancecalendar-nfrsophbpy.now.sh
+staging: https://resistancecalendar-ilwecuucey.now.sh/
 
 ## Setup
 
