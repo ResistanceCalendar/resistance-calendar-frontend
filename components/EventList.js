@@ -10,7 +10,7 @@ export default class EventList extends React.Component {
 
   renderEvents() {
     return this.props.events.reduce((filteredEvents, event) => {
-      if(event.title.includes(this.state.searchText)) {
+      if(event.name.includes(this.state.searchText)) {
         filteredEvents.push( <EventCard key={event.id} event={event}/>)
       }
        return filteredEvents

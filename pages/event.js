@@ -4,14 +4,27 @@ import EVENTS from '../fixtures/events'
 
 export default class EventPage extends React.Component {
   static async getInitialProps ({query}) {
-    return { event: EVENTS.find( event => event.slug === query.slug)}
+    return { event: EVENTS.find( event => event.id === query.slug)}
   }
 
   render() {
-    let {title} = this.props.event
+    let {
+      name,
+      start_time,
+      interested_count,
+      category,
+      cover,
+      description
+    } = this.props.event
+
     return (
       <Layout>
-        <p>{title}</p>
+        <h1>{name}</h1>
+        <img src={cover.source}/>
+        <div>{start_time}</div>
+        <div>{interested_count}</div>
+        <div>{category}</div>
+        <p>{description}</p>
       </Layout>
     )
   }

@@ -4,10 +4,10 @@ import {Link} from '../routes'
 export default({ event}) => {
   return (
     <li>
-      <Link route='event' params={{slug: event.slug}}>
+      <Link route='event' params={{slug: event.id}}>
         <a>
-          <img src="https://placehold.it/256x176"/>
-          <div className="title">{event.title}</div>
+          <img src={event.cover.source}/>
+          <div className="title">{event.name}</div>
         </a>
       </Link>
       <style jsx>{`
