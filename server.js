@@ -9,8 +9,6 @@ const handler = routes.getRequestHandler(app)
 
 app.prepare().then(() => {
   const server = express();
-  // serve service worker
-  server.get('/sw.js', (req, res) => res.sendFile(path.resolve('./.next/sw.js')));
   server.use(handler).listen(3000, err => {
     if (err) throw error;
     console.log('> App running on port 3000');
