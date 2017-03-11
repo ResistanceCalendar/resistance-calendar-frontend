@@ -29,12 +29,4 @@ PRs are welcome.  For anything greater than a minor fix, please communicate firs
 - Issues can also be submitted or commented to on our [Design repository](https://github.com/ResistanceCalendar/design/issues)
 - Send a message to [Incite Democracy](https://github.com/InciteDemocracy)
 
-## About the framework
-
-This project utilizes Next.js for server-side rendering.  Additional documentation on Next.js can be found [here](https://zeit.co/blog/next).
-
->"Next.js gives you a server that extracts the state into an object and then injects the state back in the client. Beyond that it provides a method for 'smart containers', what they call pages that is called getInitialProps which is run both on server and client."
-
-React + Redux works as traditionally expected.
-
 [Return to README](README.md)

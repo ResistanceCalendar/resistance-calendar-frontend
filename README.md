@@ -60,6 +60,16 @@ Make sure you are Login with [now](zeit.co/now) first
 npm run build && now
 ```
 
+## Understanding the project
+
+### About the framework
+
+This project utilizes Next.js for server-side rendering.  Additional documentation on Next.js can be found [here](https://zeit.co/blog/next).
+
+>"Next.js gives you a server that extracts the state into an object and then injects the state back in the client. Beyond that it provides a method for 'smart containers', what they call pages that is called getInitialProps which is run both on server and client."
+
+React + Redux works as traditionally expected.
+
 ## License
 
 [MIT](LICENSE)
