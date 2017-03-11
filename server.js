@@ -1,19 +1,16 @@
-const express = require('express');
-const path = require('path');
-const next = require('next');
-const routes = require('./routes')
-const dev = process.env.NODE_ENV !== 'production';
+// enable fetch in node
+require('isomorphic-fetch')
 
-const app = next({ dir: '.', dev });
+require('dotenv').load()
+const next = require('next')
+const routes = require('./routes')
+const app = next({dev: process.env.NODE_ENV !== 'production'})
 const handler = routes.getRequestHandler(app)
+const express = require('express')
+let server
 
 app.prepare().then(() => {
-  const server = express();
-  // serve service worker
-  server.get('/sw.js', (req, res) => res.sendFile(path.resolve('./.next/sw.js')));
-  server.use(handler).listen(3000, err => {
-    if (err) throw error;
-    console.log('> App running on port 3000');
-  });
-
+  server = express()
+  server.use(handler).listen(3000)
+  console.log('listening on port 3000')
 })

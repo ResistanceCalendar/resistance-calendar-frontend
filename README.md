@@ -1,5 +1,4 @@
 # Resistance Calendar
-staging: https://resistancecalendar-ilwecuucey.now.sh/
 
 ## Setup
 
