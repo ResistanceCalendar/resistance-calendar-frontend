@@ -70,6 +70,93 @@ This project utilizes Next.js for server-side rendering.  Additional documentati
 
 React + Redux works as traditionally expected.
 
+### Project Functionality
+
+- Automatic transpilation and bundling (with webpack and babel)
+- Hot code reloading
+- Code splitting; every `import` gets bundled and served with every page
+
+### ./pages
+
+Next.js provides server rendering and indexing of `./pages`
+
+The file-system is the main API. Every .js file becomes a route that gets automatically processed and rendered.
+
+### CSS
+
+<p>Styling components
+  <summary><b>Available options</b></summary>
+  <ul>
+    <li><a href="https://github.com/zeit/styled-jsx">Basic css</a></li>
+    <li><a href="https://github.com/zeit/next.js/tree/master/examples/with-styled-components">css-in-js</a></li>
+  </ul>
+</p>
+
+### `./static/`
+
+Used for static file serving (e.g.: images).
+
+Next.js maps this folder to `/static/`.
+
+### Populating `<head>`
+
+A built-in component.  `import Head from 'next/head'`
+
+### Fetching data
+
+`getInitialProps` is an `async` method that fetches anything that resolves to a plain Javascript object.  It then populates `props`.
+
+This method is limited only to `pages`.  It cannot be used in child components.
+
+### Routing
+
+Several options are available.
+
+#### <Link>
+
+For client-side transitions between routes.
+
+```jsx
+// pages/index.js
+import Link from 'next/link'
+export default () => (
+  <div>Click <Link href="/about"><a>here</a></Link> to read more</div>
+)
+```
+
+#### `next/router`
+
+Imperatively perform client-side transitions using the router.
+
+```jsx
+import Router from 'next/router'
+
+export default () => (
+  <div>Click <span onClick={() => Router.push('/about')}>here</span> to read more</div>
+)
+```
+
+#### Router events
+
+Supported events:
+
+- routeChangeStart(url) - Fires when a route starts to change
+- routeChangeComplete(url) - Fires when a route changed completely
+- routeChangeError(err, url) - Fires when there's an error when changing routes
+- beforeHistoryChange(url) - Fires just before changing the browser's history
+- appUpdated(nextRoute) - Fires when switching pages and there's a new version of the app
+
+#### Shallow routing
+
+Can perform changes without changing the page or losing state.
+
+```jsx
+// Current URL is "/"
+const href = '/?counter=10'
+const as = href
+Router.push(href, as, { shallow: true })
+```
+
 ## License
 
 [MIT](LICENSE)
