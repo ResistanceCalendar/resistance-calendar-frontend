@@ -23,6 +23,12 @@ PRs are welcome.  For anything greater than a minor fix, please communicate firs
 
 (This is to help ensure there are no duplicated or wasted efforts).
 
+### Notable conventions
+
+- Modules that represent React Components are capitalized (e.g. `TestComponent.js`)
+- Test modules are placed in a directory's `__tests__` folder
+  - They are given the name `<module-to-be-tested>.test.js` (e.g. `TestComponent.test.js`)
+
 ## Ways to communicate
 
 - [Submit or comment on an issue](https://github.com/ResistanceCalendar/resistance-calendar-frontend/issues)
