@@ -53,7 +53,7 @@ npm run dev
 
 This project will run on [http://localhost:3000/](http://localhost:3000/).
 
-## Deploy
+## Deployment
 Make sure you are Login with [now](zeit.co/now) first
 
 ```sh
@@ -70,19 +70,19 @@ This project utilizes Next.js for server-side rendering.  Additional documentati
 
 React + Redux works as traditionally expected.
 
-### Project Functionality
+## Functionality
 
 - Automatic transpilation and bundling (with webpack and babel)
 - Hot code reloading
 - Code splitting; every `import` gets bundled and served with every page
 
-### ./pages
+### About `./pages`
 
 Next.js provides server rendering and indexing of `./pages`
 
 The file-system is the main API. Every .js file becomes a route that gets automatically processed and rendered.
 
-### CSS
+### About CSS
 
 <p>Styling components
   <summary><b>Available options</b></summary>
@@ -92,27 +92,27 @@ The file-system is the main API. Every .js file becomes a route that gets automa
   </ul>
 </p>
 
-### `./static/`
+### About `./static/`
 
 Used for static file serving (e.g.: images).
 
 Next.js maps this folder to `/static/`.
 
-### Populating `<head>`
+### About populating `<head>`
 
 A built-in component.  `import Head from 'next/head'`
 
-### Fetching data
+### About fetching data
 
 `getInitialProps` is an `async` method that fetches anything that resolves to a plain Javascript object.  It then populates `props`.
 
 This method is limited only to `pages`.  It cannot be used in child components.
 
-### Routing
+### About Routing
 
 Several options are available.
 
-#### <Link>
+#### Using `<Link>`
 
 For client-side transitions between routes.
 

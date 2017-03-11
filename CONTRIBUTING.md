@@ -31,8 +31,8 @@ PRs are welcome.  For anything greater than a minor fix, please communicate firs
 
 ## Ways to communicate
 
-- [Submit or comment on an issue](https://github.com/ResistanceCalendar/resistance-calendar-frontend/issues)
-- Issues can also be submitted or commented to on our [Design repository](https://github.com/ResistanceCalendar/design/issues)
+- [Submit or comment on an issue](https://github.com/ResistanceCalendar/resistance-calendar-frontend/issues), or...
+- Submit or comment to on our [Design repository](https://github.com/ResistanceCalendar/design/issues), or...
 - Send a message to [Incite Democracy](https://github.com/InciteDemocracy)
 
 [Return to README](README.md)
