@@ -1,12 +1,12 @@
 import React from 'react';
-import Document, { Head, Main, NextScript } from 'next/document';
+import Document, { Main, NextScript } from 'next/document';
+import Head from '../components/Head'
 
 export default class MyDocument extends Document {
   render() {
     return (
-      <html style={{ background: '#ee5d85'}}>
-        <Head>
-        </Head>
+      <html>
+        <Head />
         <body>
           <Main />
           <NextScript />
