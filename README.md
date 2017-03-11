@@ -14,7 +14,10 @@ Uses [Jest](https://facebook.github.io/jest/)/[Enzyme](http://airbnb.io/enzyme/)
 npm run test
 ```
 
-Note: As long as `config\__tests__\testJest.js` passes, then the test suite is working correctly.
+Note: If the following test files are passing, then Jest and Enzyme are working as intended:
+
+- `components\__tests__\TestComponent.js`
+- `config\__tests__\testJest.js`
 
 ## Run Dev Server
 

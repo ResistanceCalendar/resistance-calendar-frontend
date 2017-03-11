@@ -1,9 +1,23 @@
-import React, { Component } from 'react'
+import React, { PropTypes } from 'react'
 
-export default class Test extends Component {
-  render () {
+const propTypes = {}
+const defaultProps = {}
+
+class Foo extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+
+  render() {
     return (
-      <div />
-    )
+      <div className="foo">
+        Bar
+      </div>
+    );
   }
 }
+
+Foo.propTypes = propTypes;
+Foo.defaultProps = defaultProps
+
+export default Foo
