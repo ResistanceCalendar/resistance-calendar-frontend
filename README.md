@@ -6,6 +6,16 @@
 npm install
 ```
 
+## Run Test Suite
+
+Uses [Jest](https://facebook.github.io/jest/)/[Enzyme](http://airbnb.io/enzyme/)
+
+```sh
+npm run test
+```
+
+Note: As long as `config\__tests__\testJest.js` passes, then the test suite is working correctly.
+
 ## Run Dev Server
 
 ```sh
