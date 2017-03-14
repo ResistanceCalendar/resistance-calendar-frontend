@@ -10,13 +10,7 @@ This is a rebuild of the live website currently found [here](https://www.resista
 
 ## About the stack
 
-This repository covers the ReactJS front-end.  Additional parts of the stack can be found on our [organizational page](https://github.com/ResistanceCalendar).
-
-- [API](https://github.com/ResistanceCalendar/resistance-calendar-api)
-- [Chrome Plugin](https://github.com/ResistanceCalendar/resistance-calendar-chrome-ext)
-- [Facebook Feed](https://github.com/ResistanceCalendar/FacebookFeed)
-- [Calendar Watcher](https://github.com/ResistanceCalendar/resistance-cal-watcher)
-- [Drupal](https://github.com/ResistanceCalendar/resistance-drupal)
+This repository covers the ReactJS front-end.  The API can be found [here](https://github.com/ResistanceCalendar/resistance-calendar-api).
 
 ## Getting Started
 
