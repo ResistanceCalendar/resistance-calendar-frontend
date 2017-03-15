@@ -29,7 +29,7 @@
   },
   "scripts": {
     "dev": "node server",
-    "test": "jest",
+    "test": "jest && semistandard",
     "build": "next build",
     "start": "NODE_ENV=production node server"
   }
