@@ -4,7 +4,7 @@ import {Link} from '../routes'
 export default({ event}) => {
   return (
     <li>
-      <Link route='event' params={{slug: event.identifiers[0]}}>
+      <Link route='event' params={{slug: event.uuid}}>
         <a>
           <img src={event.featured_image_url}/>
           <div className="title">{event.title}</div>

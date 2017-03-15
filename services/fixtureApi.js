@@ -1,3 +1,5 @@
+import { osdiEvents } from '../transforms';
+
 const dummyEvents = {
     "total_pages": 10,
     "per_page": 25,
@@ -214,7 +216,7 @@ function getAllEvents(options = {}) {
   // Temporarily mock async service call
   return new Promise(res => {
     setTimeout(() => {
-      res(dummyEvents);
+      res(osdiEvents(dummyEvents));
     }, 500);
   })
 }

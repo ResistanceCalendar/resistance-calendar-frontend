@@ -7,7 +7,7 @@ export default class Index extends React.Component {
   static async getInitialProps() {
     const events = await fixtureApi.getAllEvents();
 
-    return { events: events._embedded['osdi:events'] };
+    return { events };
   }
 
   render() {
