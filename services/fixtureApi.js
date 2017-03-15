@@ -1,4 +1,6 @@
-export default {
+import { osdiEvents } from '../transforms';
+
+const dummyEvents = {
     "total_pages": 10,
     "per_page": 25,
     "page": 1,
@@ -209,3 +211,16 @@ export default {
         ]
     }
 }
+
+function getAllEvents(options = {}) {
+  // Temporarily mock async service call
+  return new Promise(res => {
+    setTimeout(() => {
+      res(osdiEvents(dummyEvents));
+    }, 500);
+  })
+}
+
+export default {
+  getAllEvents
+};
