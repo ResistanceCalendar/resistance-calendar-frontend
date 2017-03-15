@@ -23,7 +23,7 @@ This repository covers the ReactJS front-end.  The API can be found [here](https
 ### Install the dependencies
 
 ```sh
-npm install && npm install semistandard -g
+npm install
 ```
 
 ### Run the test suite with linting
