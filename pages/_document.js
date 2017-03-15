@@ -1,6 +1,6 @@
 import React from 'react';
 import Document, { Main, NextScript } from 'next/document';
-import Head from '../components/Head'
+import { Head } from '../components'
 
 export default class MyDocument extends Document {
   render() {

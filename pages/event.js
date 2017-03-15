@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Layout from '../components/Layout';
+import { Layout } from '../components';
 import { fixtureApi } from '../services';
 
 export default class EventPage extends Component {
