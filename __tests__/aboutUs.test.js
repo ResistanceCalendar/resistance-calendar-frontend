@@ -1,9 +1,9 @@
 import React from 'react'
 import { render } from 'enzyme'
 
-import App from '../submit'
+import AboutUs from '../pages/aboutUs'
 
 it('renders without crashing', () => {
   const div = document.createElement('div')
-  render(<App />, div)
+  render(<AboutUs />, div)
 })
