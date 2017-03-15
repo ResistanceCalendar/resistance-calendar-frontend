@@ -4,7 +4,7 @@
 
 See our [contributing guide](CONTRIBUTING.md) for more information.
 
-*The Resistance Calendar* aims to empower progressive activists by providing a massive central listing of upcoming events. Crowdsourced event submissions are curated by a team of volunteers, while events from allied organizations will be included automatically. Event filters make it easy for people to find events near them. Filtered notifications help people discover new events immediately. 
+*The Resistance Calendar* aims to empower progressive activists by providing a massive central listing of upcoming events. Crowdsourced event submissions are curated by a team of volunteers, while events from allied organizations will be included automatically. Event filters make it easy for people to find events near them. Filtered notifications help people discover new events immediately.
 
 This is a rebuild of the live website currently found [here](https://www.resistancecalendar.org/).
 
@@ -23,12 +23,12 @@ This repository covers the ReactJS front-end.  The API can be found [here](https
 ### Install the dependencies
 
 ```sh
-npm install
+npm install && npm install semistandard -g
 ```
 
-### Run the test suite
+### Run the test suite with linting
 
-Uses [Jest](https://facebook.github.io/jest/)/[Enzyme](http://airbnb.io/enzyme/)
+Uses [Jest](https://facebook.github.io/jest/)/[Enzyme](http://airbnb.io/enzyme/) and [semi-standard](https://github.com/Flet/semistandard)
 
 ```sh
 npm run test
@@ -36,8 +36,7 @@ npm run test
 
 Note: If the following test files are passing, then Jest and Enzyme are working as intended:
 
-- `components\__tests__\TestComponent.js`
-- `config\__tests__\testJest.js`
+- `\__tests__\TestComponent.js`
 
 ### Run the dev server
 
