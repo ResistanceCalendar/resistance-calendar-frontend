@@ -1,3 +1,3 @@
 export default {
   useFixtures: true
-}
+};
