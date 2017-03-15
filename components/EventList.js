@@ -1,8 +1,9 @@
 import React from 'react';
 import EventCard from './EventCard';
 
-export default class EventList extends React.Component {
+import { connect } from 'react-redux';
 
+class EventList extends React.Component {
   constructor(props) {
     super(props)
     this.state = { searchText: '' }
@@ -33,3 +34,9 @@ export default class EventList extends React.Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return state;
+}
+
+export default connect(mapStateToProps)(EventList);
