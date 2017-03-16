@@ -4,4 +4,4 @@ export default () => (
   <Layout>
     Contact page
   </Layout>
-)
+);

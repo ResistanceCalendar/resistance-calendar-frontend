@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 import { shallow } from 'enzyme';
 
-import { Footer } from '../components'
+import { Footer } from '../components';
 
 describe('Component: Footer', () => {
   it('renders without crashing', () => {

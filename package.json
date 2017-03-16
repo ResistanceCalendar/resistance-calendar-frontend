@@ -25,11 +25,13 @@
     "jest-enzyme": "~2.1.2",
     "react-addons-test-utils": "~15.4.2",
     "react-test-renderer": "~15.4.2",
-    "regenerator-runtime": "~0.10.3"
+    "regenerator-runtime": "~0.10.3",
+    "semistandard": "^10.0.0"
   },
   "scripts": {
     "dev": "node server",
-    "test": "jest && semistandard",
+    "test": "jest",
+    "posttest": "semistandard --fix --env jest",
     "build": "next build",
     "start": "NODE_ENV=production node server"
   }

@@ -1,9 +1,9 @@
-import React from 'react'
-import { render } from 'enzyme'
+import React from 'react';
+import { render } from 'enzyme';
 
-import { Head } from '../components'
+import { Head } from '../components';
 
 it('renders without crashing', () => {
-  const div = document.createElement('div')
-  render(<Head />, div)
-})
+  const div = document.createElement('div');
+  render(<Head />, div);
+});

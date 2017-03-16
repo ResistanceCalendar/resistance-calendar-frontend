@@ -1,9 +1,8 @@
-import React from 'react'
-import { Provider } from 'react-redux';
+import React from 'react';
 
-const Layout = ({ children }) => (
+const Layout = ({children}) => (
   <div>
-      { children }
+    { children }
   </div>
 );
 
