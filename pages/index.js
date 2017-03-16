@@ -1,20 +1,19 @@
 import React from 'react';
-import Layout from '../components/Layout';
-import EventList from '../components/EventList';
+import { Layout, EventList, Header, Footer } from '../components';
 import { fixtureApi } from '../services';
 
 export default class Index extends React.Component {
   static async getInitialProps () {
     const events = await fixtureApi.getAllEvents();
-
     return { events };
   }
 
   render () {
     return (
       <Layout>
-        <img src='static/img/hero.png' style={{display: 'flex', margin: 'auto'}} width='450' />
+        <Header />
         <EventList events={this.props.events} />
+        <Footer />
       </Layout>
     );
   }
