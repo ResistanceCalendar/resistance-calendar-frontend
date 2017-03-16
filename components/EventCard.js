@@ -1,13 +1,13 @@
 import React from 'react';
-import {Link} from '../routes'
+import { Link } from '../routes';
 
-export default({ event}) => {
+export default({event}) => {
   return (
     <li>
       <Link route='event' params={{slug: event.uuid}}>
         <a>
-          <img src={event.featured_image_url}/>
-          <div className="title">{event.title}</div>
+          <img src={event.featured_image_url} />
+          <div className='title'>{event.title}</div>
         </a>
       </Link>
       <style jsx>{`
@@ -22,4 +22,4 @@ export default({ event}) => {
       `}</style>
     </li>
   );
-}
+};

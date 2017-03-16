@@ -31,7 +31,7 @@
   "scripts": {
     "dev": "node server",
     "test": "jest",
-    "posttest": "semistandard",
+    "posttest": "semistandard --fix --env jest",
     "build": "next build",
     "start": "NODE_ENV=production node server"
   }

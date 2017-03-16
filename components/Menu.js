@@ -1,5 +1,5 @@
-import React from 'react'
-import Link from 'next/link'
+import React from 'react';
+import Link from 'next/link';
 import {
   Row,
   Column,
@@ -11,27 +11,27 @@ import {
 } from 'react-foundation';
 
 export default () => (
-  <TopBar className="navbar">
+  <TopBar className='navbar'>
     <Row>
       <Column>
-        <TopBarTitle className="navbar__title">
-          <Link href="/">
+        <TopBarTitle className='navbar__title'>
+          <Link href='/'>
             <a>
-              <img src="/static/img/logo-small.png"  width="100"/>
+              <img src='/static/img/logo-small.png' width='100' />
             </a>
           </Link>
         </TopBarTitle>
-        <TopBarRight className="navbar__right">
+        <TopBarRight className='navbar__right'>
           <Menu>
             <MenuItem>
-              <Link href="/submit"><a>Submit an Event</a></Link>
+              <Link href='/submit'><a>Submit an Event</a></Link>
             </MenuItem>
             <MenuItem>
-              <Link href="/contact"><a>Contact</a></Link>
+              <Link href='/contact'><a>Contact</a></Link>
             </MenuItem>
           </Menu>
         </TopBarRight>
       </Column>
     </Row>
   </TopBar>
-)
+);
