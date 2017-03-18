@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Layout } from '../components';
+import { Layout, EventDetails, Header, Footer } from '../components';
 import { fixtureApi } from '../services';
 
 export default class EventPage extends Component {
@@ -9,20 +9,14 @@ export default class EventPage extends Component {
     return {event};
   }
 
+  // Would be nice to have a true "index" page that contains our header/footer across routes
+  // Not quite sure how to do this with next.js yet - maybe in _document.js?
   render () {
-    const {
-      title,
-      start_date: startDate,
-      featured_image_url: featuredImageUrl,
-      summary
-    } = this.props.event;
-
     return (
       <Layout>
-        <h1>{title}</h1>
-        <img src={featuredImageUrl} alt='event featured image' />
-        <div>Starts at {startDate}</div>
-        <p>{summary}</p>
+        <Header />
+        <EventDetails event={this.props.event} />
+        <Footer />
       </Layout>
     );
   }
