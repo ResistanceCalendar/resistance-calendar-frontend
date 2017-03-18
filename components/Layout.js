@@ -8,7 +8,7 @@ const LayoutWrapper = (props) => {
     margin: '40px auto',
     lineHeight: 1.6,
     fontSize: 18,
-    color: '#333333',
+    color: '#0D0B13',
     padding: '0 10px'
   };
   return (
