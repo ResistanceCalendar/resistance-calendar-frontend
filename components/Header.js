@@ -1,5 +1,8 @@
 import React from 'react';
+
 import Logo from './ResistanceLogo';
+import InlineElement from './InlineElement';
+import AddEventsButton from './AddEventsButton';
 
 const HeaderWrapper = (props) => {
   const style = {
@@ -17,7 +20,12 @@ const HeaderWrapper = (props) => {
 const Header = () => {
   return (
     <HeaderWrapper>
-      <Logo width='35%' />
+      <InlineElement>
+        <Logo width='35%' />
+      </InlineElement>
+      <InlineElement>
+        <AddEventsButton />
+      </InlineElement>
     </HeaderWrapper>
   );
 };

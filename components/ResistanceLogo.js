@@ -17,6 +17,7 @@ const ResistanceLogo = (props) => {
   const style = {
     width: `${props.width}`,
     height: `${props.height}`
+
   };
   return (
     <ImageWrapper>
