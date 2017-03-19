@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ResistanceLogo = (props) => {
-  const image = 'static/img/Logo-small.png';
+  const image = '../static/img/Logo-small.png';
   const style = {
     width: `${props.width}`,
     height: `${props.height}`
