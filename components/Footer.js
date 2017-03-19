@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import FooterLink from './FooterLink';
 
 const FooterWrapper = (props) => {
@@ -29,18 +29,35 @@ const FooterLinks = () => {
 };
 
 const CopyrightSymbol = () => <span>&copy; </span>;
-const CopyrightText = () => <span>2017 The Resistance Calendar</span>;
-const Copyright = () => <p><CopyrightSymbol /><CopyrightText /></p>;
-
-const Footer = () => {
+const CopyrightText = () => <span>The Resistance Calendar</span>;
+const CopyrightYear = (props) => <span>{props.year} </span>
+const Copyright = (props) => {
   return (
-    <FooterWrapper>
-      <FooterLinks />
-      <Copyright />
-    </FooterWrapper>
-  );
+    <p>
+      <CopyrightSymbol />
+      <CopyrightYear year={props.year} />
+      <CopyrightText />
+    </p>
+  )
+}
+
+
+export default class Footer extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      date: new Date()
+    }
+  }
+  render () {
+    const year = this.state.date.getFullYear()
+    return (
+      <FooterWrapper>
+        <FooterLinks />
+        <Copyright year={year} />
+      </FooterWrapper>
+    )
+  }
 };
 
 Footer.propTypes = {};
-
-export default Footer;
