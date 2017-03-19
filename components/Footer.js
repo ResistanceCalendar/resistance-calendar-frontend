@@ -1,18 +1,24 @@
 import React, { Component } from 'react';
+
 import FooterLink from './FooterLink';
+import Copyright from './Copyright';
 
 const FooterWrapper = (props) => {
-  const style = {
-    backgroundColor: '#D2D3DC',
-    border: 'solid 1px #D2D3DC',
-    boxShadow: '0 0 5px #777',
-    padding: 15,
-    fontSize: '0.8em'
-  };
   return (
-    <div style={style}>
+    <footer>
       { props.children }
-    </div>
+      <style jsx>
+        {`
+          footer {
+            background-color: var(--main-light-gray);
+            border: solid 2px var(--main-light-gray);
+            box-shadow: 0 0 5px #999999;
+            padding: 15px;
+            font-size: 0.8em;
+          }
+        `}
+      </style>
+    </footer>
   );
 };
 
@@ -28,36 +34,22 @@ const FooterLinks = () => {
   );
 };
 
-const CopyrightSymbol = () => <span>&copy; </span>;
-const CopyrightText = () => <span>The Resistance Calendar</span>;
-const CopyrightYear = (props) => <span>{props.year} </span>
-const Copyright = (props) => {
-  return (
-    <p>
-      <CopyrightSymbol />
-      <CopyrightYear year={props.year} />
-      <CopyrightText />
-    </p>
-  )
-}
-
-
 export default class Footer extends Component {
-  constructor(props) {
-    super(props)
+  constructor (props) {
+    super(props);
     this.state = {
       date: new Date()
-    }
+    };
   }
   render () {
-    const year = this.state.date.getFullYear()
+    const year = this.state.date.getFullYear();
     return (
       <FooterWrapper>
         <FooterLinks />
         <Copyright year={year} />
       </FooterWrapper>
-    )
+    );
   }
-};
+}
 
 Footer.propTypes = {};

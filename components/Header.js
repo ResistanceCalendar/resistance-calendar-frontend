@@ -1,19 +1,55 @@
 import React from 'react';
 
 import Logo from './ResistanceLogo';
-import InlineElement from './InlineElement';
 import AddEventsButton from './AddEventsButton';
 
 const HeaderWrapper = (props) => {
-  const style = {
-    backgroundColor: '#f42966',
-    padding: 15,
-    paddingBottom: 10,
-    border: 'solid 1px #6B6A73'
-  };
   return (
-    <div style={style}>
+    <header>
       { props.children }
+      <style jsx>
+        {`
+          header {
+            background-color: var(--main-pink);
+            border: solid 1px var(--main-medium-gray);
+            padding: 15px;
+            padding-bottom: 10px;
+          }
+        `}
+      </style>
+    </header>
+  );
+};
+
+const LeftHeader = (props) => {
+  return (
+    <div className='header-left-section'>
+      { props.children }
+      <style jsx>
+        {`
+          .header-left-section {
+            display: inline-block;
+            vertical-align: middle;
+          }
+        `}
+      </style>
+    </div>
+  );
+};
+
+const RightHeader = (props) => {
+  return (
+    <div className='header-right-section'>
+      { props.children }
+      <style jsx>
+        {`
+          .header-right-section {
+            display: inline-block;
+            vertical-align: middle;
+            float: right;
+          }
+        `}
+      </style>
     </div>
   );
 };
@@ -21,12 +57,12 @@ const HeaderWrapper = (props) => {
 const Header = () => {
   return (
     <HeaderWrapper>
-      <InlineElement>
-        <Logo width='70%' />
-      </InlineElement>
-      <InlineElement>
+      <LeftHeader>
+        <Logo width='250px' />
+      </LeftHeader>
+      <RightHeader>
         <AddEventsButton />
-      </InlineElement>
+      </RightHeader>
     </HeaderWrapper>
   );
 };
