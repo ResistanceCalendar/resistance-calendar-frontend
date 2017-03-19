@@ -11,6 +11,7 @@ const FiltersWrapper = (props) => {
         {`
           .filters-border {
             border: solid 2px var(--main-medium-gray);
+            border-bottom: 0;
           }
         `}
       </style>
@@ -25,7 +26,8 @@ const FiltersPanel = (props) => {
       <style jsx>
         {`
           .filters-panel {
-
+            padding: 10px;
+            border-bottom: solid 2px var(--main-medium-gray);
           }
         `}
       </style>
