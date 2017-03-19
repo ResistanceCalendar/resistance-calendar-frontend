@@ -22,7 +22,7 @@ const Header = () => {
   return (
     <HeaderWrapper>
       <InlineElement>
-        <Logo width='35%' />
+        <Logo width='70%' />
       </InlineElement>
       <InlineElement>
         <AddEventsButton />
