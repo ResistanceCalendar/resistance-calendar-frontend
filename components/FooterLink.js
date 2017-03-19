@@ -21,17 +21,11 @@ const FooterLink = (props) => {
       </a>
       <style jsx>
         {`
-          a:link {
-              color: #00008B;
-          }
-          a:visited {
-              color: #00008B;
-          }
-          a:hover {
-              color: #00008B;
-          }
+          a:link,
+          a:visited,
+          a:hover,
           a:active {
-              color: #00008B;
+            color: #00008B;
           }
         `}
       </style>

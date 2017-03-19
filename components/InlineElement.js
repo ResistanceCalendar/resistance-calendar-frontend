@@ -1,13 +1,17 @@
 import React from 'react';
 
 const InlineElement = (props) => {
-  const style = {
-    display: 'inline-block',
-    verticalAlign: 'middle'
-  };
   return (
-    <div style={style}>
+    <div className='inline-container'>
       { props.children }
+      <style jsx>
+        {`
+          .inline-container {
+            display: inline-block;
+            vertical-align: middle;
+          }
+        `}
+      </style>
     </div>
   );
 };
