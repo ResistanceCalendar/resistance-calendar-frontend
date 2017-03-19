@@ -8,7 +8,8 @@ const HeaderWrapper = (props) => {
   const style = {
     backgroundColor: '#f42966',
     padding: 15,
-    paddingBottom: 10
+    paddingBottom: 10,
+    border: 'solid 1px #6B6A73'
   };
   return (
     <div style={style}>
