@@ -1,4 +1,5 @@
 export { default as EventCard } from './EventCard';
+export { default as EventSearchInput } from './EventSearchInput';
 export { default as EventFilters } from './EventFilters';
 export { default as EventList } from './EventList';
 export { default as Head } from './Head';

@@ -11,7 +11,7 @@ const HeaderWrapper = (props) => {
         {`
           header {
             background-color: var(--main-pink);
-            border: solid 1px var(--main-medium-gray);
+            border: solid 1px var(--main-dark-gray);
             padding: 15px;
             padding-bottom: 10px;
           }

@@ -10,8 +10,8 @@ const FooterWrapper = (props) => {
       <style jsx>
         {`
           footer {
-            background-color: var(--main-light-gray);
-            border: solid 2px var(--main-light-gray);
+            background-color: var(--main-medium-gray);
+            border: solid 2px var(--main-medium-gray);
             box-shadow: 0 0 5px #999999;
             padding: 15px;
             font-size: 0.8em;
