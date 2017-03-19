@@ -10,15 +10,15 @@ This is a rebuild of the live website currently found [here](https://www.resista
 
 ## Table of Contents
 
-* [About the Resistance Calendar](#main)
-* [About the stack](#stack)
-* [Getting Started](#start)
+* [About the Resistance Calendar](README.md#main)
+* [About the stack](README.md#stack)
+* [Getting Started](README.md#start)
   * Setup
   * Install
   * Test
   * Run
-* [Deployment](#deployment)
-* [Project hierarchy](#hierarchy)
+* [Deployment](README.md#deployment)
+* [Project hierarchy](README.md#hierarchy)
   * Next.js (framework)
   * Features
   * CSS
@@ -26,7 +26,7 @@ This is a rebuild of the live website currently found [here](https://www.resista
   * `./static/`
   * `<head>`
   * Fetching data
-* [License](#license)
+* [License](README.md#license)
 
 ## [About the stack](#stack)
 
@@ -118,3 +118,5 @@ This method is limited only to `pages`.  It cannot be used in child components.
 ## [License](#license)
 
 [MIT](LICENSE)
+
+[Return to top](README.md#main)
