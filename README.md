@@ -1,4 +1,4 @@
-# [Resistance Calendar](#main)
+# [Resistance Calendar](#main-anchor)
 
 > PRs welcome; seeking all roles
 
@@ -8,17 +8,17 @@ See our [contributing guide](CONTRIBUTING.md) for more information.
 
 This is a rebuild of the live website currently found [here](https://www.resistancecalendar.org/).
 
-## Table of Contents
+## [Table of Contents](#contens-anchor)
 
-* [About the Resistance Calendar](README.md#main)
-* [About the stack](README.md#stack)
-* [Getting Started](README.md#start)
+* [About the Resistance Calendar](README.md#main-anchor)
+* [About the stack](README.md#stack-anchor)
+* [Getting Started](README.md#start-anchor)
   * Setup
   * Install
   * Test
   * Run
-* [Deployment](README.md#deployment)
-* [Project hierarchy](README.md#hierarchy)
+* [Deployment](README.md#deployment-anchor)
+* [Project hierarchy](README.md#hierarchy-anchor)
   * Next.js (framework)
   * Features
   * CSS
@@ -26,13 +26,13 @@ This is a rebuild of the live website currently found [here](https://www.resista
   * `./static/`
   * `<head>`
   * Fetching data
-* [License](README.md#license)
+* [License](README.md#license-anchor)
 
-## [About the stack](#stack)
+## [About the stack](#stack-anchor)
 
 This repository covers the ReactJS front-end.  The API can be found [here](https://github.com/ResistanceCalendar/resistance-calendar-api).
 
-## [Getting Started](#start)
+## [Getting Started](#start-anchor)
 
 ### Setup
 
@@ -66,14 +66,14 @@ npm run dev
 
 This project will run on [http://localhost:3000/](http://localhost:3000/).
 
-## [Deployment](#deployment)
+## [Deployment](#deployment-anchor)
 Make sure you are Login with [now](zeit.co/now) first
 
 ```sh
 npm run build && now
 ```
 
-## [Project hierarchy](#hierarchy)
+## [Project hierarchy](#hierarchy-anchor)
 
 This project utilizes Next.js for server-side rendering.  Additional documentation on Next.js can be found [here](https://zeit.co/blog/next).
 
@@ -115,8 +115,10 @@ Exists as a built-in component from Next.js.  Located at [`/components/Head`](co
 
 This method is limited only to `pages`.  It cannot be used in child components.
 
-## [License](#license)
+## [License](#license-anchor)
 
 [MIT](LICENSE)
 
-[Return to top](README.md#main)
+---
+
+[Return to top](README.md#main-anchor)
