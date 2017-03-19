@@ -22,7 +22,7 @@ export default class EventList extends React.Component {
 
   renderEvents () {
     return this.props.events.reduce((filteredEvents, event) => {
-      if (event.title.includes(this.state.filters.searchText)) {
+      if (event.title.toLowerCase().includes(this.state.filters.searchText.toLowerCase())) {
         filteredEvents.push(<EventCard key={event.uuid} event={event} />);
       }
       return filteredEvents;

@@ -3,6 +3,11 @@
   "short_name": "ResistanceCal",
   "icons": [
     {
+      "src": "img/favicon.ico",
+      "sizes": "32x32",
+      "type": "image/ico"
+    },
+    {
       "src": "img/apple-touch-icon-120x120.png",
       "sizes": "120x120",
       "type": "image/png"

@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react';
+import EventSearchInput from './EventSearchInput';
 
 const EventFilters = ({ filters, updateFilters }) => {
   return (
     <div>
-      <input
-        value={filters.searchText}
-        onInput={e => updateFilters({ searchText: e.target.value })}
-        placeholder='search'
+      <EventSearchInput
+        filterInput={filters.searchText}
+        updateFilters={updateFilters}
       />
       <div>Date filter placeholder</div>
       <div>Location filter placeholder</div>
