@@ -1,4 +1,4 @@
-# [Resistance Calendar](#main-anchor)
+# [Resistance Calendar](#resistance-calendar)
 
 > PRs welcome; seeking all roles
 
@@ -10,15 +10,16 @@ This is a rebuild of the live website currently found [here](https://www.resista
 
 ## [Table of Contents](#contens-anchor)
 
-* [About the Resistance Calendar](README.md#main-anchor)
-* [About the stack](README.md#stack-anchor)
-* [Getting Started](README.md#start-anchor)
+* [About the Resistance Calendar](#resistance-calendar)
+* [Contributing Guide](CONTRIBUTING.md)
+* [About the stack](#about-the-stack)
+* [Getting Started](#getting-started)
   * Setup
   * Install
   * Test
   * Run
-* [Deployment](README.md#deployment-anchor)
-* [Project hierarchy](README.md#hierarchy-anchor)
+* [Deployment](#deploy-the-project)
+* [Project hierarchy](#project-hierarchy)
   * Next.js (framework)
   * Features
   * CSS
@@ -26,13 +27,13 @@ This is a rebuild of the live website currently found [here](https://www.resista
   * `./static/`
   * `<head>`
   * Fetching data
-* [License](README.md#license-anchor)
+* [License](#project-license)
 
-## [About the stack](#stack-anchor)
+## [About the stack](#about-the-stack)
 
 This repository covers the ReactJS front-end.  The API can be found [here](https://github.com/ResistanceCalendar/resistance-calendar-api).
 
-## [Getting Started](#start-anchor)
+## [Getting Started](#getting-started)
 
 ### Setup
 
@@ -66,14 +67,14 @@ npm run dev
 
 This project will run on [http://localhost:3000/](http://localhost:3000/).
 
-## [Deployment](#deployment-anchor)
+## [Deploy the project](#deploy-the-project)
 Make sure you are Login with [now](zeit.co/now) first
 
 ```sh
 npm run build && now
 ```
 
-## [Project hierarchy](#hierarchy-anchor)
+## [Project hierarchy](#project-hierarchy)
 
 This project utilizes Next.js for server-side rendering.  Additional documentation on Next.js can be found [here](https://zeit.co/blog/next).
 
@@ -115,10 +116,10 @@ Exists as a built-in component from Next.js.  Located at [`/components/Head`](co
 
 This method is limited only to `pages`.  It cannot be used in child components.
 
-## [License](#license-anchor)
+## [License](#project-license)
 
 [MIT](LICENSE)
 
 ---
 
-[Return to top](README.md#main-anchor)
+[Return to top](#resistance-calendar)
