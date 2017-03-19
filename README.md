@@ -8,7 +8,7 @@ See our [contributing guide](CONTRIBUTING.md) for more information.
 
 This is a rebuild of the live website currently found [here](https://www.resistancecalendar.org/).
 
-## [Table of Contents](#contens-anchor)
+## [Table of Contents](#contents-anchor)
 
 * [About the Resistance Calendar](#resistance-calendar)
 * [Contributing Guide](CONTRIBUTING.md)
@@ -27,7 +27,7 @@ This is a rebuild of the live website currently found [here](https://www.resista
   * `./static/`
   * `<head>`
   * Fetching data
-* [License](#project-license)
+* [Project License](#project-license)
 
 ## [About the stack](#about-the-stack)
 
@@ -116,7 +116,7 @@ Exists as a built-in component from Next.js.  Located at [`/components/Head`](co
 
 This method is limited only to `pages`.  It cannot be used in child components.
 
-## [License](#project-license)
+## [Project License](#project-license)
 
 [MIT](LICENSE)
 
