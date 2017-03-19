@@ -9,8 +9,8 @@ const ButtonWrapper = (props) => {
     <div style={style}>
       { props.children }
     </div>
-  )
-}
+  );
+};
 
 const Text = () => <span>ADD EVENTS</span>;
 
@@ -19,8 +19,8 @@ export default class AddEventsButton extends Component {
     const style = {
       color: '#ffffff',
       backgroundColor: '#23B09A',
-      fontWeight: 600,
-    }
+      fontWeight: 600
+    };
     return (
       <ButtonWrapper>
         <button style={style}>
