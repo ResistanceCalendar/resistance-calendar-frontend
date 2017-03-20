@@ -1,23 +1,60 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import EventSearchInput from './EventSearchInput';
+import EventDateFilter from './EventDateFilter';
+import EventLocationFilter from './EventLocationFilter';
 
-const EventFilters = ({ filters, updateFilters }) => {
+const FiltersWrapper = (props) => {
   return (
-    <div>
-      <EventSearchInput
-        filterInput={filters.searchText}
-        updateFilters={updateFilters}
-      />
-      <div>Date filter placeholder</div>
-      <div>Location filter placeholder</div>
-      <style jsx>{``}</style>
+    <section className='filters-border'>
+      { props.children }
+      <style jsx>
+        {`
+          .filters-border {
+            border: solid 2px var(--main-medium-gray);
+            border-bottom: 0;
+          }
+        `}
+      </style>
+    </section>
+  );
+};
+
+const FiltersPanel = (props) => {
+  return (
+    <div className='filters-panel'>
+      { props.children }
+      <style jsx>
+        {`
+          .filters-panel {
+            padding: 10px;
+            border-bottom: solid 2px var(--main-medium-gray);
+          }
+        `}
+      </style>
     </div>
   );
 };
+
+export default class EventFilters extends Component {
+  render () {
+    const { filters, updateFilters } = this.props;
+    return (
+      <FiltersWrapper>
+        <FiltersPanel>
+          <EventSearchInput
+            filterInput={filters.searchText}
+            updateFilters={updateFilters} />
+          <EventLocationFilter />
+        </FiltersPanel>
+        <FiltersPanel>
+          <EventDateFilter />
+        </FiltersPanel>
+      </FiltersWrapper>
+    );
+  }
+}
 
 EventFilters.propTypes = {
   filters: PropTypes.shape().isRequired,
   updateFilters: PropTypes.func.isRequired
 };
-
-export default EventFilters;

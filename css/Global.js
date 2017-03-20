@@ -31,6 +31,15 @@ const GlobalStyle = () => {
           font-size: 15px;
           line-height: 1;
           color: var(--main-dark-gray);
+          box-sizing: border-box;
+          padding: 12px 20px 12px 10px;
+          width: 100%;
+        }
+        .fa { 
+          font-family: 'FontAwesome' !important; 
+        }
+        .float-right {
+          float: right;
         }
         ::-webkit-input-placeholder {
            color: var(--main-dark-gray);

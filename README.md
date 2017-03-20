@@ -1,4 +1,4 @@
-# Resistance Calendar
+# [Resistance Calendar](#resistance-calendar)
 
 > PRs welcome; seeking all roles
 
@@ -8,11 +8,32 @@ See our [contributing guide](CONTRIBUTING.md) for more information.
 
 This is a rebuild of the live website currently found [here](https://www.resistancecalendar.org/).
 
-## About the stack
+## [Table of Contents](#contents-anchor)
+
+* [About the Resistance Calendar](#resistance-calendar)
+* [Contributing Guide](CONTRIBUTING.md)
+* [About the stack](#about-the-stack)
+* [Getting Started](#getting-started)
+  * Setup
+  * Install
+  * Test
+  * Run
+* [Deployment](#deploy-the-project)
+* [Project hierarchy](#project-hierarchy)
+  * Next.js (framework)
+  * Features
+  * CSS
+  * `./pages`
+  * `./static/`
+  * `<head>`
+  * Fetching data
+* [Project License](#project-license)
+
+## [About the stack](#about-the-stack)
 
 This repository covers the ReactJS front-end.  The API can be found [here](https://github.com/ResistanceCalendar/resistance-calendar-api).
 
-## Getting Started
+## [Getting Started](#getting-started)
 
 ### Setup
 
@@ -46,16 +67,14 @@ npm run dev
 
 This project will run on [http://localhost:3000/](http://localhost:3000/).
 
-## Deployment
+## [Deploy the project](#deploy-the-project)
 Make sure you are Login with [now](zeit.co/now) first
 
 ```sh
 npm run build && now
 ```
 
-## Understanding the project
-
-### About the framework
+## [Project hierarchy](#project-hierarchy)
 
 This project utilizes Next.js for server-side rendering.  Additional documentation on Next.js can be found [here](https://zeit.co/blog/next).
 
@@ -63,93 +82,44 @@ This project utilizes Next.js for server-side rendering.  Additional documentati
 
 React + Redux works as traditionally expected.
 
-## Functionality
+### Features
 
 - Automatic transpilation and bundling (with webpack and babel)
 - Hot code reloading
 - Code splitting; every `import` gets bundled and served with every page
 
-### About `./pages`
+### CSS
+
+Next.js is opinionated towards utilizing the [`styled-jsx`](https://github.com/zeit/styled-jsx) library.
+
+The module [`/css/Global`](css/Global.js) contains the global styling.
+
+### `./pages`
 
 Next.js provides server rendering and indexing of `./pages`
 
 The file-system is the main API. Every .js file becomes a route that gets automatically processed and rendered.
 
-### About CSS
-
-<p>Styling components
-  <summary><b>Available options</b></summary>
-  <ul>
-    <li><a href="https://github.com/zeit/styled-jsx">Basic css</a></li>
-    <li><a href="https://github.com/zeit/next.js/tree/master/examples/with-styled-components">css-in-js</a></li>
-  </ul>
-</p>
-
-### About `./static/`
+### `./static/`
 
 Used for static file serving (e.g.: images).
 
 Next.js maps this folder to `/static/`.
 
-### About populating `<head>`
+### `<head>`
 
-A built-in component.  `import Head from 'next/head'`
+Exists as a built-in component from Next.js.  Located at [`/components/Head`](components/Head.js).
 
-### About fetching data
+### Fetching data
 
 `getInitialProps` is an `async` method that fetches anything that resolves to a plain Javascript object.  It then populates `props`.
 
 This method is limited only to `pages`.  It cannot be used in child components.
 
-### About Routing
-
-Several options are available.
-
-#### Using `<Link>`
-
-For client-side transitions between routes.
-
-```jsx
-// pages/index.js
-import Link from 'next/link'
-export default () => (
-  <div>Click <Link href="/about"><a>here</a></Link> to read more</div>
-)
-```
-
-#### `next/router`
-
-Imperatively perform client-side transitions using the router.
-
-```jsx
-import Router from 'next/router'
-
-export default () => (
-  <div>Click <span onClick={() => Router.push('/about')}>here</span> to read more</div>
-)
-```
-
-#### Router events
-
-Supported events:
-
-- routeChangeStart(url) - Fires when a route starts to change
-- routeChangeComplete(url) - Fires when a route changed completely
-- routeChangeError(err, url) - Fires when there's an error when changing routes
-- beforeHistoryChange(url) - Fires just before changing the browser's history
-- appUpdated(nextRoute) - Fires when switching pages and there's a new version of the app
-
-#### Shallow routing
-
-Can perform changes without changing the page or losing state.
-
-```jsx
-// Current URL is "/"
-const href = '/?counter=10'
-const as = href
-Router.push(href, as, { shallow: true })
-```
-
-## License
+## [Project License](#project-license)
 
 [MIT](LICENSE)
+
+---
+
+[Return to top](#resistance-calendar)
