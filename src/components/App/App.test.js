@@ -10,7 +10,7 @@ describe('Component: <App />', () => {
     expect(wrapper).toHaveLength(1);
   });
 
-  it('should render it\'s children', () => {
+  it('should render its children', () => {
     const wrapper = shallow(<App><div className="child" /></App>);
     const children = wrapper.find('.child');
 
