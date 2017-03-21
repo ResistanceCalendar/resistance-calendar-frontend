@@ -42,7 +42,7 @@ This repository covers the ReactJS front-end.  The API can be found [here](https
 ```sh
 yarn
 ```
-Note: Can also use `npm` instead of `yarn` for these commands
+Note: Can also use `npm` instead of `yarn` for these commands.  Here's [an article](https://medium.com/@nikjohn/facebooks-yarn-vs-npm-is-yarn-really-better-1890b3ea6515#.mh12h39zm) comparing the two package managers.
 
 ### Run the test suite
 
@@ -50,6 +50,9 @@ Uses [Jest](https://facebook.github.io/jest/)/[Enzyme](http://airbnb.io/enzyme/)
 
 ```sh
 yarn run test
+```
+```sh
+yarn run test:watch
 ```
 
 ### Run the linter
@@ -61,6 +64,9 @@ yarn run lint
 ```
 ```sh
 yarn run lint:watch
+```
+```sh
+yarn run lint:watch-npm
 ```
 
 ### Run the dev server
@@ -87,6 +93,8 @@ yarn run build
 ### CSS
 
 Component-level styling uses Sass, SCSS, or CSS with [CSS Modules](https://github.com/css-modules/css-modules).  Global styles are placed in `src/style`'s subdirectories, and component-level styles are placed in the component's folder.
+
+Note: the CSS Module property `camelCase` is enabled, meaning styling classes defined as, say, `.test-name` will be referenced inside of a component file as `stylesObj.testName`.  This allows us to follow CSS naming conventions while avoiding bracket notation in Javascript.
 
 ## [Project License](#project-license)
 

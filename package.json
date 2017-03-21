@@ -5,9 +5,11 @@
   "scripts": {
     "build": "rimraf dist && webpack -p",
     "dev": "webpack-dev-server",
-    "test": "jest --config=testConfig/jest.config.json --watch",
+    "test": "jest --config=testConfig/jest.config.json",
+    "test:watch": "jest --config=testConfig/jest.config.json --watch",
     "lint": "clear && eslint ./src --ext .js --cache",
-    "lint:watch": "onchange ./src --initial -- yarn run lint"
+    "lint:watch": "onchange ./src --initial -- yarn run lint",
+    "lint:watch-npm": "onchange ./src --initial -- npm run lint"
   },
   "dependencies": {
     "axios": "^0.15.3",
