@@ -2,6 +2,7 @@ const path = require('path');
 const glob = require('glob');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 
@@ -33,6 +34,16 @@ exports.htmlPlugin = function htmlPlugin() {
       new HtmlWebpackPlugin({
         template: 'src/index.html'
       })
+    ]
+  };
+};
+
+exports.copyDirs = function copyImages(dirs) {
+  const pluginDirs = dirs.map(dir => ({ from: dir.src, to: dir.dest }));
+
+  return {
+    plugins: [
+      new CopyWebpackPlugin(pluginDirs, { copyUnmodified: true })
     ]
   };
 };
@@ -74,7 +85,7 @@ exports.devServer = function devServer() {
   return {
     devServer: {
       historyApiFallback: true,
-      contentBase: './',
+      contentBase: './src',
       port: 5050
     },
     stats: 'minimal'

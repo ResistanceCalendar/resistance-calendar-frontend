@@ -8,6 +8,7 @@ const vendorRegistry = require('./webpack/vendorRegistry');
 const PATHS = {
   src: path.join(__dirname),
   dist: path.join(__dirname, 'dist'),
+  static: path.join(__dirname, 'src', 'static'),
   globalStyles: path.join(__dirname, 'src', 'style')
 };
 
@@ -32,6 +33,9 @@ function makeConfig() {
         parts.babel(PATHS.src),
         parts.commonsChunk(),
         parts.htmlPlugin(),
+        parts.copyDirs([
+          { src: PATHS.static, dest: `${PATHS.dist}/static`},
+        ]),
         parts.definePlugin(true),
         parts.resolve(),
         parts.sourceMap(true),
