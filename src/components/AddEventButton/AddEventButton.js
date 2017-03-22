@@ -1,12 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import styles from './AddEventButton.sass';
 
 const AddEventButton = () => {
   return (
-    <button className={styles.btnAddEvents}>
+    <Link to="add-event" className={styles.btnAddEvents}>
       ADD EVENTS
-    </button>
+    </Link>
   );
 };
 
