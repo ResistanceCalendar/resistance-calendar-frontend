@@ -17,16 +17,12 @@ This is a rebuild of the live website currently found [here](https://www.resista
   * Setup
   * Install
   * Test
+  * Lint
   * Run
-* [Deployment](#deploy-the-project)
+* [Build](#build-the-project)
 * [Project hierarchy](#project-hierarchy)
-  * Next.js (framework)
   * Features
   * CSS
-  * `./pages`
-  * `./static/`
-  * `<head>`
-  * Fetching data
 * [Project License](#project-license)
 
 ## [About the stack](#about-the-stack)
@@ -44,77 +40,61 @@ This repository covers the ReactJS front-end.  The API can be found [here](https
 ### Install the dependencies
 
 ```sh
-npm install
+yarn
 ```
+Note: Can also use `npm` instead of `yarn` for these commands.  Here's [an article](https://medium.com/@nikjohn/facebooks-yarn-vs-npm-is-yarn-really-better-1890b3ea6515#.mh12h39zm) comparing the two package managers.
 
-### Run the test suite with linting
+### Run the test suite
 
-Uses [Jest](https://facebook.github.io/jest/)/[Enzyme](http://airbnb.io/enzyme/) and [semi-standard](https://github.com/Flet/semistandard)
+Uses [Jest](https://facebook.github.io/jest/)/[Enzyme](http://airbnb.io/enzyme/)
 
 ```sh
-npm run test
+yarn run test
+```
+```sh
+yarn run test:watch
 ```
 
-Note: If the following test files are passing, then Jest and Enzyme are working as intended:
+### Run the linter
 
-- `\__tests__\TestComponent.js`
+Uses [Airbnb's eslint rules](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb) with some modifications
+
+```sh
+yarn run lint
+```
+```sh
+yarn run lint:watch
+```
+```sh
+yarn run lint:watch-npm
+```
 
 ### Run the dev server
 
 ```sh
-npm run dev
+yarn run dev
 ```
 
-This project will run on [http://localhost:3000/](http://localhost:3000/).
+This project will run on [http://localhost:5050/](http://localhost:5050/)
 
-## [Deploy the project](#deploy-the-project)
-Make sure you are Login with [now](zeit.co/now) first
+## [Build the project](#build-the-project)
 
 ```sh
-npm run build && now
+yarn run build
 ```
 
 ## [Project hierarchy](#project-hierarchy)
 
-This project utilizes Next.js for server-side rendering.  Additional documentation on Next.js can be found [here](https://zeit.co/blog/next).
-
->"Next.js gives you a server that extracts the state into an object and then injects the state back in the client. Beyond that it provides a method for 'smart containers', what they call pages that is called getInitialProps which is run both on server and client."
-
-React + Redux works as traditionally expected.
-
 ### Features
 
-- Automatic transpilation and bundling (with webpack and babel)
-- Hot code reloading
-- Code splitting; every `import` gets bundled and served with every page
+- Webpack v2
+- Babel to compile ES2016+
 
 ### CSS
 
-Next.js is opinionated towards utilizing the [`styled-jsx`](https://github.com/zeit/styled-jsx) library.
+Component-level styling uses Sass, SCSS, or CSS with [CSS Modules](https://github.com/css-modules/css-modules).  Global styles are placed in `src/style`'s subdirectories, and component-level styles are placed in the component's folder.
 
-The module [`/css/Global`](css/Global.js) contains the global styling.
-
-### `./pages`
-
-Next.js provides server rendering and indexing of `./pages`
-
-The file-system is the main API. Every .js file becomes a route that gets automatically processed and rendered.
-
-### `./static/`
-
-Used for static file serving (e.g.: images).
-
-Next.js maps this folder to `/static/`.
-
-### `<head>`
-
-Exists as a built-in component from Next.js.  Located at [`/components/Head`](components/Head.js).
-
-### Fetching data
-
-`getInitialProps` is an `async` method that fetches anything that resolves to a plain Javascript object.  It then populates `props`.
-
-This method is limited only to `pages`.  It cannot be used in child components.
+Note: the CSS Module property `camelCase` is enabled, meaning styling classes defined as, say, `.test-name` will be referenced inside of a component file as `stylesObj.testName`.  This allows us to follow CSS naming conventions while avoiding bracket notation in Javascript.
 
 ## [Project License](#project-license)
 

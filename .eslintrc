@@ -1,0 +1,23 @@
+{
+  "extends": "airbnb",
+  "rules": {
+    "arrow-body-style": 0,
+    "arrow-parens": 0,
+    "comma-dangle": 0,
+    "max-len": [2, {"code": 100, "ignoreComments": true, "ignoreStrings": true}],
+    "no-console": [2, {"allow": ["warn", "error"]}],
+    "no-underscore-dangle": 0,
+    "react/jsx-no-bind": 0,
+    "react/jsx-filename-extension": 0,
+    "react/require-default-props": 0,
+    "react/no-did-mount-set-state": 0
+  },
+  "globals": {
+    "expect": false,
+    "it": false,
+    "describe": false,
+    "jest": false,
+    "beforeEach": false,
+    "document": false
+  }
+}
