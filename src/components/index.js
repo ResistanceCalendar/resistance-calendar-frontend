@@ -14,3 +14,4 @@ export { default as EventDateFilter } from './EventDateFilter/EventDateFilter';
 export { default as EventFilters } from './EventFilters/EventFilters';
 export { default as EventDetails } from './EventDetails/EventDetails';
 export { default as DateBlock } from './DateBlock/DateBlock';
+export { default as AddEvent } from './AddEvent/AddEvent';

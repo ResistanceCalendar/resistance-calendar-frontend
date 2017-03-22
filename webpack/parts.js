@@ -5,12 +5,16 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 
+// TODO Cleanup how we handle email
+const testTrelloEmail = 'paulwilson27+28bftpx2nhjpurvl3laa@boards.trello.com';
+
 exports.definePlugin = function definePlugin(isProd) {
   return {
     plugins: [
       new webpack.DefinePlugin({
         'process.env': {
-          NODE_ENV: JSON.stringify(isProd ? 'production' : 'development')
+          NODE_ENV: JSON.stringify(isProd ? 'production' : 'development'),
+          FORMSPREE_EMAIL: JSON.stringify(testTrelloEmail)
         }
       })
     ]
