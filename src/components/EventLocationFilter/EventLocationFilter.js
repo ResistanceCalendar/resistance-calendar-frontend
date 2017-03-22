@@ -1,15 +1,26 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 import styles from './EventLocationFilter.sass';
 
-const EventLocationFilter = () => {
+const EventLocationFilter = (props) => {
+  const { location, updateFilters } = props;
+
   return (
     <div className={`float-right ${styles.locationText}`}>
-      FILTER BY LOCATION
+      <input
+        type="text"
+        name="location"
+        value={location}
+        onChange={e => updateFilters({ location: e.target.value })}
+        placeholder="Set a location"
+      />
     </div>
   );
 };
 
-EventLocationFilter.propTypes = {};
+EventLocationFilter.propTypes = {
+  updateFilters: PropTypes.func.isRequired,
+  location: PropTypes.string.isRequired
+};
 
 export default EventLocationFilter;
