@@ -1,12 +1,14 @@
 import React, { PropTypes } from 'react';
 
 import styles from './EventLocationFilter.sass';
+import FaMapMarker from 'react-icons/lib/fa/map-marker'
 
 const EventLocationFilter = (props) => {
   const { location, updateFilters } = props;
 
   return (
     <div className={`float-right ${styles.locationText}`}>
+    <FaMapMarker size={32} />
       <input
         type="text"
         name="location"
@@ -14,6 +16,7 @@ const EventLocationFilter = (props) => {
         onChange={e => updateFilters({ location: e.target.value })}
         placeholder="Set a location"
       />
+
     </div>
   );
 };
