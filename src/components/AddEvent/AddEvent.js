@@ -88,7 +88,9 @@ class AddEvent extends Component {
       return <div>Thank you! Your submission has been submitted for review. </div>;
     }
     return (
-      <form onSubmit={this.handleSubmit.bind(this)}>
+      <form
+        id={styles.addEventForm}
+        onSubmit={this.handleSubmit.bind(this)}>
         <fieldset className={styles.fieldset}>
           <label htmlFor="eventName">Event Name:</label>
           <input

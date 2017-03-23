@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { EventsList, EventFilters } from '../';
 import { eventsAPI } from '../../api';
+import styles from './Events.sass';
 
 class Events extends Component {
   constructor(props) {
@@ -52,7 +53,7 @@ class Events extends Component {
     }
 
     return (
-      <div>
+      <div id={styles.mainContent}>
         <EventFilters
           filters={filters}
           updateFilters={this.updateFilters.bind(this)}

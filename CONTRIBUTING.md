@@ -6,7 +6,6 @@
 
 - [React](https://facebook.github.io/react/)
 - [Redux](http://redux.js.org/)
-- [Next](https://zeit.co/blog/next)
 
 ## Where to start
 
