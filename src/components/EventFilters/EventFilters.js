@@ -9,7 +9,7 @@ const EventFilters = (props) => {
 
   return (
     <section className={styles.filtersBorder}>
-      <div className={styles.filtersPanel}>
+      <div className={styles.filtersPanel, styles.clearfix}>
         <EventSearchInput
           filterInput={filters.searchText}
           updateFilters={updateFilters}
