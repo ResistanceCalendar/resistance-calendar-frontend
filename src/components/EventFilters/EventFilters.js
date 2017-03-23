@@ -14,11 +14,14 @@ const EventFilters = (props) => {
           filterInput={filters.searchText}
           updateFilters={updateFilters}
         />
-        <EventLocationFilter />
-      </div>
-
-      <div className={styles.filtersPanel}>
-        <EventDateFilter />
+        <EventDateFilter
+          startDate={filters.startDate}
+          updateFilters={updateFilters}
+        />
+        <EventLocationFilter
+          location={filters.location}
+          updateFilters={updateFilters}
+        />
       </div>
     </section>
   );

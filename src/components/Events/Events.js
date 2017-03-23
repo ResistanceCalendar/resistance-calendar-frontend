@@ -8,7 +8,9 @@ class Events extends Component {
     super(props);
     this.state = {
       filters: {
-        searchText: ''
+        searchText: '',
+        location: '',
+        startDate: null
       },
       isFetchingEvents: true,
       events: []

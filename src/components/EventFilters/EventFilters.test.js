@@ -8,7 +8,9 @@ describe('Component: EventFilters', () => {
 
   beforeEach(() => {
     props.filters = {
-      searchText: ''
+      searchText: '',
+      startDate: null,
+      location: ''
     };
     props.updateFilters = jest.fn();
   });
