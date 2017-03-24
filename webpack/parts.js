@@ -170,7 +170,7 @@ function getStyleLoaders(isGlobalStyles) {
         modules: true,
         importLoaders: 2,
         camelCase: true,
-        localIdentName: '[name]__[hash:base64:5]'
+        localIdentName: '[name]__[local]__[hash:base64:5]'
       }
     },
     {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+
 import styles from './AddEvent.sass';
 
 
@@ -90,7 +91,8 @@ class AddEvent extends Component {
     return (
       <form
         id={styles.addEventForm}
-        onSubmit={this.handleSubmit.bind(this)}>
+        onSubmit={this.handleSubmit.bind(this)}
+      >
         <fieldset className={styles.fieldset}>
           <label htmlFor="eventName">Event Name:</label>
           <input

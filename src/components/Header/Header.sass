@@ -3,6 +3,9 @@
 .header
   padding: 15px
   padding-bottom: 10px
+  display: flex
+  justify-content: space-between
+  align-items: center
 
   .header-left-section
     display: inline-block
@@ -12,3 +15,11 @@
     display: inline-block
     vertical-align: middle
     float: right
+
+// Breakpoints
+@media only screen and (max-width: $break-max-sm)
+  .header
+    flex-direction: column
+
+    .header-right-section
+      margin: 40px 0 30px

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import { EventsList, EventFilters } from '../';
+import { EventsList, EventFilters, Loading } from '../';
 import { eventsAPI } from '../../api';
-import styles from './Events.sass';
+// import styles from './Events.sass';
 
 class Events extends Component {
   constructor(props) {
@@ -49,11 +49,11 @@ class Events extends Component {
     const { filters, events, isFetchingEvents } = this.state;
 
     if (isFetchingEvents) {
-      return <div>Loading...</div>;
+      return <Loading />;
     }
 
     return (
-      <div id={styles.mainContent}>
+      <div>
         <EventFilters
           filters={filters}
           updateFilters={this.updateFilters.bind(this)}

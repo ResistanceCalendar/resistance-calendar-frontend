@@ -7,7 +7,9 @@ describe('Component: EventCard', () => {
   const props = {};
 
   beforeEach(() => {
-    props.event = {};
+    props.event = {
+      start_date: '2015-03-14T12:00:00Z'
+    };
   });
 
   it('renders without crashing', () => {

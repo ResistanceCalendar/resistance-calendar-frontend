@@ -1,27 +1,30 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-import { FooterLink, Copyright } from '../';
+import { Copyright } from '../';
 import styles from './Footer.sass';
 
 
-const FooterLinks = () => {
+function footerLinks() {
+  /* eslint-disable jsx-a11y/href-no-hash */
   return (
-    <div>
-      <FooterLink url="#" text="Home" />
-      <FooterLink url="#" text="Add events" />
-      <FooterLink url="#" text="Facebook" />
-      <FooterLink url="#" text="Twitter" />
-      <FooterLink url="#" text="Privacy Statement" />
+    <div className={styles.linksWrapper}>
+      <Link to="/">Home</Link>
+      <Link to="/add-event">Add Events</Link>
+      <a href="#">Facebook</a>
+      <a href="#">Twitter</a>
+      <a href="#">Privacy Statement</a>
     </div>
   );
-};
+  /* eslint-enable jsx-a11y/href-no-hash */
+}
 
 const Footer = () => {
   const year = (new Date()).getFullYear();
 
   return (
     <footer className={styles.footer}>
-      <FooterLinks />
+      {footerLinks()}
       <Copyright year={year} />
     </footer>
   );
