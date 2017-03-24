@@ -1,8 +1,21 @@
 @import "~style/utils/variables.sass"
 
 .footer
-  background-color: $main-medium-gray;
-  border: solid 2px $main-medium-gray;
-  box-shadow: 0 0 5px #999999;
-  padding: 15px;
-  font-size: 0.8em;
+  background-color: $main-pink
+  color: $main-white
+  padding: 25px 15px
+  font-size: 0.8em
+
+  .links-wrapper
+    &>*
+      display: block
+      margin-bottom: 20px
+
+    a
+      text-decoration: none
+      color: $main-white
+
+      &:link,
+      &:visited,
+      &:active
+        color: $main-white

@@ -21,10 +21,9 @@ describe('Component: Events', () => {
     expect(wrapper).toHaveLength(1);
   });
 
-  it('should render a single div before data is fetched', () => {
+  it('should render the loader before data is fetched', () => {
     const wrapper = shallow(<Events />);
-
-    expect(wrapper.find('div').text()).toBe('Loading...');
+    expect(wrapper.find('Loading')).toHaveLength(1);
   });
 
   it('should render EventFilters and EventsList components', () => {

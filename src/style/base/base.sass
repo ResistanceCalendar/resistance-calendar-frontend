@@ -3,16 +3,16 @@ body
   max-width: $max-width;
   font-family: 'Roboto', sans-serif;
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 400;
   margin: 0 auto;
   padding: 0;
   background-color: $main-pink;
 
 input, textarea
-  border-radius: 5px;
+  border-radius: $border-radius-normal;
   padding: 4px 0;
-  border: 1px solid $main-medium-gray;
-  background-color: $main-light-gray;
+  border: 1px solid darkgrey;
+  background-color: $main-medium-gray;
   font-size: 15px;
   line-height: 1;
   color: $main-dark-gray;
@@ -28,3 +28,8 @@ input, textarea
 
 ::-webkit-input-placeholder
     color: $main-dark-gray;
+
+@media only screen and (max-width: $break-max-lg)
+  body
+    max-width: 100%
+    width: 100%

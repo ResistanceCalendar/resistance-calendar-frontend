@@ -17,7 +17,6 @@ describe('Component: DateBlock', () => {
 
   it('renders left and right spans', () => {
     const wrapper = shallow(<DateBlock {...props} />);
-
     expect(wrapper.find('span')).toHaveLength(2);
   });
 });

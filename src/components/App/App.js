@@ -7,7 +7,9 @@ const App = ({ children }) => {
   return (
     <div className={styles.container}>
       <Header />
-      {children}
+      <div className={styles.contentWrapper}>
+        {children}
+      </div>
       <Footer />
     </div>
   );

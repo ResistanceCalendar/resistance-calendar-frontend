@@ -1,2 +1,13 @@
+@import "~style/utils/variables.sass"
+
 .container
   height: 100%
+
+.content-wrapper
+  background-color: $main-white
+  border-radius: $border-radius-normal $border-radius-normal 0 0
+
+// Breakpoints
+@media only screen and (max-width: $break-max-lg)
+  .content-wrapper
+    border-radius: 0

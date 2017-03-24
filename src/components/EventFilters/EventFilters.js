@@ -9,15 +9,19 @@ const EventFilters = (props) => {
 
   return (
     <section className={styles.filtersBorder}>
-      <div className={styles.filtersPanel, styles.clearfix}>
+      <div className={styles.searchWrapper}>
         <EventSearchInput
           filterInput={filters.searchText}
           updateFilters={updateFilters}
         />
+      </div>
+      <div className={styles.calendarWrapper}>
         <EventDateFilter
           startDate={filters.startDate}
           updateFilters={updateFilters}
         />
+      </div>
+      <div className={styles.locationWrapper}>
         <EventLocationFilter
           location={filters.location}
           updateFilters={updateFilters}
