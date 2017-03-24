@@ -2,9 +2,43 @@
 
 .container
   width: 100%
-  height: 100%
-  padding: 50px 0
+  height: 100px
+  display: flex
+  align-items: center
   color: $main-dark-gray
-  font-size: 1.2em
-  font-weight: 700
-  text-align: center
+
+// Spinner adapted from: http://tobiasahlin.com/spinkit/
+.spinner
+  width: 50px;
+  height: 20px;
+  margin: 30px auto 0
+  text-align: center;
+  font-size: 10px;
+
+.spinner > div
+  background-color: $main-pink;
+  height: 100%;
+  width: 5px;
+  margin-right: 3px
+  display: inline-block;
+  border-radius: $border-radius-normal
+
+  animation: sk-stretchdelay 1.2s infinite ease-in-out;
+
+.spinner .rect2
+  animation-delay: -1.1s;
+
+.spinner .rect3
+  animation-delay: -1.0s;
+
+.spinner .rect4
+  animation-delay: -0.9s;
+
+.spinner .rect5
+  animation-delay: -0.8s;
+
+@keyframes sk-stretchdelay
+  0%, 40%, 100%
+    transform: scaleY(1);
+  20%
+    transform: scaleY(1.5);

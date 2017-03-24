@@ -692,7 +692,7 @@ function getEvents() {
   return new Promise(resolve => {
     setTimeout(() => {
       resolve(temp);
-    }, 500);
+    }, 3500);
   });
 }
 
