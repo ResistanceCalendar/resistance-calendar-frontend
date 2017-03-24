@@ -1,17 +1,26 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 
 import styles from './EventSearchInput.sass';
 
-const EventSearchInput = (props) => {
-  return (
-    <div className={styles.inputSearchWrapper}>
-      <input
-        value={props.filterInput}
-        onInput={e => props.updateFilters({ searchText: e.target.value })}
-        placeholder="Search"
-      />
-    </div>
-  );
+class EventSearchInput extends Component {
+  componentDidMount() {
+    this.input.focus();
+  }
+
+  render() {
+    const { filterInput, updateFilters } = this.props;
+
+    return (
+      <div className={styles.inputSearchWrapper}>
+        <input
+          value={filterInput}
+          ref={node => this.input = node}
+          onInput={e => updateFilters({ searchText: e.target.value })}
+          placeholder="Search"
+        />
+      </div>
+    );
+  }
 };
 
 EventSearchInput.propTypes = {

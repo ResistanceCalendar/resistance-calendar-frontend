@@ -4,7 +4,7 @@ import { EventCard } from '../';
 import styles from './EventsList.sass';
 
 function renderEvents(events, filters) {
-  return events.reduce((filteredEvents, event) => {
+  const matchedEvents = events.reduce((filteredEvents, event) => {
     if (event.title.toLowerCase().includes(filters.searchText.toLowerCase())) {
       filteredEvents.push(
         <EventCard
@@ -17,6 +17,12 @@ function renderEvents(events, filters) {
 
     return filteredEvents;
   }, []);
+
+  if (!matchedEvents.length) {
+    return <div className={styles.noResults}>No events</div>;
+  }
+
+  return matchedEvents;
 }
 
 const EventsList = ({ events, filters }) => {
