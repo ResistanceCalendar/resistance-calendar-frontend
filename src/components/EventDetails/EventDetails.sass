@@ -1,0 +1,88 @@
+@import "~style/utils/variables.sass"
+@import "~style/utils/mixins.sass"
+
+$gutter-margin: 20px
+
+// Default msg when no event data
+.no-data-msg
+  padding: $gutter-margin * 2
+  font-size: 1.2em
+  font-weight: 700
+  text-align: center
+
+// Upper title section
+.title-wrapper
+  padding: $gutter-margin
+  border-bottom: $border-thickness-small solid $main-medium-gray
+
+  &>*:not(:last-child)
+    margin-bottom: 15px
+
+  h1
+    font-size: 1.6em
+    font-weight: 700
+
+  .location
+    font-weight: 700
+
+// Main body below title
+.content
+  display: flex
+  padding: $gutter-margin
+
+  // Left section (image, description)
+  .left
+    flex: 2
+    margin-right: $gutter-margin
+
+    img
+      max-width: 100%
+      border: $border-thickness-small solid $main-dark-gray
+
+    .description
+      font-size: 0.8em
+      margin: 15px 0
+      line-height: 1.4
+
+  // Right section (event info)
+  .right
+    flex: 1
+    font-size: 0.8em
+
+    .share-btn
+      @include button($main-green, $main-black, $main-white)
+
+    .info
+      line-height: 1.4
+
+      .info-label
+        margin: 30px 0 8px
+        font-weight: 700
+
+    .social-btns
+      margin: 30px 0
+
+      .twitter-btn
+        @include button($twitter-blue, $main-white, $twitter-blue)
+
+      .facebook-btn
+        @include button($facebook-blue, $main-white, $facebook-blue)
+
+      .twitter-btn,
+      .facebook-btn
+        margin: 10px 10px 0 0
+        padding: 5px 10px
+
+        &>:first-child
+          margin-right: 10px
+
+// Breakpoints
+@media only screen and (max-width: $break-min-md)
+  .content
+    flex-direction: column
+
+    .left
+      order: 2
+
+    .right
+      order: 1

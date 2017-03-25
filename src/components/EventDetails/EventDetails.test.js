@@ -31,7 +31,7 @@ describe('Component: EventDetails', () => {
 
   it('renders an single div component by default', () => {
     const wrapper = shallow(<EventDetails {...props} />);
-    expect(wrapper.find('div')).toHaveLength(1);
+    expect(wrapper.find('Loading')).toHaveLength(1);
   });
 
   it('renders a DateBlock component', () => {
@@ -41,11 +41,10 @@ describe('Component: EventDetails', () => {
     expect(wrapper.find('DateBlock')).toHaveLength(1);
   });
 
-  it('renders a Link component that routes to home', () => {
+  it('renders a single div when there\'s no data after fetch', () => {
     const wrapper = shallow(<EventDetails {...props} />);
-    wrapper.setState({ event, isFetchingEvent: false });
-    const link = wrapper.find('Link');
+    wrapper.setState({ isFetchingEvent: false });
 
-    expect(link).toHaveLength(1);
+    expect(wrapper.find('div')).toHaveLength(1);
   });
 });

@@ -1,0 +1,12 @@
+@import "~style/utils/variables.sass"
+
+@mixin button($border-color, $text-color, $background-color)
+  display: inline-block
+  color: $text-color
+  background-color: $background-color
+  border: $border-thickness-normal solid $border-color
+  border-radius: $border-radius-normal
+  padding: 10px 15px
+  font-weight: 700
+  cursor: pointer
+  box-sizing: border-box
