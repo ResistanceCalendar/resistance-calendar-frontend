@@ -1,8 +1,6 @@
 @import "~style/utils/variables.sass"
 @import "~style/utils/mixins.sass"
 
-$gutter-margin: 20px
-
 // Default msg when no event data
 .no-data-msg
   padding: $gutter-margin * 2
@@ -27,27 +25,28 @@ $gutter-margin: 20px
 
 // Main body below title
 .content
-  display: flex
   padding: $gutter-margin
+  display: flex
+  flex-flow: row wrap
+
+  .left,
+  .right,
+  .description
+    flex: 1 100%
 
   // Left section (image, description)
   .left
-    flex: 2
     margin-right: $gutter-margin
+    flex: 2
 
     img
       max-width: 100%
       border: $border-thickness-small solid $main-dark-gray
 
-    .description
-      font-size: 0.8em
-      margin: 15px 0
-      line-height: 1.4
-
   // Right section (event info)
   .right
-    flex: 1
     font-size: 0.8em
+    flex: 1
 
     .share-btn
       @include button($main-green, $main-black, $main-white)
@@ -61,6 +60,9 @@ $gutter-margin: 20px
 
     .social-btns
       margin: 30px 0
+
+      button
+        display: none
 
       .twitter-btn
         @include button($twitter-blue, $main-white, $twitter-blue)
@@ -76,13 +78,54 @@ $gutter-margin: 20px
         &>:first-child
           margin-right: 10px
 
+  .description
+    font-size: 0.8em
+    margin: 15px 0
+    line-height: 1.4
+
 // Breakpoints
-@media only screen and (max-width: $break-min-md)
+@media only screen and (max-width: $break-max-md)
   .content
     flex-direction: column
 
     .left
-      order: 2
+      margin-bottom: $gutter-margin
+      margin-right: 0
 
     .right
-      order: 1
+      display: flex
+      flex-direction: row
+      flex-flow: row wrap
+      justify-content: flex-start
+
+      .eventLink,
+      .social-btns,
+      .info
+        flex: 1 100%
+
+      .eventLink
+        flex: 3
+        order: 1
+
+      .social-btns
+        flex: 4
+        //width: 100px
+        order: 2
+        margin-top: 0
+        align-items: flex-start
+
+        > button
+          display: block
+          @include button($main-green, $main-black, $main-white)
+          width: 125px
+          text-align: center
+          font-size: 100%
+
+        .social-buttons-hide
+          display: none
+
+        .social-buttons-show
+          display: block
+
+      .info
+        order: 3
