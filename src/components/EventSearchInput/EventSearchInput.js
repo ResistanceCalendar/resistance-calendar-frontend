@@ -21,7 +21,7 @@ class EventSearchInput extends Component {
       </div>
     );
   }
-};
+}
 
 EventSearchInput.propTypes = {
   updateFilters: PropTypes.func.isRequired,

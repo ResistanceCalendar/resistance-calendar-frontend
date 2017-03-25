@@ -1,0 +1,26 @@
+@import "~style/utils/variables.sass"
+
+.back-wrapper
+  display: flex
+  background-color: $main-medium-gray
+  padding: 20px
+  border-radius: $border-radius-normal $border-radius-normal 0 0
+  font-size: 0.8em
+  font-weight: 700
+  text-transform: uppercase
+
+  .link
+    display: flex
+    flex: none
+    align-items: center
+
+    &>:first-child
+      margin-right: 4px
+
+  a
+    display: inline-block
+
+  a:visited,
+  a:link,
+  a:active
+    color: $main-black

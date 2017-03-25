@@ -1,13 +1,8 @@
 @import "~style/utils/variables.sass"
+@import "~style/utils/mixins.sass"
 
 .btn-add-events
-  color: $main-white
-  background-color: $main-pink
-  border: $border-thickness-normal solid $main-white
-  border-radius: $border-radius-normal
-  text-decoration: none;
-  padding: 10px 15px
-  font-weight: 700
+  @include button($main-white, $main-white, $main-pink)
 
   &:hover
     border-color: $main-medium-gray
