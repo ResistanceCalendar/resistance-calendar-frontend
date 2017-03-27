@@ -16,3 +16,4 @@ export { default as DateBlock } from './DateBlock/DateBlock';
 export { default as AddEvent } from './AddEvent/AddEvent';
 export { default as Loading } from './Loading/Loading';
 export { default as EventDetailsContainer } from './EventDetailsContainer/EventDetailsContainer';
+export { default as SocialBtns } from './SocialBtns/SocialBtns';

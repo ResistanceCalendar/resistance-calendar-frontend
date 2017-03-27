@@ -8,10 +8,15 @@
   font-weight: 700
   text-align: center
 
+.title-wrapper,
+.content
+
 // Upper title section
 .title-wrapper
   padding: $gutter-margin
   border-bottom: $border-thickness-small solid $main-medium-gray
+  max-width: $max-width
+  margin: 0 auto
 
   &>*:not(:last-child)
     margin-bottom: 15px
@@ -23,109 +28,150 @@
   .location
     font-weight: 700
 
-// Main body below title
 .content
-  padding: $gutter-margin
+  flex-direction: column
   display: flex
-  flex-flow: row wrap
+  padding: $gutter-margin
+  margin-right: 0
+  max-width: $max-width
+  margin: 0 auto
+
+  @include breakpoint(md)
+    padding: $gutter-margin
+    display: flex
+    flex-flow: row wrap
 
   .left,
   .right,
   .description
-    flex: 1 100%
+    @include breakpoint(md)
+      flex: 1 100%
 
-  // Left section (image, description)
+  .left,
+  .right
+    @include breakpoint(md)
+      flex-basis: 25%
+
+
   .left
-    margin-right: $gutter-margin
     flex: 2
+    margin-bottom: $gutter-margin
+
+    @include breakpoint(md)
+      margin-right: $gutter-margin
+      flex: 3
 
     img
       max-width: 100%
       border: $border-thickness-small solid $main-dark-gray
 
-  // Right section (event info)
   .right
     font-size: 0.8em
-    flex: 1
+    display: flex
+    flex-flow: row wrap
 
-    .share-btn
+    @include breakpoint(md)
+      flex: 1
+      align-self: flex-start
+
+    .info-links
+      flex: 2 0 0
+      display: flex
+      flex-flow: row wrap
+
+      @include breakpoint(md)
+        display: flex
+        flex: 1
+
+      .event-link,
+      .sharing,
+      .location-and-date
+        flex: 1
+        flex-basis: 50%
+        flex-grow: 1
+
+        @include breakpoint(md)
+          flex: none
+          flex-basis: 100%
+
+    .location-and-date
+      @include breakpoint(md)
+        order: 2
+
+      @include breakpoint(md)
+        flex: none
+        display: block
+
+    .share-btn,
+    .event-btn
       @include button($main-green, $main-black, $main-white)
+
+    .event-link
+      @include breakpoint(md)
+        order: 1
+
+      .event-btn
+        background-color: $main-dark-gray
+        color: $main-white
+        border-color: $main-dark-gray
+
+        @include breakpoint(md)
+          @include button($main-green, $main-black, $main-white)
+
+        span
+          display: none
+
+          @include breakpoint(md)
+            display: inline
+
+    .sharing
+      margin-top: 0
+      position: relative
+
+      @include breakpoint(md)
+        order: 3
+        margin: 30px 0
+
+    .desktop-sharing
+      display: none
+
+      @include breakpoint(md)
+        display: block
 
     .info
       line-height: 1.4
 
-      .info-label
-        margin: 30px 0 8px
-        font-weight: 700
+      @include breakpoint(md)
+        display: block
 
-    .social-btns
-      margin: 30px 0
+    .info-label
+      margin: 30px 0 8px
+      font-weight: 700
 
-      button
+    .share-btn-mobile
+      display: block
+      @include button($main-green, $main-black, $main-white)
+      width: 125px
+      text-align: center
+      font-size: 100%
+      max-height: 38px
+      position: relative
+
+      @include breakpoint(md)
         display: none
 
-      .twitter-btn
-        @include button($twitter-blue, $main-white, $twitter-blue)
+      .popover-wrapper
+        @include popover-wrapper(250px, 29px, right, -33px, 85px)
 
-      .facebook-btn
-        @include button($facebook-blue, $main-white, $facebook-blue)
+        a
+          margin-right: 0
 
-      .twitter-btn,
-      .facebook-btn
-        margin: 10px 10px 0 0
-        padding: 5px 10px
-
-        &>:first-child
-          margin-right: 10px
+          &:first-child
+            margin-top: 0
 
   .description
+    display: flex
+    flex-direction: column
     font-size: 0.8em
     margin: 15px 0
     line-height: 1.4
-
-// Breakpoints
-@media only screen and (max-width: $break-max-md)
-  .content
-    flex-direction: column
-
-    .left
-      margin-bottom: $gutter-margin
-      margin-right: 0
-
-    .right
-      display: flex
-      flex-direction: row
-      flex-flow: row wrap
-      justify-content: flex-start
-
-      .eventLink,
-      .social-btns,
-      .info
-        flex: 1 100%
-
-      .eventLink
-        flex: 3
-        order: 1
-
-      .social-btns
-        flex: 4
-        //width: 100px
-        order: 2
-        margin-top: 0
-        align-items: flex-start
-
-        > button
-          display: block
-          @include button($main-green, $main-black, $main-white)
-          width: 125px
-          text-align: center
-          font-size: 100%
-
-        .social-buttons-hide
-          display: none
-
-        .social-buttons-show
-          display: block
-
-      .info
-        order: 3

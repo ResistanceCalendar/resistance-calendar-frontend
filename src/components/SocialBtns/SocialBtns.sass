@@ -1,0 +1,23 @@
+@import "~style/utils/variables.sass"
+@import "~style/utils/mixins.sass"
+
+.social-btns
+  .twitter-btn
+    @include button($twitter-blue, $main-white, $twitter-blue)
+
+  .facebook-btn
+    @include button($facebook-blue, $main-white, $facebook-blue)
+
+  .twitter-btn,
+  .facebook-btn
+    margin: 10px 0 0 0
+    padding: 5px 10px
+    display: block
+    text-align: left
+    text-align: left
+
+    @include breakpoint(md)
+      max-width: 195px
+
+    &>:first-child
+      margin-right: 10px
