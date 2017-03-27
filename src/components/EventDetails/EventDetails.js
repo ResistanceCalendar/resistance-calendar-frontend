@@ -41,8 +41,11 @@ class EventDetails extends Component {
 
     this.state = {
       isFetchingEvent: true,
-      event: null
+      event: null,
+      socialBtnsDisplay: styles.socialButtonsHide
     };
+
+    this.showHideSocialBtns = this.showHideSocialBtns.bind(this);
   }
 
   componentDidMount() {
@@ -57,6 +60,13 @@ class EventDetails extends Component {
         console.error(err);
         this.setState({ isFetchingEvent: false });
       });
+  }
+
+  showHideSocialBtns(e) {
+    e.preventDefault();
+    this.setState({
+      socialBtnsDisplay: styles.socialButtonShow
+    });
   }
 
   render() {
@@ -92,10 +102,10 @@ class EventDetails extends Component {
         <div className={styles.content}>
           <div className={styles.left}>
             <img src={featuredImageUrl || 'http://www.fillmurray.com/950/500'} alt="featured event" />
-            <p className={styles.description}>{description}</p>
           </div>
+
           <div className={styles.right}>
-            <div>
+            <div className={styles.eventLink}>
               <a
                 href={browserUrl}
                 target="_blank"
@@ -108,15 +118,26 @@ class EventDetails extends Component {
             {loc && renderAddress(loc)}
             {startDate && renderTimeRange(startDate, endDate)}
             <div className={styles.socialBtns}>
-              <a href={shareUrl} className={styles.facebookBtn}>
-                <FaFacebookSquare size={25} />
-                <span>Share on Facebook</span>
-              </a>
-              <a href={shareUrl} className={styles.twitterBtn}>
-                <FaTwitter size={25} />
-                <span>Share on Twitter</span>
-              </a>
+              <button onClick={this.showHideSocialBtns}>
+                SHARE
+              </button>
+              <div className={this.state.socialBtnsDisplay}>
+                <a href={shareUrl} className={styles.facebookBtn}>
+                  <FaFacebookSquare size={25} />
+                  <span>Share on Facebook</span>
+                </a>
+                <a href={shareUrl} className={styles.twitterBtn}>
+                  <FaTwitter size={25} />
+                  <span>Share on Twitter</span>
+                </a>
+              </div>
             </div>
+          </div>
+
+          <div className={styles.description}>
+            <p>
+              {description}
+            </p>
           </div>
         </div>
       </div>
