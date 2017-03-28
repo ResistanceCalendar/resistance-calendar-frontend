@@ -22,10 +22,7 @@ const EventFilters = (props) => {
         />
       </div>
       <div className={styles.locationWrapper}>
-        <EventLocationFilter
-          location={filters.location}
-          updateFilters={updateFilters}
-        />
+        <EventLocationFilter updateFilters={updateFilters} />
       </div>
     </section>
   );

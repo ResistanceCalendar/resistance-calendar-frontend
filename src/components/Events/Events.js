@@ -10,7 +10,8 @@ class Events extends Component {
     this.state = {
       filters: {
         searchText: '',
-        location: '',
+        location: null,
+        range: null,
         startDate: null
       },
       isFetchingEvents: true,
