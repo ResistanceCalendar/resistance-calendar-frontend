@@ -5,11 +5,16 @@
   "scripts": {
     "build": "rimraf dist && webpack -p",
     "dev": "webpack-dev-server",
+    "start": " serve -s dist",
+    "heroku-postbuild": "rm -rf dist && NODE_ENV=production webpack -p --progress --colors",
     "test": "jest --config=testConfig/jest.config.json",
     "test:watch": "jest --config=testConfig/jest.config.json --watch",
     "lint": "clear && eslint ./src --ext .js --cache",
     "lint:watch": "onchange ./src --initial -- yarn run lint",
     "lint:watch-npm": "onchange ./src --initial -- npm run lint"
+  },
+  "engines": {
+      "node": "^6.10.0"
   },
   "dependencies": {
     "axios": "^0.15.3",
@@ -21,7 +26,8 @@
     "react-datepicker": "^0.43.0",
     "react-dom": "^15.4.2",
     "react-icons": "^2.2.3",
-    "react-router-dom": "^4.0.0"
+    "react-router-dom": "^4.0.0",
+    "serve": "^5.1.1"
   },
   "devDependencies": {
     "autoprefixer": "^6.7.2",

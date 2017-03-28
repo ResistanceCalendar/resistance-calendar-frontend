@@ -28,6 +28,7 @@ function makeConfig() {
   switch(process.env.npm_lifecycle_event) {
     // PRODUCTION
     case 'build':
+    case 'heroku-postbuild':
       return merge(
         config,
         parts.babel(PATHS.src),
