@@ -3,13 +3,13 @@ import React, { PropTypes } from 'react';
 const ResistanceLogo = (props) => {
   const image = '../static/img/Logo-large.png';
   const style = {
-    width: `${props.width}`,
+    maxWidth: `${props.width}`,
     height: `${props.height}`
   };
 
   return (
-    <div>
-      <img src={image} style={style} alt="Logo for the Resistance Calendar" />
+    <div style={style}>
+      <img src={image} style={{ width: '100%' }} alt="Logo for the Resistance Calendar" />
     </div>
   );
 };

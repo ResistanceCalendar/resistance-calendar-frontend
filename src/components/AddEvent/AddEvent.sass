@@ -23,8 +23,13 @@
   .error
     color: red
 
-  .fieldset
+  .fieldset:not(:last-child)
     margin: $base-spacing 0
+
+    label
+      display: inline-block
+      margin-bottom: 5px
+      font-weight: 700
 
     &:first-child
       margin-top: 0
