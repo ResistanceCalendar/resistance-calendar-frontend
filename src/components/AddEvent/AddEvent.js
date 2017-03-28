@@ -93,8 +93,9 @@ class AddEvent extends Component {
         id={styles.addEventForm}
         onSubmit={this.handleSubmit.bind(this)}
       >
+        <h1>Event Form</h1>
         <fieldset className={styles.fieldset}>
-          <label htmlFor="eventName">Event Name:</label>
+          <label htmlFor="eventName">Event Name</label>
           <input
             type="text"
             name="eventName"
@@ -104,7 +105,7 @@ class AddEvent extends Component {
           />
         </fieldset>
         <fieldset className={styles.fieldset}>
-          <label htmlFor="email">Your Email:</label>
+          <label htmlFor="email">Your Email</label>
           <input
             type="text"
             name="email"
@@ -115,7 +116,7 @@ class AddEvent extends Component {
           <div className={styles.error}>{this.state.errorMessage.email}</div>
         </fieldset>
         <fieldset className={styles.fieldset}>
-          <label htmlFor="eventLink">Link to Event:</label>
+          <label htmlFor="eventLink">Link to Event</label>
           <input
             type="text"
             name="eventLink"
@@ -126,7 +127,7 @@ class AddEvent extends Component {
           <div className={styles.error}>{this.state.errorMessage.eventLink}</div>
         </fieldset>
         <fieldset className={styles.fieldset}>
-          <label htmlFor="notes">Notes or Comments: </label>
+          <label htmlFor="notes">Notes or Comments</label>
           <textarea
             name="notes"
             value={this.state.notes}
