@@ -5,7 +5,7 @@ import styles from './AddEventButton.sass';
 
 const AddEventButton = () => {
   return (
-    <Link to="add-event" className={styles.btnAddEvents}>
+    <Link to="/add-event" className={styles.btnAddEvents}>
       ADD EVENTS
     </Link>
   );
