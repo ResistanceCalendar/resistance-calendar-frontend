@@ -25,14 +25,15 @@ class EventLocationFilter extends Component {
       location: '',
       range: distanceRange[1].value
     };
+    this.handleDocumentClick = this.handleDocumentClick.bind(this);
   }
 
   componentDidMount() {
-    window.addEventListener('click', this.handleDocumentClick.bind(this));
+    window.addEventListener('click', this.handleDocumentClick);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('click', this.handleDocumentClick.bind(this));
+    window.removeEventListener('click', this.handleDocumentClick);
   }
 
   // Close menu if clicking on the document (outside of the menu)
