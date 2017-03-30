@@ -1,8 +1,14 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router-dom';
+import _ from 'lodash';
 
 import { DateBlock } from '../';
 import styles from './EventCard.sass';
+
+const truncateOptions = {
+  length: 250,
+  separator: /, +/  // break on commas and spaces
+};
 
 function renderLocation(loc) {
   if (loc && loc.locality && loc.region) {
@@ -41,7 +47,7 @@ const EventCard = ({ event, className }) => {
           <div className={styles.title}>{title}</div>
         </Link>
         <div className={styles.time}>6:00PM-9:00PM (PLACEHOLDER)</div>
-        <p className={styles.description}>{description}</p>
+        <p className={styles.description}>{_.truncate(description, truncateOptions)}</p>
       </div>
     </li>
   );

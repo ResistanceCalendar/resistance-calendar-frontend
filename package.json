@@ -14,7 +14,7 @@
     "lint:watch-npm": "onchange ./src --initial -- npm run lint"
   },
   "engines": {
-      "node": "^6.10.0"
+    "node": "^6.10.0"
   },
   "dependencies": {
     "axios": "^0.15.3",
@@ -34,6 +34,7 @@
     "babel-core": "^6.22.1",
     "babel-jest": "^19.0.0",
     "babel-loader": "^6.2.10",
+    "babel-plugin-lodash": "^3.2.11",
     "babel-preset-env": "^1.1.10",
     "babel-preset-react": "^6.22.0",
     "babel-preset-stage-1": "^6.22.0",
