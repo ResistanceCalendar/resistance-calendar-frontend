@@ -1,4 +1,5 @@
 import React, { PropTypes, Component } from 'react';
+import FaSearch from 'react-icons/lib/fa/search';
 
 import styles from './EventSearchInput.sass';
 
@@ -12,6 +13,7 @@ class EventSearchInput extends Component {
 
     return (
       <div className={styles.inputSearchWrapper}>
+        <FaSearch size={18} />
         <input
           value={filterInput}
           ref={node => this.input = node}
