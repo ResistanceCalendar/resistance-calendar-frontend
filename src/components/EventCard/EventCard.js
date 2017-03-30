@@ -31,25 +31,25 @@ const EventCard = ({ event, className }) => {
   // TODO: Seems like the featured_image_url is no longer coming back -- follow up when services more stable
 
   return (
-    <Link to={`/event/${_id}`}>
     <li className={`${styles.card} ${className || ''}`}>
-      <div className={styles.imageWrapper}>
-        <img
-          src={featuredImageUrl || 'http://www.fillmurray.com/550/450'}
-          alt="featured event"
-        />
-      </div>
-      <div className={styles.contentWrapper}>
-        <div className={styles.dateLocation}>
-          <DateBlock date={startDate} />
-          { renderLocation(loc) }
+      <Link to={`/event/${_id}`}>
+        <div className={styles.imageWrapper}>
+          <img
+            src={featuredImageUrl || 'http://www.fillmurray.com/550/450'}
+            alt="featured event"
+          />
         </div>
+        <div className={styles.contentWrapper}>
+          <div className={styles.dateLocation}>
+            <DateBlock date={startDate} />
+            { renderLocation(loc) }
+          </div>
           <div className={styles.title}>{title}</div>
-        <div className={styles.time}>6:00PM-9:00PM (PLACEHOLDER)</div>
-        <p className={styles.description}>{_.truncate(description, truncateOptions)}</p>
-      </div>
+          <div className={styles.time}>6:00PM-9:00PM (PLACEHOLDER)</div>
+          <p className={styles.description}>{_.truncate(description, truncateOptions)}</p>
+        </div>
+      </Link>
     </li>
-  </Link>
   );
 };
 
