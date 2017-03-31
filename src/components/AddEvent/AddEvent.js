@@ -93,7 +93,7 @@ class AddEvent extends Component {
         id={styles.addEventForm}
         onSubmit={this.handleSubmit.bind(this)}
       >
-        <h1>Event Form</h1>
+        <h1>Add Event Form</h1>
         <fieldset className={styles.fieldset}>
           <label htmlFor="eventName">Event Name</label>
           <input

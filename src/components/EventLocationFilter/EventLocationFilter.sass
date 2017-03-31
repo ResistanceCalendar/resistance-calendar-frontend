@@ -2,6 +2,8 @@
 @import "~style/utils/mixins.sass"
 
 .location-wrapper
+  display: flex
+  align-items: center
   position: relative
   z-index: 1
 
@@ -16,10 +18,10 @@
     text-align: left
 
     &>:first-child
-      margin-right: 5px
+      width: 80px
 
     &>span
-      flex: 1
+      flex: none
 
   .popover-wrapper
     position: absolute

@@ -7,15 +7,24 @@
 .filters-border
   display: flex
   align-items: center
-  padding: 5px
-  box-shadow: 0px 2px 3px -1px rgba(0,0,0,0.6);
+  justify-content: space-between
+  max-width: $max-width
+  background-color: $main-white
+  margin: 0 auto
+  padding: 10px 0
 
-  &>div
-    margin: 5px
-    flex: 1
+  .left-wrapper
+    max-width: 300px
 
-  .search-wrapper
-    flex: 3
+  .right-wrapper
+    display: flex
+
+    &>:first-child
+      margin-right: 10px
+
+    &>:last-child
+      flex: none
+
 
 // Breakpoints
 @media only screen and (max-width: $break-min-md)

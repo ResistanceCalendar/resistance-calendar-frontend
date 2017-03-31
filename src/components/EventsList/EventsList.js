@@ -26,7 +26,7 @@ function renderEvents(events, filters) {
 }
 
 const EventsList = ({ events, filters }) => {
-  return <ul>{renderEvents(events, filters)}</ul>;
+  return <ul className={styles.listContainer}>{renderEvents(events, filters)}</ul>;
 };
 
 EventsList.propTypes = {

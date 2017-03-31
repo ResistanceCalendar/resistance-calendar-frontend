@@ -1,13 +1,19 @@
 @import "~style/utils/variables.sass"
 
-.event-card
-  display: block
-  border-bottom: $border-thickness-small solid $main-medium-gray
+.list-container
+  max-width: $max-width
+  margin: 0 auto
+  background-color: $main-medium-gray
 
-  &:hover
-    background-color: #efefef
+  .event-card
+    display: block
+    border-bottom: $border-thickness-small solid $main-medium-gray
+    background-color: $main-white
 
-.no-results
-  font-weight: 700
-  margin: 50px 0
-  text-align: center;
+    &:hover
+      background-color: #f7f5f5
+
+  .no-results
+    font-weight: 700
+    padding: 60px 0
+    text-align: center;
