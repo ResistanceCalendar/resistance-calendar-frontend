@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { EventsList, EventFilters, Loading } from '../';
 import { eventsAPI } from '../../api';
-// import styles from './Events.sass';
+import styles from './Events.sass';
 
 class Events extends Component {
   constructor(props) {
@@ -54,11 +54,13 @@ class Events extends Component {
     }
 
     return (
-      <div>
-        <EventFilters
-          filters={filters}
-          updateFilters={this.updateFilters.bind(this)}
-        />
+      <div className={styles.container}>
+        <div className={styles.filtersWrapper}>
+          <EventFilters
+            filters={filters}
+            updateFilters={this.updateFilters.bind(this)}
+          />
+        </div>
         <EventsList
           events={events}
           filters={filters}
