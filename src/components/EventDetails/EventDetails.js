@@ -1,12 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import moment from 'moment';
-import FaFacebookSquare from 'react-icons/lib/fa/facebook-square';
-import FaTwitter from 'react-icons/lib/fa/twitter';
-
-import { DateBlock, Loading } from '../';
+import { DateBlock, Loading, SocialBtns } from '../';
 import { eventsAPI } from '../../api';
 import styles from './EventDetails.sass';
-
 
 const renderAddress = (loc) => {
   const { address_lines: addressLines, locality, region, postal_code: postalCode } = loc;
@@ -42,14 +38,17 @@ class EventDetails extends Component {
     this.state = {
       isFetchingEvent: true,
       event: null,
-      socialBtnsDisplay: styles.socialButtonsHide
+      socialPopupOpen: false
     };
 
-    this.showHideSocialBtns = this.showHideSocialBtns.bind(this);
+    this.toggleSocialPopup = this.toggleSocialPopup.bind(this);
+    this._handleDocumentClick = this.handleDocumentClick.bind(this);
   }
 
   componentDidMount() {
     const { eventId } = this.props.match.params;
+    window.addEventListener('click', this._handleDocumentClick);
+
     this.setState({ isFetchingEvent: true });
 
     eventsAPI.getEventById(eventId)
@@ -62,15 +61,22 @@ class EventDetails extends Component {
       });
   }
 
-  showHideSocialBtns(e) {
-    e.preventDefault();
-    this.setState({
-      socialBtnsDisplay: styles.socialButtonShow
-    });
+  componentWillUnmount() {
+    window.removeEventListener('click', this._handleDocumentClick);
+  }
+
+  // Close socialPopupOpen if clicking on the document (outside of the socialPopupOpen)
+  handleDocumentClick() {
+    this.setState({ socialPopupOpen: false });
+  }
+
+  toggleSocialPopup(e) {
+    e.stopPropagation();
+    this.setState({ socialPopupOpen: !this.state.socialPopupOpen });
   }
 
   render() {
-    const { event, isFetchingEvent } = this.state;
+    const { event, isFetchingEvent, socialPopupOpen } = this.state;
 
     // Depending on snappiness of server, may not need to display loading
     if (isFetchingEvent) {
@@ -90,6 +96,7 @@ class EventDetails extends Component {
       loc
     } = event;
 
+    /* eslint-disable jsx-a11y/no-static-element-interactions */
     return (
       <div>
         <div className={styles.titleWrapper}>
@@ -105,31 +112,51 @@ class EventDetails extends Component {
           </div>
 
           <div className={styles.right}>
-            <div className={styles.eventLink}>
-              <a
-                href={browserUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.shareBtn}
-              >
-                EVENT PAGE
-              </a>
-            </div>
-            {loc && renderAddress(loc)}
-            {startDate && renderTimeRange(startDate, endDate)}
-            <div className={styles.socialBtns}>
-              <button onClick={this.showHideSocialBtns}>
-                SHARE
-              </button>
-              <div className={this.state.socialBtnsDisplay}>
-                <a href={shareUrl} className={styles.facebookBtn}>
-                  <FaFacebookSquare size={25} />
-                  <span>Share on Facebook</span>
+            <div className={styles.infoLinks}>
+              <div className={styles.eventLink}>
+                <a
+                  href={browserUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.eventBtn}
+                >
+                  <span>
+                    FACEBOOK&nbsp;
+                  </span>
+                  EVENT PAGE
                 </a>
-                <a href={shareUrl} className={styles.twitterBtn}>
-                  <FaTwitter size={25} />
-                  <span>Share on Twitter</span>
-                </a>
+              </div>
+              <div className={styles.sharing}>
+                <div
+                  className={styles.shareBtnMobile}
+                  onClick={this.toggleSocialPopup}
+                  role="link"
+                >
+                  SHARE
+                  <div
+                    className={styles.popoverWrapper}
+                    style={{ visibility: socialPopupOpen ? 'visible' : 'hidden' }}
+                  >
+                    <SocialBtns
+                      fbLink={shareUrl}
+                      twitterLink={shareUrl}
+                      iconSize={25}
+                    />
+                  </div>
+                </div>
+                <div>
+                  <div className={styles.desktopSharing}>
+                    <SocialBtns
+                      fbLink={shareUrl}
+                      twitterLink={shareUrl}
+                      iconSize={25}
+                    />
+                  </div>
+                </div>
+              </div>
+              <div className={styles.locationAndDate}>
+                {loc && renderAddress(loc)}
+                {startDate && renderTimeRange(startDate, endDate)}
               </div>
             </div>
           </div>
@@ -142,6 +169,7 @@ class EventDetails extends Component {
         </div>
       </div>
     );
+    /* eslint-enable jsx-a11y/no-static-element-interactions */
   }
 }
 

@@ -24,17 +24,8 @@
       flex: none
 
   .popover-wrapper
-    position: absolute
-    right: 0
-    top: 50px
-    margin-left: auto
-    margin-right: auto
-    width: 300px
-    padding: 15px
-    background-color: $main-white
-    border-radius: $border-radius-normal
-    border: $border-thickness-small solid $main-medium-gray
-    box-shadow: 0px 2px 10px 0px rgba(0,0,0,0.75)
+    @include popover-wrapper(300px, 38px, right, 0, 55px)
+    margin-right: 5px
 
     .input-group
       display: flex
@@ -75,3 +66,9 @@
 
       .submit-btn
         @include button($main-green, $main-white, $main-green)
+
+// Breakpoints
+@media only screen and (max-width: $break-max-md)
+  .location-wrapper
+    .popover-wrapper
+      @include popover-wrapper(300px, 52px, right, 0, 79px)
