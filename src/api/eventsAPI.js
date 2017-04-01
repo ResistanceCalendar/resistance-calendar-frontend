@@ -682,11 +682,8 @@ const temp = {
 }
 /* eslint-enable */
 
-// NOTE: right now the server's _id property is inconsistent between fetches
-// so I'm hardcoding data for now
-
 function getEvents() {
-  // return axios.get('https://resistance-calendar.herokuapp.com/facebook/events')
+  // return axios.get('https://resistance-calendar.herokuapp.com/v1/events')
   //   .then(res => res.data);
 
   return new Promise(resolve => {
@@ -697,7 +694,7 @@ function getEvents() {
 }
 
 function getEventById(id) {
-  // return axios.get('https://resistance-calendar.herokuapp.com/facebook/events')
+  // return axios.get('https://resistance-calendar.herokuapp.com/v1/events?$filter=_id eq \'' + id + '\'')
   //   .then(res => res.data._embedded['osdi:events'].find(currEvent => currEvent._id === id));
 
   return new Promise(resolve => {
