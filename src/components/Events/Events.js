@@ -87,11 +87,7 @@ class Events extends Component {
         <div className={styles.loadMoreBtn}>
           { isFetchingMoreEvents ?
             <Loading /> :
-            <button
-              type="button"
-              onClick={this.loadMoreEvents.bind(this)}
-              disabled={isFetchingMoreEvents}
-            >
+            <button type="button" onClick={this.loadMoreEvents.bind(this)}>
               load more events
             </button>
           }
