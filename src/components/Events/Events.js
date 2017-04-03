@@ -15,7 +15,9 @@ class Events extends Component {
         startDate: null
       },
       isFetchingEvents: true,
-      events: []
+      isFetchingMoreEvents: false,
+      events: [],
+      currentPage: 0
     };
   }
 
@@ -26,7 +28,7 @@ class Events extends Component {
   getEvents() {
     this.setState({ isFetchingEvents: true });
 
-    eventsAPI.getEvents()
+    eventsAPI.getEvents({})
       .then(res => this.setState({
         events: res._embedded['osdi:events'],
         isFetchingEvents: false
@@ -34,6 +36,23 @@ class Events extends Component {
       .catch(err => {
         console.error(err);
         this.setState({ isFetchingEvents: false });
+      });
+  }
+
+  loadMoreEvents() {
+    const { currentPage, events } = this.state;
+    const nextPage = currentPage + 1;
+
+    this.setState({ currentPage: nextPage, isFetchingMoreEvents: true });
+
+    eventsAPI.getEvents({ page: nextPage })
+      .then(res => this.setState({
+        events: [...events, ...res._embedded['osdi:events']],
+        isFetchingMoreEvents: false
+      }))
+      .catch(err => {
+        this.setState({ isFetchingMoreEvents: false });
+        console.error(err);
       });
   }
 
@@ -47,10 +66,10 @@ class Events extends Component {
   }
 
   render() {
-    const { filters, events, isFetchingEvents } = this.state;
+    const { filters, events, isFetchingEvents, isFetchingMoreEvents } = this.state;
 
     if (isFetchingEvents) {
-      return <Loading />;
+      return <div className={styles.loadingWrapper}><Loading /></div>;
     }
 
     return (
@@ -65,6 +84,19 @@ class Events extends Component {
           events={events}
           filters={filters}
         />
+        <div className={styles.loadMoreBtn}>
+          { isFetchingMoreEvents ?
+            <Loading /> :
+            <button
+              type="button"
+              onClick={this.loadMoreEvents.bind(this)}
+              disabled={isFetchingMoreEvents}
+            >
+              load more events
+            </button>
+          }
+
+        </div>
       </div>
     );
   }
