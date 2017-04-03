@@ -9,10 +9,12 @@ const EventDetailsContainer = ({ match }) => {
   return (
     <div>
       <div className={styles.backWrapper}>
-        <Link to="/" className={styles.link}>
-          <FaArrowLeft />
-          <div>Back to Events</div>
-        </Link>
+        <div className={styles.linkWrapper}>
+          <Link to="/" className={styles.link}>
+            <FaArrowLeft />
+            <div>Back to Events</div>
+          </Link>
+        </div>
       </div>
       <EventDetails match={match} />
     </div>

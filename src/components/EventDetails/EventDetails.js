@@ -80,7 +80,7 @@ class EventDetails extends Component {
 
     // Depending on snappiness of server, may not need to display loading
     if (isFetchingEvent) {
-      return <Loading />;
+      return <div className={styles.loadingWrapper}><Loading /></div>;
     } else if (!event) {
       return <div className={styles.noDataMsg}>No event data</div>;
     }
