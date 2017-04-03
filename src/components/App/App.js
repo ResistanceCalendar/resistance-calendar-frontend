@@ -3,12 +3,14 @@ import React, { PropTypes } from 'react';
 import { Header, Footer } from '../';
 import styles from './App.sass';
 
-const App = ({ children }) => {
+const App = (props) => {
   return (
     <div className={styles.container}>
-      <Header />
+      <Header
+        pathName={props.location.pathname}
+      />
       <div className={styles.contentWrapper}>
-        {children}
+        {props.children}
       </div>
       <Footer />
     </div>
@@ -16,7 +18,10 @@ const App = ({ children }) => {
 };
 
 App.propTypes = {
-  children: PropTypes.element.isRequired
+  children: PropTypes.element.isRequired,
+  location: PropTypes.shape({
+    pathname: PropTypes.string
+  }).isRequired
 };
 
 export default App;

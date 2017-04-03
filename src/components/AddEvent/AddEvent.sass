@@ -1,4 +1,5 @@
 @import "~style/utils/variables.sass"
+@import "~style/utils/mixins.sass"
 
 #addEventForm
   max-width: $max-width
@@ -15,12 +16,26 @@
   textarea
     resize: vertical
 
-  input[type="submit"]
-    cursor: pointer
-    font-weight: 700
-    text-transform: uppercase
-    background-color: $main-green
-    color: $main-white
+
+
+  #buttons-container
+    display: flex
+
+    input[type="submit"]
+      flex: 3 0 0
+      -webkit-appearance: none
+      cursor: pointer
+      font-weight: 700
+      text-transform: uppercase
+      @include button($main-green, $main-white, $main-green)
+
+    .cancel-btn
+      flex: 1 0 0
+      @include button($main-medium-gray, $main-black, $main-medium-gray)
+      font-size: 15px
+      text-transform: uppercase
+      margin-left: $gutter-margin
+      text-align: center
 
   .error
     color: red

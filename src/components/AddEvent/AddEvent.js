@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import styles from './AddEvent.sass';
-
 
 class AddEvent extends Component {
 
@@ -135,7 +135,12 @@ class AddEvent extends Component {
           />
         </fieldset>
         <fieldset className={styles.fieldset}>
-          <input type="submit" value="Submit" />
+          <div id={styles.buttonsContainer}>
+            <input type="submit" value="Submit" />
+            <Link to="/" className={styles.cancelBtn}>
+              CANCEL
+            </Link>
+          </div>
           <div className={styles.error}>{this.state.errorMessage.submission}</div>
         </fieldset>
       </form>
