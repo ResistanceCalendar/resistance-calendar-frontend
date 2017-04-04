@@ -4,14 +4,18 @@ import { shallow } from 'enzyme';
 import App from './App';
 
 describe('Component: <App />', () => {
+  const props = {};
+  props.location = {};
+  props.location.pathname = '';
+
   it('should render', () => {
-    const wrapper = shallow(<App><div /></App>);
+    const wrapper = shallow(<App {...props}><div /></App>);
 
     expect(wrapper).toHaveLength(1);
   });
 
   it('should render its children', () => {
-    const wrapper = shallow(<App><div className="child" /></App>);
+    const wrapper = shallow(<App {...props}><div className="child" /></App>);
     const children = wrapper.find('.child');
 
     expect(children).toHaveLength(1);
