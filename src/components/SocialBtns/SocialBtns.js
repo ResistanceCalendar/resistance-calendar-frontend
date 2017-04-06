@@ -5,7 +5,7 @@ import styles from './SocialBtns.sass';
 
 const SocialBtns = ({
   fbLink = 'https://www.facebook.com',
-  twitterLink = 'https://twitter.com',
+  twitterLink = `https://twitter.com/intent/tweet?text=${location.href}`,
   iconSize = '25'
 }) => {
   return (
