@@ -5,7 +5,7 @@ import { EventsList, EventFilters, Loading } from '../';
 import { eventsAPI } from '../../api';
 import styles from './Events.sass';
 
-function checkIfMoreEvents(currentPage, totalPages) {
+function hasMoreEventsToLoad(currentPage, totalPages) {
   return currentPage + 1 < totalPages;
 }
 
@@ -26,7 +26,7 @@ class Events extends Component {
       currentPage: 0
     };
 
-    this._getEvents = _.debounce(this.getEvents, 200, { leading: true });
+    this._getEvents = _.debounce(this.getEvents, 250, { leading: true });
   }
 
   componentDidMount() {
@@ -36,13 +36,13 @@ class Events extends Component {
   getEvents() {
     this.setState({ isFetchingEvents: true });
 
-    // Filters out falsey property values to avoid creating empty values in query string
-    const filtersWithValues = _.pickBy(this.state.filters);
+    const filtersWithValues = _.pickBy(this.state.filters);  // removes keys that have falsey values
 
     eventsAPI.getEvents({}, filtersWithValues)
       .then(res => this.setState({
         events: res._embedded['osdi:events'],
-        isFetchingEvents: false
+        isFetchingEvents: false,
+        isMoreEvents: hasMoreEventsToLoad(res.page, res.total_pages)
       }))
       .catch(err => {
         console.error(err);
@@ -53,7 +53,7 @@ class Events extends Component {
   loadMoreEvents() {
     const { currentPage, events, filters } = this.state;
     const nextPage = currentPage + 1;
-    const filtersWithValues = _.pickBy(filters);
+    const filtersWithValues = _.pickBy(filters);  // removes keys that have falsey values
 
     this.setState({ currentPage: nextPage, isFetchingMoreEvents: true });
 
@@ -61,7 +61,7 @@ class Events extends Component {
       .then(res => this.setState({
         events: [...events, ...res._embedded['osdi:events']],
         isFetchingMoreEvents: false,
-        isMoreEvents: checkIfMoreEvents(res.page, res.total_pages)
+        isMoreEvents: hasMoreEventsToLoad(res.page, res.total_pages)
       }))
       .catch(err => {
         this.setState({ isFetchingMoreEvents: false });
@@ -79,6 +79,24 @@ class Events extends Component {
       // After state update, fetch events (via debounced function to prevent rapid service calls)
       this._getEvents();
     });
+  }
+
+  renderEventsList(events, isMoreEvents, isFetchingMoreEvents) {
+    return (
+      <div>
+        <EventsList events={events} />
+        { isMoreEvents &&
+          <div className={styles.loadMoreBtn}>
+            { isFetchingMoreEvents ?
+              <Loading /> :
+              <button type="button" onClick={this.loadMoreEvents.bind(this)}>
+                load more events
+              </button>
+            }
+          </div>
+        }
+      </div>
+    );
   }
 
   render() {
@@ -100,19 +118,7 @@ class Events extends Component {
         </div>
         { isFetchingEvents ?
           <div className={styles.loadingWrapper}><Loading /></div> :
-          <div>
-            <EventsList events={events} />
-            { isMoreEvents &&
-              <div className={styles.loadMoreBtn}>
-                { isFetchingMoreEvents ?
-                  <Loading /> :
-                  <button type="button" onClick={this.loadMoreEvents.bind(this)}>
-                    load more events
-                  </button>
-                }
-              </div>
-            }
-          </div>
+          this.renderEventsList(events, isMoreEvents, isFetchingMoreEvents)
         }
       </div>
     );
