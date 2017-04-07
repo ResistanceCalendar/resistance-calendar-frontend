@@ -22,7 +22,7 @@ class Events extends Component {
       isFetchingEvents: true,
       isFetchingMoreEvents: false,
       events: [],
-      isMoreEvents: true,  // to show/hide "Load More Events" button
+      hasMoreEvents: true,  // to show/hide "Load More Events" button
       currentPage: 0
     };
 
@@ -42,7 +42,7 @@ class Events extends Component {
       .then(res => this.setState({
         events: res._embedded['osdi:events'],
         isFetchingEvents: false,
-        isMoreEvents: hasMoreEventsToLoad(res.page, res.total_pages)
+        hasMoreEvents: hasMoreEventsToLoad(res.page, res.total_pages)
       }))
       .catch(err => {
         console.error(err);
@@ -61,7 +61,7 @@ class Events extends Component {
       .then(res => this.setState({
         events: [...events, ...res._embedded['osdi:events']],
         isFetchingMoreEvents: false,
-        isMoreEvents: hasMoreEventsToLoad(res.page, res.total_pages)
+        hasMoreEvents: hasMoreEventsToLoad(res.page, res.total_pages)
       }))
       .catch(err => {
         this.setState({ isFetchingMoreEvents: false });
@@ -81,11 +81,11 @@ class Events extends Component {
     });
   }
 
-  renderEventsList(events, isMoreEvents, isFetchingMoreEvents) {
+  renderEventsList(events, hasMoreEvents, isFetchingMoreEvents) {
     return (
       <div>
         <EventsList events={events} />
-        { isMoreEvents &&
+        { hasMoreEvents &&
           <div className={styles.loadMoreBtn}>
             { isFetchingMoreEvents ?
               <Loading /> :
@@ -105,7 +105,7 @@ class Events extends Component {
       events,
       isFetchingEvents,
       isFetchingMoreEvents,
-      isMoreEvents
+      hasMoreEvents
     } = this.state;
 
     return (
@@ -118,7 +118,7 @@ class Events extends Component {
         </div>
         { isFetchingEvents ?
           <div className={styles.loadingWrapper}><Loading /></div> :
-          this.renderEventsList(events, isMoreEvents, isFetchingMoreEvents)
+          this.renderEventsList(events, hasMoreEvents, isFetchingMoreEvents)
         }
       </div>
     );
