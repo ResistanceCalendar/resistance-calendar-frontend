@@ -1,12 +1,12 @@
 @import "~style/utils/variables.sass"
+@import "~style/utils/mixins.sass"
 
 .container
   height: 100%
+  max-width: $max-width
+  margin: 0 auto 
 
 .content-wrapper
   background-color: $main-white
-
-// Breakpoints
-@media only screen and (max-width: $break-max-lg)
-  .content-wrapper
-    border-radius: 0
+  max-width: $max-width
+  margin: 0 auto

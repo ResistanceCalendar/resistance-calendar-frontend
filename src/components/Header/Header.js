@@ -6,7 +6,7 @@ import styles from './Header.sass';
 
 function displayAddEventLink(path) {
   if (path !== '/add-event') {
-    return <AddEventButton className="add-event-btn" />;
+    return <AddEventButton />;
   }
 
   return null;
@@ -17,7 +17,7 @@ const Header = (props) => {
     <header className={styles.header}>
       <div className={styles.headerLeftSection}>
         <Link to="/">
-          <ResistanceLogo width="250px" />
+          <ResistanceLogo />
         </Link>
       </div>
       <div className={styles.headerRightSection}>

@@ -1,5 +1,16 @@
 @import "~style/utils/variables.sass"
 
+@mixin border-line($isTopBorder)
+  border: $border-thickness-small solid $main-black
+
+  @if ($isTopBorder == top)
+    padding-bottom: 10px
+    border-width: $border-thickness-small 0 0 0
+
+  @else
+    padding-top: 10px
+    border-width: 0 0 $border-thickness-small 0
+
 @mixin button($border-color, $text-color, $background-color)
   display: inline-block
   color: $text-color
