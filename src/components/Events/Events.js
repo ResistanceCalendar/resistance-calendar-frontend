@@ -117,7 +117,7 @@ class Events extends Component {
           />
         </div>
         { isFetchingEvents ?
-          <div className={styles.loadingWrapper}><Loading /></div> :
+          <div className={styles.loadingMoreEventsWrapper}><Loading /></div> :
           this.renderEventsList(events, hasMoreEvents, isFetchingMoreEvents)
         }
       </div>

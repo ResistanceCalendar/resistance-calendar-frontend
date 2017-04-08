@@ -3,7 +3,7 @@ import moment from 'moment';
 
 // Builds up filter string by filter type
 const eventFilters = new Map([
-  ['startDate', val => `start_date gt ${moment(val).format('YYYY-MM-DD')}`],
+  ['startDate', val => `start_date eq ${moment(val).add(1, 'day').format('YYYY-MM-DD')}`],
   ['searchText', val => `contains(title, '${val}') or contains(name, '${val}') or contains(description, '${val}')`]
 ]);
 
