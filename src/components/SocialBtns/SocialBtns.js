@@ -6,11 +6,9 @@ import styles from './SocialBtns.sass';
 import fbSdk from './fb_sdk';
 
 class SocialBtns extends Component {
-
   componentDidMount() {
     fbSdk.init();
   }
-
 
   render() {
     const eventLink = location.href;
