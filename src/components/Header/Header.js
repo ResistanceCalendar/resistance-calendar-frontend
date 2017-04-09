@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { Link } from 'react-router-dom';
 
 import { ResistanceLogo, AddEventButton } from '../';
 import styles from './Header.sass';
 
+function displayAddEventLink(path) {
+  if (path !== '/add-event') {
+    return <AddEventButton className="add-event-btn" />;
+  }
 
-const Header = () => {
+  return null;
+}
+
+const Header = (props) => {
   return (
     <header className={styles.header}>
       <div className={styles.headerLeftSection}>
@@ -14,12 +21,14 @@ const Header = () => {
         </Link>
       </div>
       <div className={styles.headerRightSection}>
-        <AddEventButton />
+        {displayAddEventLink(props.pathName)}
       </div>
     </header>
   );
 };
 
-Header.propTypes = {};
+Header.propTypes = {
+  pathName: PropTypes.string.isRequired
+};
 
 export default Header;

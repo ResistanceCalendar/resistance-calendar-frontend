@@ -1,28 +1,29 @@
 @import "~style/utils/variables.sass"
 
 .back-wrapper
-  display: flex
   background-color: $main-medium-gray
-  padding: 20px
-  border-radius: $border-radius-normal $border-radius-normal 0 0
+  padding: 20px 0
   font-size: 0.8em
   font-weight: 700
   text-transform: uppercase
-  max-width: $max-width
-  margin: 0 auto
 
-  .link
+  .link-wrapper
+    max-width: $max-width
     display: flex
-    flex: none
-    align-items: center
+    margin: 0 auto
 
-    &>:first-child
-      margin-right: 4px
+    .link
+      display: flex
+      flex: none
+      align-items: center
 
-  a
-    display: inline-block
+      &>:first-child
+        margin: 0 4px 4px 0
 
-  a:visited,
-  a:link,
-  a:active
-    color: $main-black
+    a
+      display: inline-block
+
+    a:visited,
+    a:link,
+    a:active
+      color: $main-black

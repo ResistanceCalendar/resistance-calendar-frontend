@@ -1,12 +1,17 @@
 @import "~style/utils/variables.sass"
 @import "~style/utils/mixins.sass"
 
+// Loading wrapper
+.loading-wrapper
+  padding: 50px
+
 // Default msg when no event data
 .no-data-msg
   padding: $gutter-margin * 2
   font-size: 1.2em
   font-weight: 700
   text-align: center
+  padding: 50px
 
 .title-wrapper,
 .content
@@ -93,6 +98,9 @@
         @include breakpoint(md)
           flex: none
           flex-basis: 100%
+
+      .sharing
+        text-align: right
 
     .location-and-date
       @include breakpoint(md)
