@@ -10,9 +10,9 @@ const truncateOptions = {
   separator: /, +/  // break on commas and spaces
 };
 
-function renderLocation(loc) {
-  if (loc && loc.locality && loc.region) {
-    return <span className={styles.location}>{loc.locality}, {loc.region}</span>;
+function renderLocation(location) {
+  if (location && location.locality && location.region) {
+    return <span className={styles.location}>{location.locality}, {location.region}</span>;
   }
 
   return null;
@@ -25,7 +25,7 @@ const EventCard = ({ event, className }) => {
     title,
     description,
     _id,
-    loc
+    location
   } = event;
 
   // TODO: Seems like the featured_image_url is no longer coming back -- follow up when services more stable
@@ -42,7 +42,7 @@ const EventCard = ({ event, className }) => {
         <div className={styles.contentWrapper}>
           <div className={styles.dateLocation}>
             <DateBlock date={startDate} />
-            { renderLocation(loc) }
+            { renderLocation(location) }
           </div>
           <div className={styles.title}>{title}</div>
           <div className={styles.time}>6:00PM-9:00PM (PLACEHOLDER)</div>

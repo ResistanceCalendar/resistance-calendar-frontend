@@ -18,7 +18,7 @@ describe('Component: EventDetails', () => {
       browser_url: '',
       featured_image_url: '',
       summary: '',
-      loc: {
+      location: {
         address_lines: []
       }
     };

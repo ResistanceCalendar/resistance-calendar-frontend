@@ -4,8 +4,8 @@ import { DateBlock, Loading, SocialBtns } from '../';
 import { eventsAPI } from '../../api';
 import styles from './EventDetails.sass';
 
-const renderAddress = (loc) => {
-  const { address_lines: addressLines, locality, region, postal_code: postalCode } = loc;
+const renderAddress = (location) => {
+  const { address_lines: addressLines, locality, region, postal_code: postalCode } = location;
   // Will have to see how this data structure holds up over different events
   return (
     <div className={styles.info}>
@@ -93,7 +93,7 @@ class EventDetails extends Component {
       browser_url: browserUrl,
       featured_image_url: featuredImageUrl,
       description,
-      loc
+      location
     } = event;
 
     /* eslint-disable jsx-a11y/no-static-element-interactions */
@@ -102,8 +102,8 @@ class EventDetails extends Component {
         <div className={styles.titleWrapper}>
           <DateBlock date={startDate} />
           <h1>{title}</h1>
-          { loc && loc.locality &&
-            <div className={styles.location}>{loc.locality}, {loc.region}</div>
+          { location && location.locality &&
+            <div className={styles.location}>{location.locality}, {location.region}</div>
           }
         </div>
         <div className={styles.content}>
@@ -155,7 +155,7 @@ class EventDetails extends Component {
                 </div>
               </div>
               <div className={styles.locationAndDate}>
-                {loc && renderAddress(loc)}
+                {location && renderAddress(location)}
                 {startDate && renderTimeRange(startDate, endDate)}
               </div>
             </div>
