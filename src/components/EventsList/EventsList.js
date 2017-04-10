@@ -3,35 +3,28 @@ import { EventCard } from '../';
 
 import styles from './EventsList.sass';
 
-function renderEvents(events, filters) {
-  const matchedEvents = events.reduce((filteredEvents, event) => {
-    if (event.title.toLowerCase().includes(filters.searchText.toLowerCase())) {
-      filteredEvents.push(
-        <EventCard
-          key={event._id}
-          event={event}
-          className={styles.eventCard}
-        />
-      );
-    }
+function renderEvents(events) {
+  const eventCards = events.map(event =>
+    <EventCard
+      key={event._id}
+      event={event}
+      className={styles.eventCard}
+    />
+  );
 
-    return filteredEvents;
-  }, []);
-
-  if (!matchedEvents.length) {
+  if (!eventCards.length) {
     return <div className={styles.noResults}>No events</div>;
   }
 
-  return matchedEvents;
+  return eventCards;
 }
 
-const EventsList = ({ events, filters }) => {
-  return <ul className={styles.listContainer}>{renderEvents(events, filters)}</ul>;
+const EventsList = ({ events }) => {
+  return <ul className={styles.listContainer}>{renderEvents(events)}</ul>;
 };
 
 EventsList.propTypes = {
-  events: PropTypes.arrayOf(PropTypes.shape()),
-  filters: PropTypes.shape()
+  events: PropTypes.arrayOf(PropTypes.shape())
 };
 
 export default EventsList;

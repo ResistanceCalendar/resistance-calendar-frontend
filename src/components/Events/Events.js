@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
+import _ from 'lodash';
 
 import { EventsList, EventFilters, Loading } from '../';
 import { eventsAPI } from '../../api';
 import styles from './Events.sass';
+
+function hasMoreEventsToLoad(currentPage, totalPages) {
+  return currentPage + 1 < totalPages;
+}
 
 class Events extends Component {
   constructor(props) {
@@ -17,8 +22,11 @@ class Events extends Component {
       isFetchingEvents: true,
       isFetchingMoreEvents: false,
       events: [],
+      hasMoreEvents: true,  // to show/hide "Load More Events" button
       currentPage: 0
     };
+
+    this._getEvents = _.debounce(this.getEvents, 250, { leading: true });
   }
 
   componentDidMount() {
@@ -28,10 +36,13 @@ class Events extends Component {
   getEvents() {
     this.setState({ isFetchingEvents: true });
 
-    eventsAPI.getEvents({})
+    const filtersWithValues = _.pickBy(this.state.filters);  // removes keys that have falsey values
+
+    eventsAPI.getEvents({}, filtersWithValues)
       .then(res => this.setState({
         events: res._embedded['osdi:events'],
-        isFetchingEvents: false
+        isFetchingEvents: false,
+        hasMoreEvents: hasMoreEventsToLoad(res.page, res.total_pages)
       }))
       .catch(err => {
         console.error(err);
@@ -40,15 +51,17 @@ class Events extends Component {
   }
 
   loadMoreEvents() {
-    const { currentPage, events } = this.state;
+    const { currentPage, events, filters } = this.state;
     const nextPage = currentPage + 1;
+    const filtersWithValues = _.pickBy(filters);  // removes keys that have falsey values
 
     this.setState({ currentPage: nextPage, isFetchingMoreEvents: true });
 
-    eventsAPI.getEvents({ page: nextPage })
+    eventsAPI.getEvents({ page: nextPage }, filtersWithValues)
       .then(res => this.setState({
         events: [...events, ...res._embedded['osdi:events']],
-        isFetchingMoreEvents: false
+        isFetchingMoreEvents: false,
+        hasMoreEvents: hasMoreEventsToLoad(res.page, res.total_pages)
       }))
       .catch(err => {
         this.setState({ isFetchingMoreEvents: false });
@@ -62,15 +75,38 @@ class Events extends Component {
         ...this.state.filters,
         ...updatedFilters
       }
+    }, () => {
+      // After state update, fetch events (via debounced function to prevent rapid service calls)
+      this._getEvents();
     });
   }
 
-  render() {
-    const { filters, events, isFetchingEvents, isFetchingMoreEvents } = this.state;
+  renderEventsList(events, hasMoreEvents, isFetchingMoreEvents) {
+    return (
+      <div>
+        <EventsList events={events} />
+        { hasMoreEvents &&
+          <div className={styles.loadMoreBtn}>
+            { isFetchingMoreEvents ?
+              <Loading /> :
+              <button type="button" onClick={this.loadMoreEvents.bind(this)}>
+                load more events
+              </button>
+            }
+          </div>
+        }
+      </div>
+    );
+  }
 
-    if (isFetchingEvents) {
-      return <div className={styles.loadingWrapper}><Loading /></div>;
-    }
+  render() {
+    const {
+      filters,
+      events,
+      isFetchingEvents,
+      isFetchingMoreEvents,
+      hasMoreEvents
+    } = this.state;
 
     return (
       <div className={styles.container}>
@@ -80,19 +116,10 @@ class Events extends Component {
             updateFilters={this.updateFilters.bind(this)}
           />
         </div>
-        <EventsList
-          events={events}
-          filters={filters}
-        />
-        <div className={styles.loadMoreBtn}>
-          { isFetchingMoreEvents ?
-            <Loading /> :
-            <button type="button" onClick={this.loadMoreEvents.bind(this)}>
-              load more events
-            </button>
-          }
-
-        </div>
+        { isFetchingEvents ?
+          <div className={styles.loadingMoreEventsWrapper}><Loading /></div> :
+          this.renderEventsList(events, hasMoreEvents, isFetchingMoreEvents)
+        }
       </div>
     );
   }
