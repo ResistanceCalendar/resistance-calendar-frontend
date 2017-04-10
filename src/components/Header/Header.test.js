@@ -5,25 +5,26 @@ import Header from './Header';
 
 describe('Component: Header', () => {
   const props = {};
-  props.pathName = '';
 
   it('renders without crashing', () => {
-    const wrapper = shallow(<Header {...props} />);
-
-    expect(wrapper).toHaveLength(1);
+    expect(shallow(<Header {...props} />)).toHaveLength(1);
   });
 
-  it('hides the "Add Events" button on the "Add Events" page', () => {
-    props.pathName = '/add-event';
-    const wrapper = shallow(<Header {...props} />);
+  it('Add event form is closed by default', () => {
+    const header = shallow(<Header {...props} />);
 
-    expect(wrapper.find('AddEventButton')).toHaveLength(0);
+    expect(header.find('AddEvent')).toHaveLength(0);
+
+    header.setState({ addEventModalOpen: true });
+
+    expect(header.find('AddEvent')).toHaveLength(1);
   });
 
-  it('displays the "Add Events" button on the home page', () => {
-    props.pathName = '/';
-    const wrapper = shallow(<Header {...props} />);
+  it('Add event form is managed by state', () => {
+    const header = shallow(<Header {...props} />);
 
-    expect(wrapper.find('AddEventButton')).toHaveLength(1);
+    header.setState({ addEventModalOpen: true });
+
+    expect(header.find('AddEvent')).toHaveLength(1);
   });
 });

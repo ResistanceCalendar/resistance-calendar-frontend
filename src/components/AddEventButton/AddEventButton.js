@@ -1,16 +1,15 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { PropTypes } from 'react';
 
 import styles from './AddEventButton.sass';
 
-const AddEventButton = () => {
+const AddEventButton = (props) => {
   return (
-    <Link to="/add-event" className={styles.btnAddEvents}>
-      ADD EVENTS
-    </Link>
+    <button className={styles.btnAddEvents} onClick={props.handleButtonClick} >Add Event</button>
   );
 };
 
-AddEventButton.propTypes = {};
+AddEventButton.propTypes = {
+  handleButtonClick: PropTypes.func.isRequired
+};
 
 export default AddEventButton;

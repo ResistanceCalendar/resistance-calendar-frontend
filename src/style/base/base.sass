@@ -7,10 +7,13 @@ body
   padding: 0
   background-color: $main-pink
 
+label
+  color: $main-dark-gray
+
 input, textarea
-  border-radius: $border-radius-normal
+  border-radius: $border-radius-small
   padding: 4px 0
-  border: 1px solid darkgrey
+  border: 1px solid $main-medium-gray
   background-color: $main-medium-gray
   font-size: 15px
   line-height: 1
@@ -18,9 +21,21 @@ input, textarea
   box-sizing: border-box
   padding: 12px 20px 12px 10px
   width: 100%
+  &::placeholder
+    color: $main-medium-dark-gray
+    font-weight: bold
+  &:focus
+    outline: none
+    border: 1px solid $main-green
+    box-shadow: 0 0 10px $main-green
+
+input:disabled
+  cursor: not-allowed !important
+  opacity: 0.7 !important
 
 button
   outline: none
+  border-radius: $border-radius-small
 
 a
   text-decoration: none
