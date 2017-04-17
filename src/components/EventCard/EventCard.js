@@ -42,9 +42,9 @@ const EventCard = ({ event, className }) => {
         <div className={styles.contentWrapper}>
           <div className={styles.dateLocation}>
             <DateBlock date={startDate} />
+            <div className={styles.title}>{title}</div>
             { renderLocation(location) }
           </div>
-          <div className={styles.title}>{title}</div>
           <div className={styles.time}>6:00PM-9:00PM (PLACEHOLDER)</div>
           <p className={styles.description}>{_.truncate(description, truncateOptions)}</p>
         </div>

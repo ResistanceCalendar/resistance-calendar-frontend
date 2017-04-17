@@ -1,27 +1,29 @@
 import React, { PropTypes } from 'react';
 
+import styles from './ResistanceLogo.sass';
+
 const ResistanceLogo = (props) => {
   const image = '../static/img/Logo-large.png';
-  const style = {
-    maxWidth: `${props.width}`,
-    height: `${props.height}`
-  };
+
+  // you can add your own CSS class to ResistanceLogo.sass for any
+  // time you use this component, and simply reference that class name in
+  // the "customClassName" property of the component's tag.
+  // ex: <ResistanceLogo customClassName="footerLogo "/> tag.
+  styles.customClassName = props.customClassName;
 
   return (
-    <div style={style}>
-      <img src={image} style={{ width: '100%' }} alt="Logo for the Resistance Calendar" />
+    <div className={styles.customClassName}>
+      <img src={image} alt="Logo for the Resistance Calendar" />
     </div>
   );
 };
 
 ResistanceLogo.defaultProps = {
-  width: '100%',
-  height: 'auto'
+  customClassName: styles.defaultLogoStyle
 };
 
 ResistanceLogo.propTypes = {
-  width: PropTypes.string,
-  height: PropTypes.string
+  customClassName: PropTypes.string
 };
 
 export default ResistanceLogo;

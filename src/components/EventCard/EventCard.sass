@@ -10,7 +10,7 @@
     color: inherit
     box-sizing: border-box
     width: 100%
-    padding: 35px 30px
+    padding: 35px $gutter-margin-mobile
 
   .image-wrapper
     display: inline-block
@@ -31,7 +31,7 @@
     margin: 0 0 0 30px
 
     &>:first-child
-      margin-bottom: 20px
+      margin-bottom: 5px
 
     a
       text-decoration: none
@@ -43,18 +43,22 @@
 
     .date-location > *
       margin-right: 10px
+      line-height: 1.25em
 
     .time
-      margin: 10px 0 20px 0
+      margin: 5px 0 0
       font-size: 0.9em
-      font-weight: 700
+      font-weight: 400
+      line-height: 1.25em
 
     .location
-      font-weight: 700
+      font-size: 0.9em
+      font-weight: 400
 
     .title
-      font-size: 1.6em
+      font-size: 1em
       font-weight: 700
+      margin-top: 7px
 
     .description
       font-size: 0.9em
@@ -73,7 +77,9 @@
 
       .date-location > *
         display: block
-        margin-bottom: 10px
+
+      .location
+        margin-bottom: 0
 
       .description
         display: none

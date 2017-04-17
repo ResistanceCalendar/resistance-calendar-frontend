@@ -5,7 +5,6 @@ import Header from './Header';
 
 describe('Component: Header', () => {
   const props = {};
-  props.location = {};
   props.pathName = '';
 
   it('renders without crashing', () => {
@@ -18,13 +17,13 @@ describe('Component: Header', () => {
     props.pathName = '/add-event';
     const wrapper = shallow(<Header {...props} />);
 
-    expect(wrapper.find('.add-event-btn')).toHaveLength(0);
+    expect(wrapper.find('AddEventButton')).toHaveLength(0);
   });
 
   it('displays the "Add Events" button on the home page', () => {
     props.pathName = '/';
     const wrapper = shallow(<Header {...props} />);
 
-    expect(wrapper.find('.add-event-btn')).toHaveLength(1);
+    expect(wrapper.find('AddEventButton')).toHaveLength(1);
   });
 });

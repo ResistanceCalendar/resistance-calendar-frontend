@@ -1,32 +1,21 @@
 @import "~style/utils/variables.sass"
+@import "~style/utils/mixins.sass"
 
 .header
-  padding: 15px 0
   display: flex
-  justify-content: space-between
+  flex-direction: row
+  margin: $gutter-margin-mobile
+  justify-content: center
   align-items: center
-  max-width: $max-width
-  margin: 0 auto
+  vertical-align: middle
+
+  .header-left-section,
+  .header-right-section
+    flex: 1 1 40%
 
   .header-left-section
-    display: inline-block
-    vertical-align: middle
+    .resistance-logo
+      width: 100%
 
   .header-right-section
-    display: inline-block
-    vertical-align: middle
-    float: right
-
-// Breakpoints
-@media only screen and (max-width: $max-width)
-  .header
-    padding: 15px
-
-
-@media only screen and (max-width: $break-max-sm)
-  .header
-    flex-direction: column
-    padding: 15px
-
-    .header-right-section
-      margin: 40px 0 30px
+    text-align: right

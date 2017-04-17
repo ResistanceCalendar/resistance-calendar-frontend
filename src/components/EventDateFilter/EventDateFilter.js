@@ -1,16 +1,28 @@
 import React, { PropTypes } from 'react';
 import DatePicker from 'react-datepicker';
+import moment from 'moment';
 
 import styles from './EventDateFilter.sass';
 
 const EventDateFilter = (props) => {
   const { startDate, updateFilters, placeholderText, isClearable } = props;
 
+  function handleChange(selectedDate) {
+    let dateVal = selectedDate;
+
+    if (moment(selectedDate).isSame(moment(), 'day')) {
+      dateVal = null;
+    }
+
+    updateFilters({ startDate: dateVal });
+  }
+
   return (
-    <div className={styles.dateFilterText}>
+    <div className={styles.dateFilterInput}>
       <DatePicker
+        dateFormat="ddd MMM D"
         selected={startDate}
-        onChange={date => updateFilters({ startDate: date })}
+        onChange={date => handleChange(date)}
         isClearable={isClearable}
         placeholderText={placeholderText}
       />
@@ -19,8 +31,8 @@ const EventDateFilter = (props) => {
 };
 
 EventDateFilter.defaultProps = {
-  placeholderText: 'Select a date',
-  isClearable: true
+  placeholderText: `TODAY ${moment().format('MMM D')}`,
+  isClearable: false
 };
 
 EventDateFilter.propTypes = {
