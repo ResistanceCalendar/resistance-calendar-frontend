@@ -89,7 +89,6 @@ class EventDetails extends Component {
       title,
       start_date: startDate,
       end_date: endDate,
-      share_url: shareUrl,
       browser_url: browserUrl,
       featured_image_url: featuredImageUrl,
       description,
@@ -138,8 +137,10 @@ class EventDetails extends Component {
                     style={{ visibility: socialPopupOpen ? 'visible' : 'hidden' }}
                   >
                     <SocialBtns
-                      fbLink={shareUrl}
-                      twitterLink={shareUrl}
+                      picture={featuredImageUrl}
+                      title={title}
+                      startDate={startDate}
+                      description={description}
                       iconSize={25}
                     />
                   </div>
@@ -147,8 +148,10 @@ class EventDetails extends Component {
                 <div>
                   <div className={styles.desktopSharing}>
                     <SocialBtns
-                      fbLink={shareUrl}
-                      twitterLink={shareUrl}
+                      picture={featuredImageUrl}
+                      title={title}
+                      startDate={startDate}
+                      description={description}
                       iconSize={25}
                     />
                   </div>
