@@ -26,7 +26,7 @@ class Events extends Component {
       currentPage: 0
     };
 
-    this._getEvents = _.debounce(this.getEvents, 250, { leading: true });
+    this._getEvents = _.debounce(this.getEvents, 400);
   }
 
   componentDidMount() {
