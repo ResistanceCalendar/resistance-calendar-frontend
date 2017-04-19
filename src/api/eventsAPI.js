@@ -5,9 +5,12 @@ import { queryBuilder } from '../utils';
 const BASE_URL = 'https://resistance-calendar.herokuapp.com/v1/events';
 
 function getEvents({ page = 0, perPage = 25 }, filterParams) {
+  const pageUrl = `page=${page}`;
+  const perPageUrl = `per_page=${perPage}`;
+  const orderByUrl = '$orderby=start_date desc';
   const filterUrl = queryBuilder.eventsFilter(filterParams);
 
-  return axios.get(`${BASE_URL}?page=${page}&per_page=${perPage}${filterUrl}`)
+  return axios.get(`${BASE_URL}?${pageUrl}&${perPageUrl}&${orderByUrl}${filterUrl}`)
     .then(res => res.data);
 }
 
