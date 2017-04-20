@@ -4,8 +4,14 @@ import FaSearch from 'react-icons/lib/fa/search';
 import styles from './EventSearchInput.sass';
 
 class EventSearchInput extends Component {
+  isMobile() {
+    if (!navigator && navigator.userAgent) { return }
+
+    return navigator.userAgent.match(/iPhone|Android|iPad|iPod/i)
+  }
+
   componentDidMount() {
-    this.input.focus();
+    if(!this.isMobile()) { this.input.focus(); }
   }
 
   render() {
