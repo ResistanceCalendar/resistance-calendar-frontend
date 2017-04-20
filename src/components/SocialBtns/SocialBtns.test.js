@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 
 import SocialBtns from './SocialBtns';
 
@@ -7,8 +7,9 @@ describe('Component: SocialBtns', () => {
   const props = {};
 
   beforeEach(() => {
-    props.fbLink = 'https://www.facebook.com/events/1768430223445649';
-    props.twitterLink = 'https://twitter.com';
+    props.picture = 'http://www.fillmurray.com/200/300';
+    props.title = 'My Fake Event';
+    props.description = 'Here is the excruciatingly vague description';
     props.iconSize = 25;
   });
 
@@ -18,9 +19,10 @@ describe('Component: SocialBtns', () => {
   });
 
   it('renders links correctly', () => {
-    const wrapper = mount(<SocialBtns {...props} />);
-    expect(wrapper.prop('fbLink')).toEqual('https://www.facebook.com/events/1768430223445649');
-    expect(wrapper.prop('twitterLink')).toEqual('https://twitter.com');
-    expect(wrapper.prop('iconSize')).toEqual(25);
+    const wrapper = shallow(<SocialBtns {...props} />);
+    expect(wrapper.unrendered.props.picture).toEqual('http://www.fillmurray.com/200/300');
+    expect(wrapper.unrendered.props.title).toEqual('My Fake Event');
+    expect(wrapper.unrendered.props.description).toEqual('Here is the excruciatingly vague description');
+    expect(wrapper.unrendered.props.iconSize).toEqual(25);
   });
 });
