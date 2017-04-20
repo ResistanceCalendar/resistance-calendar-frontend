@@ -1,5 +1,5 @@
  /* eslint-disable */
-import { facebookAppId } from '../../config';
+import { facebookAppId } from '../config';
 
 export default {
   init() {
