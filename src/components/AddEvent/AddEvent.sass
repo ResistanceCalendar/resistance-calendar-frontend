@@ -2,19 +2,19 @@
 @import "~style/utils/mixins.sass"
 
 #addEventForm
-  max-width: $max-width
-  margin: 0 auto
-  padding: $base-spacing
+  position: relative
+  margin: auto
+  width: 80%
+  text-align: left
+  @include popover-wrapper(300px, 50px, right, 7px, 40px, $main-medium-light-gray)
+  @media only screen and (max-width: $break-min-sm)
+    margin: 0
+    right: 0
+    width: 174%
 
-  h1
-    font-size: 1.4em
-    font-weight: 700
-
-  label
-    font-size: 0.8em
-
-  textarea
-    resize: vertical
+  input, textarea
+    background-color: $main-white
+    margin-top: 5px
 
   #buttons-container
     display: flex
@@ -37,13 +37,15 @@
 
   .error
     color: red
+    padding-top: $base-padding
+    &:empty
+      display: none
 
   .fieldset:not(:last-child)
-    margin: $base-spacing 0
+    margin: $base-spacing/2 0
 
     label
-      display: inline-block
-      margin-bottom: 5px
+      display: block
       font-weight: 700
 
     &:first-child

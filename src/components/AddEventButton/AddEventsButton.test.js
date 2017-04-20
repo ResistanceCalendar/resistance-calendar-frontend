@@ -1,9 +1,22 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import MyComponent from './AddEventButton';
+import AddEventButton from './AddEventButton';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  shallow(<MyComponent />, div);
+
+describe('Component: <AddEventsButton />', () => {
+  const props = {};
+
+  beforeEach(() => {
+    props.handleButtonClick = jest.fn();
+  });
+
+  it('renders without crashing', () => {
+    shallow(<AddEventButton {...props} />, document.createElement('div'));
+  });
+
+  it('handleButtonClick called on click', () => {
+    shallow(<AddEventButton {...props} />).simulate('click');
+    expect(props.handleButtonClick).toHaveBeenCalledTimes(1);
+  });
 });
