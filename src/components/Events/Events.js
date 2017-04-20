@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
+import moment from 'moment';
 
 import { EventsList, EventFilters, Loading } from '../';
 import { eventsAPI } from '../../api';
@@ -17,7 +18,7 @@ class Events extends Component {
         searchText: '',
         location: null,
         range: null,
-        startDate: null
+        startDate: moment()
       },
       isFetchingEvents: true,
       isFetchingMoreEvents: false,
