@@ -42,23 +42,26 @@ const EventCard = ({ event, className }) => {
 
   return (
     <li className={`${styles.card} ${className || ''}`}>
-      <Link to={`/event/${_id}`}>
-        <div className={styles.imageWrapper}>
+      <div className={styles.imageWrapper}>
+        <Link to={`/event/${_id}`}>
           <img
             src={croppedFeaturedImageUrl}
             alt="featured event"
           />
-        </div>
-        <div className={styles.contentWrapper}>
-          <div className={styles.dateLocation}>
-            <DateBlock date={startDate} />
+        </Link>
+      </div>
+
+      <div className={styles.contentWrapper}>
+        <div className={styles.dateLocation}>
+          <DateBlock date={startDate} />
+          <Link to={`/event/${_id}`}>
             <div className={styles.title}>{title}</div>
-            { renderLocation(location) }
-          </div>
-          <div className={styles.time}>6:00PM-9:00PM (PLACEHOLDER)</div>
-          <p className={styles.description}>{_.truncate(description, truncateOptions)}</p>
+          </Link>
+          { renderLocation(location) }
         </div>
-      </Link>
+        <div className={styles.time}>6:00PM-9:00PM (PLACEHOLDER)</div>
+        <p className={styles.description}>{_.truncate(description, truncateOptions)}</p>
+      </div>
     </li>
   );
 };

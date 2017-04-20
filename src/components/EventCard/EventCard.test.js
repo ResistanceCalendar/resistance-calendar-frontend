@@ -20,7 +20,7 @@ describe('Component: EventCard', () => {
   it('renders Link and img components', () => {
     const wrapper = shallow(<EventCard {...props} />);
 
-    expect(wrapper.find('Link')).toHaveLength(1);
+    expect(wrapper.find('Link')).toHaveLength(2);
     expect(wrapper.find('img')).toHaveLength(1);
   });
 });
