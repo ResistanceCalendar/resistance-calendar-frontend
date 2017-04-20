@@ -1,8 +1,8 @@
  /* eslint-disable */
-import { facebookAppId } from '../config';
+import { facebookAppId } from '../../config';
 
 export default {
-  init: function() {
+  init() {
     window.fbAsyncInit = function() {
       FB.init({
         appId      : facebookAppId,
@@ -19,7 +19,7 @@ export default {
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
   },
-  share: function({ title, eventDate, picture, eventUrl, description }) {
+  share({ title, eventDate, picture, eventUrl, description }) {
     FB.ui({
       method: 'share',
       href: eventUrl,

@@ -4,7 +4,7 @@ import FaFacebookSquare from 'react-icons/lib/fa/facebook-square';
 import FaTwitter from 'react-icons/lib/fa/twitter';
 import moment from 'moment';
 import styles from './SocialBtns.sass';
-import facebookSDK from './facebookSDK';
+import facebookSDK from '../../services/facebookSDK';
 
 export default class SocialBtns extends Component {
   componentDidMount() {
