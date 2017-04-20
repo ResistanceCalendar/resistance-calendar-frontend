@@ -4,7 +4,8 @@
 .header
   display: flex
   flex-direction: row
-  margin: $gutter-margin-mobile
+  margin: $gutter-margin-mobile auto
+  max-width: $max-width
   justify-content: center
   align-items: center
   vertical-align: middle
@@ -20,3 +21,8 @@
   .header-right-section
     position: relative
     text-align: right
+
+// Breakpoints
+@media only screen and (max-width: $max-width)
+  .header
+    margin: $gutter-margin-mobile

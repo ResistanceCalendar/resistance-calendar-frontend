@@ -3,15 +3,17 @@ import FaSearch from 'react-icons/lib/fa/search';
 
 import styles from './EventSearchInput.sass';
 
+function isMobile() {
+  const { navigator } = window;
+
+  if (!navigator && navigator.userAgent) { return null; }
+
+  return navigator.userAgent.match(/iPhone|Android|iPad|iPod/i);
+}
+
 class EventSearchInput extends Component {
-  isMobile() {
-    if (!navigator && navigator.userAgent) { return }
-
-    return navigator.userAgent.match(/iPhone|Android|iPad|iPod/i)
-  }
-
   componentDidMount() {
-    if(!this.isMobile()) { this.input.focus(); }
+    if (!isMobile()) { this.input.focus(); }
   }
 
   render() {
