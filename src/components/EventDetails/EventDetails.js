@@ -99,7 +99,10 @@ class EventDetails extends Component {
     return (
       <div>
         <div className={styles.titleWrapper}>
-          <DateBlock date={startDate} />
+          <DateBlock
+            startDate={startDate}
+            endDate={endDate}
+          />
           <h1>{title}</h1>
           { location && location.locality &&
             <div className={styles.location}>{location.locality}, {location.region}</div>
