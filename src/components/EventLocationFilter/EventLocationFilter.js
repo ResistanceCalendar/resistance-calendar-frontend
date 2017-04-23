@@ -5,9 +5,9 @@ import styles from './EventLocationFilter.sass';
 
 // Use meters as value
 const distanceRange = [
-  { value: 8046.72, label: '5 miles' },
-  { value: 16093.4, label: '10 miles' },
-  { value: 40233.6, label: '25 miles' },
+  { value: 8047, label: '5 miles' },
+  { value: 16093, label: '10 miles' },
+  { value: 40234, label: '25 miles' },
   { value: 160934, label: '100 miles' },
   { value: 804672, label: '500 miles' }
 ];
@@ -88,13 +88,14 @@ class EventLocationFilter extends Component {
           className={styles.popoverWrapper}
         >
           <div className={styles.inputGroup}>
-            <label htmlFor="location">SET CITY OR ZIPCODE</label>
+            <label htmlFor="location">ENTER ZIPCODE</label>
             <input
               type="text"
               name="location"
               value={location}
               onChange={e => this.setState({ location: e.target.value })}
-              placeholder="City or Zipcode"
+              required
+              placeholder="Enter zipcode"
             />
           </div>
           <div className={styles.inputGroup}>

@@ -13,6 +13,11 @@ function hasMoreEventsToLoad(currentPage, totalPages) {
   return currentPage + 1 < totalPages;
 }
 
+function buildFilterValues(filters, filterTypes) {
+  // This looks weird but "pick" builds an object of the appropriate filters, then pickBy removes the falsey properties
+  return _.pickBy(_.pick(filters, filterTypes));
+}
+
 class Events extends Component {
   constructor(props) {
     super(props);
@@ -41,8 +46,10 @@ class Events extends Component {
     this.setState({ isFetchingEvents: true });
 
     const { filters } = this.state;
-    const odataValues = _.pickBy(_.pick(filters, odataFilterTypes));  // removes keys that have falsey values
-    const nonOdataValues = _.pickBy(_.pick(filters, nonOdataFiltertypes));
+
+    // Filter values
+    const odataValues = buildFilterValues(filters, odataFilterTypes);
+    const nonOdataValues = buildFilterValues(filters, nonOdataFiltertypes);
 
     eventsAPI.getEvents(nonOdataValues, odataValues)
       .then(res => this.setState({
@@ -59,8 +66,10 @@ class Events extends Component {
   loadMoreEvents() {
     const { currentPage, events, filters } = this.state;
     const nextPage = currentPage + 1;
-    const odataValues = _.pickBy(_.pick(filters, odataFilterTypes));  // removes keys that have falsey values
-    const nonOdataValues = _.pickBy(_.pick(filters, nonOdataFiltertypes));
+
+    // Filter values
+    const odataValues = buildFilterValues(filters, odataFilterTypes);
+    const nonOdataValues = buildFilterValues(filters, nonOdataFiltertypes);
 
     this.setState({ currentPage: nextPage, isFetchingMoreEvents: true });
 
