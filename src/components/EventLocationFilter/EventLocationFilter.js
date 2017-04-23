@@ -3,12 +3,13 @@ import FaMapMarker from 'react-icons/lib/fa/map-marker';
 
 import styles from './EventLocationFilter.sass';
 
+// Use meters as value
 const distanceRange = [
-  { value: 5, label: '5 miles' },
-  { value: 10, label: '10 miles' },
-  { value: 25, label: '25 miles' },
-  { value: 100, label: '100 miles' },
-  { value: 500, label: '500 miles' }
+  { value: 8046.72, label: '5 miles' },
+  { value: 16093.4, label: '10 miles' },
+  { value: 40233.6, label: '25 miles' },
+  { value: 160934, label: '100 miles' },
+  { value: 804672, label: '500 miles' }
 ];
 
 function renderDistanceOptions() {

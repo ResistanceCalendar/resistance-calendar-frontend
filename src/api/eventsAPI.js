@@ -4,13 +4,19 @@ import { queryBuilder } from '../utils';
 
 const BASE_URL = 'https://resistance-calendar.herokuapp.com/v1/events';
 
-function getEvents({ page = 0, perPage = 25 }, filterParams) {
+function getEvents(filterParams, odataParams) {
+  const { page = 0, perPage = 25, zipcode, distance } = filterParams;
+
+  // Establish URL string parts
   const pageUrl = `page=${page}`;
   const perPageUrl = `per_page=${perPage}`;
   const orderByUrl = '$orderby=start_date desc';
-  const filterUrl = queryBuilder.eventsFilter(filterParams);
+  const locationUrl = zipcode && distance ? `&distance_postal_code=${zipcode}&distance_max=${distance}` : '';
 
-  return axios.get(`${BASE_URL}?${pageUrl}&${perPageUrl}&${orderByUrl}${filterUrl}`)
+  // ODATA filter string
+  const odataFilterUrl = queryBuilder.eventsFilter(odataParams);
+
+  return axios.get(`${BASE_URL}?${pageUrl}&${perPageUrl}&${orderByUrl}${locationUrl}${odataFilterUrl}`)
     .then(res => res.data);
 }
 

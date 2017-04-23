@@ -6,6 +6,9 @@ import { EventsList, EventFilters, Loading } from '../';
 import { eventsAPI } from '../../api';
 import styles from './Events.sass';
 
+const odataFilterTypes = ['searchText', 'startDate'];
+const nonOdataFiltertypes = ['location', 'range'];
+
 function hasMoreEventsToLoad(currentPage, totalPages) {
   return currentPage + 1 < totalPages;
 }
@@ -37,9 +40,11 @@ class Events extends Component {
   getEvents() {
     this.setState({ isFetchingEvents: true });
 
-    const filtersWithValues = _.pickBy(this.state.filters);  // removes keys that have falsey values
+    const { filters } = this.state;
+    const odataValues = _.pickBy(_.pick(filters, odataFilterTypes));  // removes keys that have falsey values
+    const nonOdataValues = _.pickBy(_.pick(filters, nonOdataFiltertypes));
 
-    eventsAPI.getEvents({}, filtersWithValues)
+    eventsAPI.getEvents(nonOdataValues, odataValues)
       .then(res => this.setState({
         events: res._embedded['osdi:events'],
         isFetchingEvents: false,
@@ -54,11 +59,12 @@ class Events extends Component {
   loadMoreEvents() {
     const { currentPage, events, filters } = this.state;
     const nextPage = currentPage + 1;
-    const filtersWithValues = _.pickBy(filters);  // removes keys that have falsey values
+    const odataValues = _.pickBy(_.pick(filters, odataFilterTypes));  // removes keys that have falsey values
+    const nonOdataValues = _.pickBy(_.pick(filters, nonOdataFiltertypes));
 
     this.setState({ currentPage: nextPage, isFetchingMoreEvents: true });
 
-    eventsAPI.getEvents({ page: nextPage }, filtersWithValues)
+    eventsAPI.getEvents({ page: nextPage, ...nonOdataValues }, odataValues)
       .then(res => this.setState({
         events: [...events, ...res._embedded['osdi:events']],
         isFetchingMoreEvents: false,
