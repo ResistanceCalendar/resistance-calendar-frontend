@@ -5,7 +5,7 @@ import styles from './EventFilters.sass';
 
 
 const EventFilters = (props) => {
-  const { filters, updateFilters } = props;
+  const { filters, updateFilters, disableGeoLocation, geoLocation } = props;
 
   return (
     <section className={styles.filtersBorder}>
@@ -16,7 +16,11 @@ const EventFilters = (props) => {
         />
       </div>
       <div className={styles.eventLocationFilter}>
-        <EventLocationFilter updateFilters={updateFilters} />
+        <EventLocationFilter
+          updateFilters={updateFilters}
+          disableGeoLocation={disableGeoLocation}
+          geoLocation={geoLocation}
+        />
       </div>
       <div className={styles.eventDateFilter}>
         <EventDateFilter
@@ -31,6 +35,8 @@ const EventFilters = (props) => {
 
 EventFilters.propTypes = {
   filters: PropTypes.shape().isRequired,
+  geoLocation: PropTypes.shape(),
+  disableGeoLocation: PropTypes.func,
   updateFilters: PropTypes.func.isRequired
 };
 

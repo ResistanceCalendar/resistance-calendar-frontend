@@ -4,10 +4,11 @@ import moment from 'moment';
 
 import { EventsList, EventFilters, Loading } from '../';
 import { eventsAPI } from '../../api';
+import { distanceRange, defaultRangeIndex } from '../EventLocationFilter/EventLocationFilter';
 import styles from './Events.sass';
 
 const odataFilterTypes = ['searchText', 'startDate'];
-const nonOdataFiltertypes = ['location', 'range'];
+const nonOdataFiltertypes = ['location', 'range', 'geoLocation'];
 
 function hasMoreEventsToLoad(currentPage, totalPages) {
   return currentPage + 1 < totalPages;
@@ -39,6 +40,10 @@ class Events extends Component {
         range: null,
         startDate: moment()
       },
+      geoLocation: {
+        lat: null,
+        long: null,
+      },
       isFetchingEvents: true,
       isFetchingMoreEvents: false,
       events: [],
@@ -50,7 +55,22 @@ class Events extends Component {
   }
 
   componentDidMount() {
-    this.getEvents();
+    this.getPosition().then(() => this.getEvents());
+  }
+
+  getPosition() {
+    return new Promise((resolve) => {
+      if (!window.navigator.geolocation) { resolve(); }
+      window.navigator.geolocation.getCurrentPosition((pos) => {
+        this.setState({
+          geoLocation: {
+            lat: pos.coords.latitude,
+            long: pos.coords.longitude,
+            maxDistance: distanceRange[defaultRangeIndex].value,
+          }
+        }, resolve);
+      });
+    });
   }
 
   getEvents() {
@@ -59,10 +79,10 @@ class Events extends Component {
     // Make sure at top of window to properly show loading icon and no-results messages
     window.scrollTo(0, 0);
 
-    const { filters } = this.state;
-
     // Filter values
-    const odataValues = buildFilterValues(filters, odataFilterTypes);
+    const { filters, geoLocation } = this.state;
+    const mergedFilters = Object.assign(filters, { geoLocation });
+    const odataValues = buildFilterValues(mergedFilters, odataFilterTypes);
     const nonOdataValues = buildFilterValues(filters, nonOdataFiltertypes);
 
     eventsAPI.getEvents(nonOdataValues, odataValues)
@@ -135,6 +155,7 @@ class Events extends Component {
       events,
       isFetchingEvents,
       isFetchingMoreEvents,
+      geoLocation,
       hasMoreEvents
     } = this.state;
 
@@ -143,6 +164,8 @@ class Events extends Component {
         <div className={styles.filtersWrapper}>
           <EventFilters
             filters={filters}
+            geoLocation={geoLocation}
+            disableGeoLocation={() => this.setState({ geoLocation: {} })}
             updateFilters={this.updateFilters.bind(this)}
           />
         </div>
