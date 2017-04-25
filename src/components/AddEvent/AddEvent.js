@@ -146,9 +146,12 @@ class AddEvent extends Component {
               disabled={invalidForm}
               onClick={this.handleSubmit}
             />
-            <button className={styles.cancelBtn} onClick={this.props.closeModal}>
-              Cancel
-            </button>
+            <input
+              value="Cancel"
+              type="button"
+              className={styles.cancelBtn}
+              onClick={this.props.closeModal}
+            />
           </div>
           <div className={styles.error}>{this.state.submissionErrorMessage}</div>
         </fieldset>
