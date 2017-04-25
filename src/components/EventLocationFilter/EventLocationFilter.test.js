@@ -28,7 +28,7 @@ describe('Component: <EventLocationFilter />', () => {
 
   it('should clear zipcode input and call onUpdate when clear btn is pressed', () => {
     const wrapper = shallow(<EventLocationFilter {...props} />);
-    const btn = wrapper.find('button').at(1);  // second <button>
+    const btn = wrapper.find('input[type="button"]');  // second <button>
 
     btn.simulate('click');
     btn.simulate('click');
@@ -38,7 +38,7 @@ describe('Component: <EventLocationFilter />', () => {
 
   it('should call the updateFilters func', () => {
     const wrapper = shallow(<EventLocationFilter {...props} />);
-    wrapper.find('button[type="submit"]').simulate('click', { preventDefault: () => {} });
+    wrapper.find('input[type="submit"]').simulate('click', { preventDefault: () => {} });
 
     expect(props.updateFilters).toHaveBeenCalledTimes(1);
     expect(wrapper.state('menuOpen')).toBe(false);
