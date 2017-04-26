@@ -13,11 +13,17 @@ describe('Component: Header', () => {
   it('Add event form is closed by default', () => {
     const header = shallow(<Header {...props} />);
 
-    expect(header.find('AddEvent')).toHaveLength(0);
+    const modalContainer1 = header.find('#modal-container');
+    const modalContainerDisplay1 = modalContainer1.node.props.style.display;
+
+    expect(modalContainerDisplay1).toBe('none');
 
     header.setState({ addEventModalOpen: true });
 
-    expect(header.find('AddEvent')).toHaveLength(1);
+    const modalContainer2 = header.find('#modal-container');
+    const modalContainerDisplay2 = modalContainer2.node.props.style.display;
+
+    expect(modalContainerDisplay2).toBe('block');
   });
 
   it('Add event form is managed by state', () => {

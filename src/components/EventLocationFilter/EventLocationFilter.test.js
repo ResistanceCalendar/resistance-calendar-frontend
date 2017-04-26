@@ -28,7 +28,7 @@ describe('Component: <EventLocationFilter />', () => {
 
   it('should clear zipcode input and call onUpdate when clear btn is pressed', () => {
     const wrapper = shallow(<EventLocationFilter {...props} />);
-    const btn = wrapper.find('button').at(1);  // second <button>
+    const btn = wrapper.find('input[type="button"]');  // second <button>
 
     btn.simulate('click');
     btn.simulate('click');
@@ -38,9 +38,37 @@ describe('Component: <EventLocationFilter />', () => {
 
   it('should call the updateFilters func', () => {
     const wrapper = shallow(<EventLocationFilter {...props} />);
-    wrapper.find('button[type="submit"]').simulate('click', { preventDefault: () => {} });
+    wrapper.find('input[type="submit"]').simulate('click', { preventDefault: () => {} });
 
     expect(props.updateFilters).toHaveBeenCalledTimes(1);
     expect(wrapper.state('menuOpen')).toBe(false);
+  });
+
+  it('should properly set location error message state', () => {
+    const wrapper = shallow(<EventLocationFilter {...props} />);
+
+    const invalidZipcode1 = '123';
+    const invalidZipcode2 = '123b5';
+    const invalidZipcode3 = '123456';
+    const invalidZipcode4 = '123 45';
+
+    const validZipcode1 = '12345';
+
+    // Invalid
+    wrapper.instance().validateLocation(invalidZipcode1);
+    expect(wrapper.state('locationErrorMsg')).toBeTruthy();
+
+    wrapper.instance().validateLocation(invalidZipcode2);
+    expect(wrapper.state('locationErrorMsg')).toBeTruthy();
+
+    wrapper.instance().validateLocation(invalidZipcode3);
+    expect(wrapper.state('locationErrorMsg')).toBeTruthy();
+
+    wrapper.instance().validateLocation(invalidZipcode4);
+    expect(wrapper.state('locationErrorMsg')).toBeTruthy();
+
+    // Valid
+    wrapper.instance().validateLocation(validZipcode1);
+    expect(wrapper.state('locationErrorMsg')).toBeNull();
   });
 });

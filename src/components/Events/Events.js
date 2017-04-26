@@ -6,8 +6,27 @@ import { EventsList, EventFilters, Loading } from '../';
 import { eventsAPI } from '../../api';
 import styles from './Events.sass';
 
+const odataFilterTypes = ['searchText', 'startDate'];
+const nonOdataFiltertypes = ['location', 'range'];
+
 function hasMoreEventsToLoad(currentPage, totalPages) {
   return currentPage + 1 < totalPages;
+}
+
+function buildFilterValues(filters, filterTypes) {
+  // This looks weird but "pick" builds an object of the appropriate filters, then pickBy removes the falsey properties
+  /*
+    e.g.
+    odataFilterTypes +
+    {
+      searchText: '',
+      location: '90210',
+      range: 1000,
+      startDate: [[moment object]]
+    }
+  // returns { startDate: [[moment object]] }
+  */
+  return _.pickBy(_.pick(filters, filterTypes));
 }
 
 class Events extends Component {
@@ -37,9 +56,13 @@ class Events extends Component {
   getEvents() {
     this.setState({ isFetchingEvents: true });
 
-    const filtersWithValues = _.pickBy(this.state.filters);  // removes keys that have falsey values
+    const { filters } = this.state;
 
-    eventsAPI.getEvents({}, filtersWithValues)
+    // Filter values
+    const odataValues = buildFilterValues(filters, odataFilterTypes);
+    const nonOdataValues = buildFilterValues(filters, nonOdataFiltertypes);
+
+    eventsAPI.getEvents(nonOdataValues, odataValues)
       .then(res => this.setState({
         events: res._embedded['osdi:events'],
         isFetchingEvents: false,
@@ -54,11 +77,14 @@ class Events extends Component {
   loadMoreEvents() {
     const { currentPage, events, filters } = this.state;
     const nextPage = currentPage + 1;
-    const filtersWithValues = _.pickBy(filters);  // removes keys that have falsey values
+
+    // Filter values
+    const odataValues = buildFilterValues(filters, odataFilterTypes);
+    const nonOdataValues = buildFilterValues(filters, nonOdataFiltertypes);
 
     this.setState({ currentPage: nextPage, isFetchingMoreEvents: true });
 
-    eventsAPI.getEvents({ page: nextPage }, filtersWithValues)
+    eventsAPI.getEvents({ page: nextPage, ...nonOdataValues }, odataValues)
       .then(res => this.setState({
         events: [...events, ...res._embedded['osdi:events']],
         isFetchingMoreEvents: false,

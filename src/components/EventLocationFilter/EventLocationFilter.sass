@@ -5,7 +5,16 @@
   display: flex
   align-items: center
   position: relative
-  z-index: 1
+
+  .error-msg
+    font-weight: 700
+    font-size: 0.8em
+    color: red
+    text-align: center
+    margin-bottom: 15px
+
+    &:empty
+      display: none
 
   .toolbar-btn
     display: flex

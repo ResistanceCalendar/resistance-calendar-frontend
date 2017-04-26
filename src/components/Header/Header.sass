@@ -10,17 +10,17 @@
   align-items: center
   vertical-align: middle
 
-  .header-left-section,
-  .header-right-section
-    flex: 1 1 40%
-
+  // Let left section take up all the space it wants so button (right-section) is only as big as it needs to be
   .header-left-section
+    flex: 1
+
     .resistance-logo
       width: 100%
 
   .header-right-section
     position: relative
     text-align: right
+    flex: none
 
 // Breakpoints
 @media only screen and (max-width: $max-width)
