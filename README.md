@@ -1,4 +1,6 @@
 # [Resistance Calendar](#resistance-calendar)
+[![Build Status](https://travis-ci.org/ResistanceCalendar/resistance-calendar-frontend.svg?branch=master)](https://travis-ci.org/ResistanceCalendar/resistance-calendar-frontend)
+[![Code Climate](https://codeclimate.com/github/ResistanceCalendar/resistance-calendar-frontend/badges/gpa.svg)](https://codeclimate.com/github/Resis/resistance-cal-fron)
 
 > PRs welcome; seeking all roles
 
