@@ -15,6 +15,17 @@ function hasMoreEventsToLoad(currentPage, totalPages) {
 
 function buildFilterValues(filters, filterTypes) {
   // This looks weird but "pick" builds an object of the appropriate filters, then pickBy removes the falsey properties
+  /*
+    e.g.
+    odataFilterTypes +
+    {
+      searchText: '',
+      location: '90210',
+      range: 1000,
+      startDate: [[moment object]]
+    }
+  // returns { startDate: [[moment object]] }
+  */
   return _.pickBy(_.pick(filters, filterTypes));
 }
 

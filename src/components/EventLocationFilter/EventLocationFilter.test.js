@@ -43,4 +43,32 @@ describe('Component: <EventLocationFilter />', () => {
     expect(props.updateFilters).toHaveBeenCalledTimes(1);
     expect(wrapper.state('menuOpen')).toBe(false);
   });
+
+  it('should properly set location error message state', () => {
+    const wrapper = shallow(<EventLocationFilter {...props} />);
+
+    const invalidZipcode1 = '123';
+    const invalidZipcode2 = '123b5';
+    const invalidZipcode3 = '123456';
+    const invalidZipcode4 = '123 45';
+
+    const validZipcode1 = '12345';
+
+    // Invalid
+    wrapper.instance().validateLocation(invalidZipcode1);
+    expect(wrapper.state('locationErrorMsg')).toBeTruthy();
+
+    wrapper.instance().validateLocation(invalidZipcode2);
+    expect(wrapper.state('locationErrorMsg')).toBeTruthy();
+
+    wrapper.instance().validateLocation(invalidZipcode3);
+    expect(wrapper.state('locationErrorMsg')).toBeTruthy();
+
+    wrapper.instance().validateLocation(invalidZipcode4);
+    expect(wrapper.state('locationErrorMsg')).toBeTruthy();
+
+    // Valid
+    wrapper.instance().validateLocation(validZipcode1);
+    expect(wrapper.state('locationErrorMsg')).toBeNull();
+  });
 });

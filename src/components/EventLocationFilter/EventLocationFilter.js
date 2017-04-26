@@ -31,7 +31,7 @@ class EventLocationFilter extends Component {
 
     this._handleDocumentClick = this.handleDocumentClick.bind(this);
     this._onLocationBlur = this.onLocationBlur.bind(this);
-    this._updateLocation = this.updateLocation.bind(this);
+    this._handleOnChangeLocation = this.handleOnChangeLocation.bind(this);
   }
 
   componentDidMount() {
@@ -46,7 +46,7 @@ class EventLocationFilter extends Component {
     this.validateLocation(this.state.location);
   }
 
-  updateLocation(e) {
+  handleOnChangeLocation(e) {
     // If user has entered exactly 5 digits, check to see if they're valid
     // this avoids user having to trigger input blur to have field validated
     const location = e.target.value;
@@ -125,7 +125,7 @@ class EventLocationFilter extends Component {
                 type="text"
                 name="location"
                 value={location}
-                onChange={this._updateLocation}
+                onChange={this._handleOnChangeLocation}
                 onBlur={this._onLocationBlur}
                 required
                 placeholder="Enter zipcode"
