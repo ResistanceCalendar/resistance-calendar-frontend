@@ -1,5 +1,6 @@
 # [Resistance Calendar](#resistance-calendar)
 [![Build Status](https://travis-ci.org/ResistanceCalendar/resistance-calendar-frontend.svg?branch=master)](https://travis-ci.org/ResistanceCalendar/resistance-calendar-frontend) [![Code Climate](https://codeclimate.com/github/ResistanceCalendar/resistance-calendar-frontend/badges/gpa.svg)](https://codeclimate.com/github/ResistanceCalendar/resistance-calendar-frontend) [![Test Coverage](https://codeclimate.com/github/ResistanceCalendar/resistance-calendar-frontend/badges/coverage.svg)](https://codeclimate.com/github/ResistanceCalendar/resistance-calendar-frontend/coverage)
+
 See our [contributing guide](CONTRIBUTING.md) for more information.
 
 *The Resistance Calendar* aims to empower progressive activists by providing a massive central listing of upcoming events. Crowdsourced event submissions are curated by a team of volunteers, while events from allied organizations will be included automatically. Event filters make it easy for people to find events near them. Filtered notifications help people discover new events immediately.
