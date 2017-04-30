@@ -39,6 +39,7 @@ class Events extends Component {
         range: null,
         startDate: moment()
       },
+      hasFilter: false,
       isFetchingEvents: true,
       isFetchingMoreEvents: false,
       events: [],
@@ -97,21 +98,32 @@ class Events extends Component {
   }
 
   updateFilters(updatedFilters) {
+    const newFilters = {
+      ...this.state.filters,
+      ...updatedFilters
+    };
+    const { searchText, location, range } = newFilters;
+    let hasFilter = false;
+
+    if (!searchText && !location && !range) {
+      hasFilter = false;
+    } else {
+      hasFilter = true;
+    }
+
     this.setState({
-      filters: {
-        ...this.state.filters,
-        ...updatedFilters
-      }
+      filters: newFilters,
+      hasFilter
     }, () => {
       // After state update, fetch events (via debounced function to prevent rapid service calls)
       this._getEvents();
     });
   }
 
-  renderEventsList(events, hasMoreEvents, isFetchingMoreEvents) {
+  renderEventsList(events, hasMoreEvents, isFetchingMoreEvents, hasFilter) {
     return (
       <div>
-        <EventsList events={events} />
+        <EventsList events={events} hasFilter={hasFilter} />
         { hasMoreEvents &&
           <div className={styles.loadMoreBtn}>
             { isFetchingMoreEvents ?
@@ -129,6 +141,7 @@ class Events extends Component {
   render() {
     const {
       filters,
+      hasFilter,
       events,
       isFetchingEvents,
       isFetchingMoreEvents,
@@ -145,7 +158,7 @@ class Events extends Component {
         </div>
         { isFetchingEvents ?
           <div className={styles.loadingMoreEventsWrapper}><Loading /></div> :
-          this.renderEventsList(events, hasMoreEvents, isFetchingMoreEvents)
+          this.renderEventsList(events, hasMoreEvents, isFetchingMoreEvents, hasFilter)
         }
       </div>
     );
