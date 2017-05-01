@@ -8,6 +8,10 @@ node_js:
 install:
   - npm install
 
+after_success:
+    - npm install -g codeclimate-test-reporter
+    - codeclimate-test-reporter < coverage/lcov.info
+
 cache:
   directories:
     - node_modules
@@ -18,6 +22,8 @@ env:
 
 # Necessary to compile native modules for io.js v3 or Node.js v4
 addons:
+  code_climate:
+    repo_token: 2d10df932f41c7deaff3afe7fc5a6b9a2a7cb95a243dd675c3bc60d135618084
   apt:
     sources:
       - ubuntu-toolchain-r-test
