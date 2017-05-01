@@ -72,7 +72,7 @@ const EventCard = ({ event, className }) => {
   } = event;
 
   // TODO: May have to change how this check is done once we switch over to real default image
-  const croppedFeaturedImageUrl = featuredImageUrl ? getCroppedImageUrl(featuredImageUrl) : 'http://www.fillmurray.com/550/450';
+  const croppedFeaturedImageUrl = featuredImageUrl ? getCroppedImageUrl(featuredImageUrl) : '../static/img/default-event-200.png';
 
   return (
     <li className={`${styles.card} ${className || ''}`}>

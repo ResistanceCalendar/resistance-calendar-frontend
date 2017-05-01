@@ -8,9 +8,12 @@ const distanceRange = [
   { value: 8047, label: '5 miles' },
   { value: 16093, label: '10 miles' },
   { value: 40234, label: '25 miles' },
+  { value: 80468, label: '50 miles' },
   { value: 160934, label: '100 miles' },
   { value: 804672, label: '500 miles' }
 ];
+
+const defaultDistanceRange = distanceRange[3];
 
 function renderDistanceOptions() {
   return distanceRange.map(distance =>
@@ -25,7 +28,7 @@ class EventLocationFilter extends Component {
     this.state = {
       menuOpen: false,
       location: '',
-      range: distanceRange[1].value,
+      range: defaultDistanceRange.value,
       locationErrorMsg: null
     };
 
@@ -61,7 +64,7 @@ class EventLocationFilter extends Component {
   clearForm() {
     this.setState({
       location: '',
-      range: distanceRange[1].value,
+      range: defaultDistanceRange.value,
       menuOpen: false,
       locationErrorMsg: null
     });

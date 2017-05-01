@@ -110,7 +110,7 @@ class EventDetails extends Component {
         </div>
         <div className={styles.content}>
           <div className={styles.left}>
-            <img src={featuredImageUrl || 'http://www.fillmurray.com/950/500'} alt="featured event" />
+            <img src={featuredImageUrl || '../static/img/default-event-600x360.png'} alt="featured event" />
           </div>
 
           <div className={styles.right}>
