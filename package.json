@@ -8,7 +8,7 @@
     "start": " serve -s dist",
     "heroku-postbuild": "rm -rf dist && NODE_ENV=production webpack -p --progress --colors",
     "test": "jest --config=testConfig/jest.config.json --coverage",
-    "test:watch": "jest --config=testConfig/jest.config.json --watch",
+    "test:watch": "jest --config=testConfig/jest.config.json --watch --coverage",
     "lint": "clear && eslint ./src --ext .js --cache",
     "lint:watch": "onchange ./src --initial -- yarn run lint",
     "lint:watch-npm": "onchange ./src --initial -- npm run lint"
