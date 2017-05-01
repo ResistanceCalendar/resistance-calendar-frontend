@@ -10,10 +10,21 @@ function footerLinks() {
   return (
     <div className={styles.linksWrapper}>
       <Link to="/">Home</Link>
-      <Link to="/add-event">Add Events</Link>
-      <a href="#">Facebook</a>
-      <a href="#">Twitter</a>
-      <a href="#">Privacy Statement</a>
+      <a
+        href="https://www.facebook.com/resistancecalendar"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Facebook
+      </a>
+      <a
+        href="https://twitter.com/ResistCalendar"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Twitter
+      </a>
+      <Link to="/privacy-policy">Privacy Policy</Link>
     </div>
   );
   /* eslint-enable jsx-a11y/href-no-hash */

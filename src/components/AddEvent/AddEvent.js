@@ -78,7 +78,6 @@ class AddEvent extends Component {
     const invalidForm = !!emailErrorMessage || !!eventLinkErrorMessage || eventName === '' || eventLink === '' || email === '';
 
     if (this.state.submitted) {
-      window.scroll(0, 0);
       return <Redirect to={{ pathname: '/thank-you' }} />;
     }
 

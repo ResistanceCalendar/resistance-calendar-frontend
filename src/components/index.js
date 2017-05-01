@@ -18,3 +18,4 @@ export { default as Loading } from './Loading/Loading';
 export { default as EventDetailsContainer } from './EventDetailsContainer/EventDetailsContainer';
 export { default as SocialBtns } from './SocialBtns/SocialBtns';
 export { default as ThankYou } from './ThankYou/ThankYou';
+export { default as PrivacyPolicy } from './PrivacyPolicy/PrivacyPolicy';
