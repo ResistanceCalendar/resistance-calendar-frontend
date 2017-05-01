@@ -8,7 +8,8 @@ describe('Component: EventCard', () => {
 
   beforeEach(() => {
     props.event = {
-      start_date: '2015-03-14T12:00:00Z'
+      start_date: '2017-04-29T18:00:00-07:00',
+      end_date: '2017-04-29T21:00:00-07:00'
     };
   });
 
@@ -22,5 +23,22 @@ describe('Component: EventCard', () => {
 
     expect(wrapper.find('Link')).toHaveLength(2);
     expect(wrapper.find('img')).toHaveLength(1);
+  });
+
+  it('displays the correct time format', () => {
+    const wrapper = shallow(<EventCard {...props} />);
+    const dateDisplay = wrapper.find('div').at(1).children('div').at(1)
+    .text()
+    .toLowerCase();
+    expect(dateDisplay).toBe('6:00 to 9:00 pm');
+  });
+
+  it('displays the correct time format for multi-day event', () => {
+    props.event.end_date = '2017-04-30T21:00:00-07:00';
+    const wrapper = shallow(<EventCard {...props} />);
+    const dateDisplay = wrapper.find('div').at(1).children('div').at(1)
+    .text()
+    .toLowerCase();
+    expect(dateDisplay).toBe('6:00 pm apr 29 - 9:00 pm apr 30');
   });
 });
