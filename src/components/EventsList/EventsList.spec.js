@@ -4,10 +4,6 @@ import { shallow } from 'enzyme';
 import EventsList from './EventsList';
 
 describe('Component: EventsList', () => {
-  // beforeEach(() => {
-  //   let filters = {};
-  //   let events = [];
-  // });
   it('renders without crashing', () => {
     const wrapper = shallow(<EventsList events={[]} filters={{}} />);
     expect(wrapper).toHaveLength(1);
