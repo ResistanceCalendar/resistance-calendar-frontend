@@ -108,10 +108,10 @@ class Events extends Component {
     });
   }
 
-  renderEventsList(events, hasMoreEvents, isFetchingMoreEvents) {
+  renderEventsList(events, hasMoreEvents, isFetchingMoreEvents, filters) {
     return (
       <div>
-        <EventsList events={events} />
+        <EventsList events={events} filters={filters} />
         { hasMoreEvents &&
           <div className={styles.loadMoreBtn}>
             { isFetchingMoreEvents ?
@@ -145,7 +145,7 @@ class Events extends Component {
         </div>
         { isFetchingEvents ?
           <div className={styles.loadingMoreEventsWrapper}><Loading /></div> :
-          this.renderEventsList(events, hasMoreEvents, isFetchingMoreEvents)
+          this.renderEventsList(events, hasMoreEvents, isFetchingMoreEvents, filters)
         }
       </div>
     );
