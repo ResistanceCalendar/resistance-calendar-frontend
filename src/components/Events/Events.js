@@ -39,7 +39,6 @@ class Events extends Component {
         range: null,
         startDate: moment()
       },
-      hasFilter: false,
       isFetchingEvents: true,
       isFetchingMoreEvents: false,
       events: [],
