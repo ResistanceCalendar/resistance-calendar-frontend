@@ -11,11 +11,7 @@ function renderEvents(events, filters) {
       className={styles.eventCard}
     />
   );
-//   1.) when no search text is set but there is a location/range: “No events are coming up...Try setting a larger distance range”
-// 2.) when search text is set with no location/range: “No events are coming up...Try searching for something else”
-// 3.) when both are set: “No events are coming up...Try searching for something else or setting a larger distance range”
-// 4.) when neither are set -- e.g. “No events are coming up”
-  // const { searchText, location, range } = newFilters;
+
   let noEventText = 'No events are coming up';
 
   if (!filters.searchText && filters.location) {
@@ -42,7 +38,7 @@ EventsList.propTypes = {
   filters: PropTypes.shape({
     searchText: PropTypes.string,
     location: PropTypes.string,
-    ranger: PropTypes.number
+    range: PropTypes.number
   })
 };
 
