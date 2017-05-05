@@ -123,9 +123,6 @@ class EventDetails extends Component {
                     rel="noopener noreferrer"
                     className={styles.eventBtn}
                   >
-                    {/*<span>
-                      FACEBOOK&nbsp;
-                    </span>*/}
                     EVENT PAGE
                   </a>
                 </div>
