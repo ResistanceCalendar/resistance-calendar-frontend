@@ -28,38 +28,6 @@ function getCroppedImageUrl(url) {
   return `${url1}${separator}/c_thumb,g_faces:center,z_0.75,h_200,w_200/${url2}`;
 }
 
-function displayTimeString(startTime, endTime) {
-  let endTimeDisplay;
-  let endTimeAmPm;
-
-  if (!startTime) {
-    return false;
-  }
-
-  if (!endTime) {
-    endTimeDisplay = '';
-  } else {
-    // if it's a multi-day event, then we know exactly what to do, no need to go any further...
-    if (dateTimeUtils.dateTimeNoOffset(startTime, 'DDD') !== dateTimeUtils.dateTimeNoOffset(endTime, 'DDD')) {
-      return `${dateTimeUtils.dateTimeNoOffset(startTime, 'h:mm A MMM D')} - ${dateTimeUtils.dateTimeNoOffset(endTime, 'h:mm A MMM D')}`;
-    }
-
-    // otherwise, let's generate the end time display, which may or may not use the
-    // same format as the start time, depending on AM/PM differences
-    endTimeDisplay = ` to ${dateTimeUtils.dateTimeNoOffset(endTime, 'LT')}`;
-    // grab the end AM/PM value to compare when determining whether we need to specify the
-    // AM/PM for the start time
-    endTimeAmPm = dateTimeUtils.dateTimeNoOffset(endTime, 'A');
-  }
-
-  // here's the start time AM/PM value we need for our comparison
-  const startTimeAmPm = dateTimeUtils.dateTimeNoOffset(startTime, 'A');
-  const startTimeFormat = startTimeAmPm !== endTimeAmPm ? 'LT' : 'h:mm';
-  const startTimeDisplay = dateTimeUtils.dateTimeNoOffset(startTime, startTimeFormat);
-
-  return startTimeDisplay + endTimeDisplay;
-}
-
 const EventCard = ({ event, className }) => {
   const {
     start_date: startDate,
@@ -96,7 +64,7 @@ const EventCard = ({ event, className }) => {
           </Link>
           { renderLocation(location) }
         </div>
-        <div className={styles.time}>{displayTimeString(startDate, endDate)}</div>
+        <div className={styles.time}>{dateTimeUtils.displayTimeString(startDate, endDate)}</div>
         <p className={styles.description}>{_.truncate(description, truncateOptions)}</p>
       </div>
     </li>

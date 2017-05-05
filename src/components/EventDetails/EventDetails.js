@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import moment from 'moment';
 import { DateBlock, Loading, SocialBtns } from '../';
 import { eventsAPI } from '../../api';
+import { dateTimeUtils } from '../../utils';
+
 import styles from './EventDetails.sass';
 
 const renderAddress = (location) => {
@@ -17,16 +18,11 @@ const renderAddress = (location) => {
 };
 
 const renderTimeRange = (startDate, endDate) => {
-  // TDB how to properly format this - would be nice to avoid bringing in moment.js
-  const startTime = (new Date(startDate)).toLocaleTimeString();
-  const endTime = (new Date(endDate)).toLocaleTimeString();
-  const dateString = moment(startDate).format('ddd, MMMM DD, YYYY');
-
   return (
     <div className={styles.info}>
       <div className={styles.infoLabel}>DATE & TIME</div>
-      <div>{dateString}</div>
-      <div>{startTime} {endDate ? `- ${endTime}` : ''}</div>
+      <div>{dateTimeUtils.displayDateString(startDate, endDate)}</div>
+      <div>{dateTimeUtils.displayTimeString(startDate, endDate)}</div>
     </div>
   );
 };
