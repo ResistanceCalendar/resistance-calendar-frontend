@@ -2,15 +2,16 @@
 @import "~style/utils/mixins.sass"
 
 #addEventForm
-  position: relative
   margin: auto
-  width: 80%
   text-align: left
   @include popover-wrapper(300px, 50px, right, 7px, 40px, $main-medium-light-gray)
   @media only screen and (max-width: $break-min-sm)
+    @include popover-wrapper(calc(100% - 45px), 50px, right, 7px, 40px, $main-medium-light-gray)
+    position: absolute
     margin: 0
-    right: 0
-    width: 174%
+    top: 68px
+    right: 5px
+    left: 5px
 
   input, textarea
     background-color: $main-white
