@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import EventDetails from './EventDetails';
+import { dateTimeUtils } from '../../utils';
 
 describe('Component: EventDetails', () => {
   let event = {};
@@ -12,8 +13,8 @@ describe('Component: EventDetails', () => {
     event = {
       title: '',
       name: '',
-      start_date: '2015-03-14T12:00:00Z',
-      end_date: '2015-03-14T14:00:00Z',
+      start_date: '2017-04-29T18:00:00-07:00',
+      end_date: '2017-04-29T21:00:00-07:00',
       share_url: '',
       browser_url: '',
       featured_image_url: '',
@@ -46,5 +47,21 @@ describe('Component: EventDetails', () => {
     wrapper.setState({ isFetchingEvent: false });
 
     expect(wrapper.find('div')).toHaveLength(1);
+  });
+
+  it('outputs the correct time format for single-day event', () => {
+    expect(dateTimeUtils.displayTimeString(event.start_date, event.end_date).toLowerCase()).toBe('6:00 to 9:00 pm');
+  });
+
+  it('outputs the correct time format for multi-day event', () => {
+    event.end_date = '2017-04-30T21:00:00-07:00';
+
+    expect(dateTimeUtils.displayTimeString(event.start_date, event.end_date).toLowerCase()).toBe('6:00 pm apr 29 - 9:00 pm apr 30');
+  });
+
+  it('does not display as multi-day if start date is greater that end date', () => {
+    event.end_date = '2017-04-28T21:00:00-07:00';
+
+    expect(dateTimeUtils.displayTimeString(event.start_date, event.end_date).toLowerCase()).toBe('6:00 pm');
   });
 });
