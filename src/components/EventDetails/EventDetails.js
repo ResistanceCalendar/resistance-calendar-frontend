@@ -9,7 +9,7 @@ const renderAddress = (location) => {
   // Will have to see how this data structure holds up over different events
   return (
     <div className={styles.info}>
-      <div className={styles.infoLabel}>Location</div>
+      <div className={styles.infoLabel}>LOCATION</div>
       { addressLines[0] && <div>{addressLines[0]}</div> }
       <div>{locality} {region}, {postalCode}</div>
     </div>
@@ -24,7 +24,7 @@ const renderTimeRange = (startDate, endDate) => {
 
   return (
     <div className={styles.info}>
-      <div className={styles.infoLabel}>Date & Time</div>
+      <div className={styles.infoLabel}>DATE & TIME</div>
       <div>{dateString}</div>
       <div>{startTime} {endDate ? `- ${endTime}` : ''}</div>
     </div>
@@ -115,19 +115,21 @@ class EventDetails extends Component {
 
           <div className={styles.right}>
             <div className={styles.infoLinks}>
-              <div className={styles.eventLink}>
-                <a
-                  href={browserUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.eventBtn}
-                >
-                  <span>
-                    FACEBOOK&nbsp;
-                  </span>
-                  EVENT PAGE
-                </a>
-              </div>
+              { browserUrl &&
+                <div className={styles.eventLink}>
+                  <a
+                    href={browserUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={styles.eventBtn}
+                  >
+                    {/*<span>
+                      FACEBOOK&nbsp;
+                    </span>*/}
+                    EVENT PAGE
+                  </a>
+                </div>
+              }
               <div className={styles.sharing}>
                 <div
                   className={styles.shareBtnMobile}
