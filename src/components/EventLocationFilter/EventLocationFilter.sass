@@ -6,6 +6,9 @@
   align-items: center
   position: relative
 
+  @media only screen and (max-width: $break-min-sm)
+    position: inherit
+
   .error-msg
     font-weight: 700
     font-size: 0.8em
@@ -33,8 +36,15 @@
       flex: none
 
   .popover-wrapper
-    @include popover-wrapper(300px, 38px, right, 0, 55px)
     margin-right: 5px
+    @include popover-wrapper(300px, 38px, right, 0, 55px)
+    @media only screen and (max-width: $break-min-sm)
+      @include popover-wrapper(calc(100% - 50px), 38px, right, 0, 55px)
+      position: absolute
+      margin: 0
+      top: 68px
+      right: 5px
+      left: 5px
 
     .input-group
       display: flex
