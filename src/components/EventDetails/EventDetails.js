@@ -10,7 +10,7 @@ const renderAddress = (location) => {
   // Will have to see how this data structure holds up over different events
   return (
     <div className={styles.info}>
-      <div className={styles.infoLabel}>LOCATION</div>
+      <div className={styles.infoLabel}>location</div>
       { addressLines[0] && <div>{addressLines[0]}</div> }
       <div>{locality} {region}, {postalCode}</div>
     </div>
@@ -20,7 +20,7 @@ const renderAddress = (location) => {
 const renderTimeRange = (startDate, endDate) => {
   return (
     <div className={styles.info}>
-      <div className={styles.infoLabel}>DATE & TIME</div>
+      <div className={styles.infoLabel}>date & time</div>
       <div>{dateTimeUtils.displayDateString(startDate, endDate)}</div>
       <div>{dateTimeUtils.displayTimeString(startDate, endDate)}</div>
     </div>
