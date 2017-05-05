@@ -1,17 +1,26 @@
 @import "~style/utils/variables.sass"
 
 .footer
+  display: flex
   background-color: $main-pink
+  justify-content: space-between
   color: $main-white
   max-width: $max-width
   margin: 0 auto
   padding: 25px 15px
   font-size: 0.8em
+  text-align: center
+
+  @media only screen and (max-width: $break-min-md)
+    flex-direction: column
 
   .links-wrapper
     &>*
-      display: block
-      margin-bottom: 20px
+      display: inline-block
+      margin-bottom: 15px
+
+    &>*:not(:last-child)
+      margin-right: 20px
 
     a
       text-decoration: none
@@ -21,3 +30,6 @@
       &:visited,
       &:active
         color: $main-white
+
+      &:hover
+        color: $main-medium-dark-gray
