@@ -12,7 +12,7 @@ function tokenizeSearchTerms(queryString) {
 
   const queryStringArray = tokenizedTerms
     .map(term =>
-      `contains(title, '${term}') or contains(name, '${term}') or contains(description, '${term}')`
+      `(contains(title, '${term}') or contains(name, '${term}') or contains(description, '${term}'))`
     );
 
   return queryStringArray.join(' and ');
