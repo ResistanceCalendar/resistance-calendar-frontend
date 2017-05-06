@@ -33,6 +33,12 @@ input:disabled
   cursor: not-allowed !important
   opacity: 0.7 !important
 
+// https://stackoverflow.com/questions/2918707/turn-off-iphone-safari-input-element-rounding
+input[type="submit"],
+input[type="button"]
+  -webkit-appearance: none
+  border-radius: 0
+
 button
   outline: none
   border-radius: $border-radius-small
