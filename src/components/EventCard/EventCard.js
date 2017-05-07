@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
+import { devMode } from '../../config';
 
 import { dateTimeUtils } from '../../utils';
 import { DateBlock } from '../';
@@ -40,7 +41,7 @@ const EventCard = ({ event, className }) => {
   } = event;
 
   // TODO: May have to change how this check is done once we switch over to real default image
-  const croppedFeaturedImageUrl = featuredImageUrl ? getCroppedImageUrl(featuredImageUrl) : '../static/img/default-event-200.png';
+  const croppedFeaturedImageUrl = !devMode && featuredImageUrl ? getCroppedImageUrl(featuredImageUrl) : '../static/img/default-event-200.png';
 
   return (
     <li className={`${styles.card} ${className || ''}`}>
