@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { DateBlock, Loading, SocialBtns } from '../';
 import { eventsAPI } from '../../api';
 import { dateTimeUtils } from '../../utils';
+import { devMode } from '../../config';
 
 import styles from './EventDetails.sass';
 
@@ -106,7 +107,7 @@ class EventDetails extends Component {
         </div>
         <div className={styles.content}>
           <div className={styles.left}>
-            <img src={featuredImageUrl || '../static/img/default-event-600x360.png'} alt="featured event" />
+            <img src={devMode || !featuredImageUrl ? '../static/img/default-event-600x360.png' : featuredImageUrl} alt="featured event" />
           </div>
 
           <div className={styles.right}>
