@@ -9,24 +9,14 @@ This is a rebuild of the live website currently found [here](https://www.resista
 
 ## [Table of Contents](#contents-anchor)
 
-* [About the Resistance Calendar](#resistance-calendar)
-* [Contributing Guide](CONTRIBUTING.md)
 * [About the stack](#about-the-stack)
 * [Getting Started](#getting-started)
-  * Setup
-  * Install
-  * Test
-  * Lint
-  * Run
-* [Build](#build-the-project)
-* [Project hierarchy](#project-hierarchy)
-  * Features
-  * CSS
+* [Contributing Guide](#contributing-guide)
 * [Project License](#project-license)
 
 ## [About the stack](#about-the-stack)
 
-This repository covers the ReactJS front-end.  The API can be found [here](https://github.com/ResistanceCalendar/resistance-calendar-api).
+This repository covers the ReactJS front-end.  The API can be found at [ResistanceCalendar/resistance-calendar-api](https://github.com/ResistanceCalendar/resistance-calendar-api).
 
 ## [Getting Started](#getting-started)
 
@@ -76,24 +66,15 @@ yarn run dev
 
 This project will run on [http://localhost:5050/](http://localhost:5050/)
 
-## [Build the project](#build-the-project)
+### Build the project
 
 ```sh
 yarn run build
 ```
 
-## [Project hierarchy](#project-hierarchy)
+## [Contributing Guide](#contributing-guide)
 
-### Features
-
-- Webpack v2
-- Babel to compile ES2016+
-
-### CSS
-
-Component-level styling uses Sass, SCSS, or CSS with [CSS Modules](https://github.com/css-modules/css-modules).  Global styles are placed in `src/style`'s subdirectories, and component-level styles are placed in the component's folder.
-
-Note: the CSS Module property `camelCase` is enabled, meaning styling classes defined as, say, `.test-name` will be referenced inside of a component file as `stylesObj.testName`.  This allows us to follow CSS naming conventions while avoiding bracket notation in Javascript.
+See our [contributing guide](CONTRIBUTING.md) for more information.
 
 ## [Project License](#project-license)
 
