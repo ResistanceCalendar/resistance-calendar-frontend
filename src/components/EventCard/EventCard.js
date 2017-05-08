@@ -32,7 +32,7 @@ const EventCard = ({ event, className }) => {
   } = event;
 
   const croppedFeaturedImageUrl = !devMode && featuredImageUrl ?
-    urlUtils.getImageUrl(featuredImageUrl, 'c_thumb,g_faces:center,z_0.75,h_200,w_200') :
+    urlUtils.getImageUrl(featuredImageUrl, 'c_thumb,g_faces:center,z_0.75,h_150,w_150') :
     '../static/img/default-event-200.png';
 
   return (
