@@ -1,31 +1,36 @@
 @import "~style/utils/variables.sass"
 @import "~style/utils/mixins.sass"
 
-.header
-  display: flex
-  flex-direction: row
-  margin: $gutter-margin-mobile auto
-  max-width: $max-width
-  justify-content: center
-  align-items: center
-  vertical-align: middle
+.header-wrapper
+  position: fixed
+  top: 0
+  width: 100%
+  height: $header-height
+  z-index: 100
+  background: #ec3659
 
-  // Let left section take up all the space it wants so button (right-section) is only as big as it needs to be
-  .header-left-section
-    flex: 1
-
-    .resistance-logo
-      width: 100%
-
-  .header-right-section
-    position: relative
-    text-align: right
-    flex: none
-
-    @media only screen and (max-width: $break-min-sm)
-      position: inherit
-
-// Breakpoints
-@media only screen and (max-width: $max-width)
   .header
-    margin: $gutter-margin-mobile
+    display: flex
+    flex-direction: row
+    justify-content: center
+    align-items: center
+    vertical-align: middle
+    margin: auto
+    max-width: $max-width
+
+    // Let left section take up all the space it wants so button (right-section) is only as big as it needs to be
+    .header-left-section
+      flex: 1
+      margin: $gutter-margin-mobile
+
+      .resistance-logo
+        width: 100%
+
+    .header-right-section
+      position: relative
+      margin-right: $gutter-margin-mobile
+      text-align: right
+      flex: none
+
+      @media only screen and (max-width: $break-min-sm)
+        position: inherit

@@ -49,17 +49,19 @@ class Header extends Component {
   render() {
     /* eslint-disable jsx-a11y/no-static-element-interactions */
     return (
-      <header className={styles.header}>
-        <div className={styles.headerLeftSection}>
-          <Link to="/">
-            <ResistanceLogo />
-          </Link>
-        </div>
-        <div className={styles.headerRightSection} onClick={e => e.stopPropagation()}>
-          <AddEventButton className="add-event-btn" handleButtonClick={this.toggleModalState} />
-          {this.renderAddEventModal()}
-        </div>
-      </header>
+      <div className={styles.headerWrapper}>
+        <header className={styles.header}>
+          <div className={styles.headerLeftSection}>
+            <Link to="/">
+              <ResistanceLogo />
+            </Link>
+          </div>
+          <div className={styles.headerRightSection} onClick={e => e.stopPropagation()}>
+            <AddEventButton className="add-event-btn" handleButtonClick={this.toggleModalState} />
+            {this.renderAddEventModal()}
+          </div>
+        </header>
+      </div>
     );
     /* eslint-enable jsx-a11y/no-static-element-interactions */
   }
