@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import _ from 'lodash';
 import { devMode } from '../../config';
 
-import { dateTimeUtils } from '../../utils';
+import { dateTimeUtils, urlUtils } from '../../utils';
 import { DateBlock } from '../';
 import styles from './EventCard.sass';
 
@@ -20,15 +20,6 @@ function renderLocation(location) {
   return null;
 }
 
-function getCroppedImageUrl(url) {
-  // See: http://cloudinary.com/documentation/image_transformation_reference
-  // example URL: https://res.cloudinary.com/hqrdtqlz0/image/upload/c_thumb,g_faces:center,z_0.75,h_80,w_80/facebook:162777260891158
-  const separator = '/image/upload';
-  const [url1, url2] = url.split(separator);
-
-  return `${url1}${separator}/c_thumb,g_faces:center,z_0.75,h_200,w_200/${url2}`;
-}
-
 const EventCard = ({ event, className }) => {
   const {
     start_date: startDate,
@@ -40,8 +31,9 @@ const EventCard = ({ event, className }) => {
     location
   } = event;
 
-  // TODO: May have to change how this check is done once we switch over to real default image
-  const croppedFeaturedImageUrl = !devMode && featuredImageUrl ? getCroppedImageUrl(featuredImageUrl) : '../static/img/default-event-200.png';
+  const croppedFeaturedImageUrl = !devMode && featuredImageUrl ?
+    urlUtils.getImageUrl(featuredImageUrl, 'c_thumb,g_faces:center,z_0.75,h_150,w_150') :
+    '../static/img/default-event-200.png';
 
   return (
     <li className={`${styles.card} ${className || ''}`}>
