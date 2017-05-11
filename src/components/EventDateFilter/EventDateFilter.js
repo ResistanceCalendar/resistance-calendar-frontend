@@ -25,7 +25,7 @@ const EventDateFilter = (props) => {
         onChange={date => handleChange(date)}
         isClearable={isClearable}
         placeholderText={placeholderText}
-        disabledKeyboardNavigation
+        readOnly
       />
     </div>
   );
