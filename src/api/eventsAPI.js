@@ -7,7 +7,7 @@ const BASE_URL = 'https://resistance-calendar.herokuapp.com/v1/events';
 // Temporary while service is not returning is_canceled flag to display flag in UI
 function removeCanceledEvents(events) {
   const filteredEvents = events._embedded['osdi:events'].filter(event => event.browser_url);
-  return Object.assign({}, events, { _embedded: { 'osdi:events': filteredEvents }});
+  return Object.assign({}, events, { _embedded: { 'osdi:events': filteredEvents } });
 }
 
 function getEvents(filterParams, odataParams) {
