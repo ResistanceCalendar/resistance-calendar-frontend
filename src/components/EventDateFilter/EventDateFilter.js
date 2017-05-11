@@ -49,6 +49,9 @@ const EventDateFilter = (props) => {
         customInput={<CustomDatepickerInput />}
         onChange={date => handleChange(updateFilters, date)}
         isClearable={isClearable}
+        popoverAttachment="top center"
+        popoverTargetAttachment="bottom left"
+        withPortal={window.innerWidth < 768}
         placeholderText={placeholderText}
         readOnly
       />
