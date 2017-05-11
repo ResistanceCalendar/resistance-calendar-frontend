@@ -1,61 +1,20 @@
 @import "~style/utils/variables.sass"
 @import "~style/utils/mixins.sass"
 
-.date-filter-input
-  font-size: 1.2em
-  font-weight: 700
-  cursor: pointer
-  color: $main-white
-  position: relative
-  max-width: 192px
+.date-filter
+  margin-top: 2px
   padding-left: $gutter-margin-mobile
 
-  &:before
-    top: 23px
-    right: 30px
-    border: solid transparent
-    content: " "
-    color: $main-black
-    z-index: 100
-    height: 0
-    width: 0
-    position: absolute
-    pointer-events: none
-    border-color: $border-thickness-small solid $main-medium-gray
-    border-top-color: $main-black
-    border-width: 7px
-    margin-left: -7px
+  .date-filter-btn
+    @include button($main-medium-dark-gray, $main-dark-gray, $main-medium-light-gray)
+    display: flex
+    align-items: center
+    justify-content: space-between
+    padding: 4px 10px
+    font-size: 1em
+    font-weight: 700
+    border-width: $border-thickness-small
     cursor: pointer
 
-  &:after
-    top: 3px
-    right: 30px
-    border: solid transparent
-    content: " "
-    color: $main-black
-    z-index: 100
-    height: 0
-    width: 0
-    position: absolute
-    pointer-events: none
-    border-color: $border-thickness-small solid $main-medium-gray
-    border-bottom-color: $main-black
-    border-width: 7px
-    margin-left: -7px
-
-  input
-    padding: 8px 20px 8px 8px
-    text-transform: uppercase
-    background: $main-white
-    border: none
-    font-weight: bold
-    display: inline-block
-    color: transparent
-    text-shadow: 0 0 0 $main-black
-    position: relative
-    cursor: pointer
-    font-size: 20px
-    border: 1px solid transparent // needed because of border added on :focus
-
-    &:focus
-      outline: none
+    svg
+      margin-right: 8px

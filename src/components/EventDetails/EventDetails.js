@@ -97,7 +97,7 @@ class EventDetails extends Component {
 
     /* eslint-disable jsx-a11y/no-static-element-interactions */
     return (
-      <div>
+      <div className={styles.container}>
         <div className={styles.titleWrapper}>
           <DateBlock
             startDate={startDate}

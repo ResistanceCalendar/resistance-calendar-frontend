@@ -12,13 +12,13 @@ describe('Component: <EventDateFilter />', () => {
   });
 
   it('renders without crashing', () => {
-    const div = document.createElement('div');
-    shallow(<EventDateFilter {...props} />, div);
+    const wrapper = shallow(<EventDateFilter {...props} />);
+    expect(wrapper).toHaveLength(1);
   });
 
-  it('shouldl call the updateFilters function prop', () => {
+  it('should call the updateFilters function prop', () => {
     const wrapper = shallow(<EventDateFilter {...props} />);
-    wrapper.find('DatePicker').simulate('change');
+    wrapper.find('t').simulate('change');
 
     expect(props.updateFilters).toHaveBeenCalledTimes(1);
   });
