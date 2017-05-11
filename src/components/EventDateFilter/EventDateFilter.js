@@ -12,7 +12,7 @@ class CustomDatepickerInput extends Component {  // eslint-disable-line react/pr
   render() {
     return (
       <button
-        className={styles.dateFilterBtn}
+        className={`react-datepicker-ignore-onclickoutside ${styles.dateFilterBtn}`}
         onClick={this.props.onClick}
       >
         <FaCalendarO />

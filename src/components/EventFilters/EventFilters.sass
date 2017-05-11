@@ -21,7 +21,7 @@
     align-self: flex-start
     display: flex
     justify-content: flex-end
-    padding-right: $gutter-margin-mobile
+    padding-left: $gutter-margin-mobile
 
   .event-date-filter
     margin-top: $gutter-margin-mobile
@@ -29,8 +29,13 @@
     align-self: auto
     @include border-line(top)
     padding: 5px 0
+
+    @media only screen and (max-width: $max-width)
+      margin-right: $gutter-margin-mobile
+
     @media only screen and (min-width: $break-max-md)
       flex: inherit
-      margin: auto
+      margin-top: auto
+      margin-bottom: auto
       padding: 0px
       border: none
