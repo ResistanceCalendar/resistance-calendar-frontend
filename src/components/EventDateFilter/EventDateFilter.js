@@ -1,28 +1,53 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
+import FaCalendarO from 'react-icons/lib/fa/calendar-o';
 
 import styles from './EventDateFilter.sass';
+
+// Normally I'd break this out to its own component file but since it's only being used by the Datepicker, it seems unnecessary
+// Note that b/c this component uses refs, it cannot be a stateless functional component
+// See: https://hacker0x01.github.io/react-datepicker/#example-29
+class CustomDatepickerInput extends Component {  // eslint-disable-line react/prefer-stateless-function
+  render() {
+    return (
+      <button
+        className={styles.dateFilterBtn}
+        onClick={this.props.onClick}
+      >
+        <FaCalendarO />
+        <span>{this.props.value}</span>
+      </button>
+    );
+  }
+}
+
+CustomDatepickerInput.propTypes = {
+  value: PropTypes.string,
+  onClick: PropTypes.func
+};
+
+// Define fn outside of component so it's not defined on every re-render
+function handleChange(updateFilters, selectedDate) {
+  let dateVal = selectedDate;
+
+  if (moment(selectedDate).isSame(moment(), 'day')) {
+    dateVal = null;
+  }
+
+  updateFilters({ startDate: dateVal });
+}
 
 const EventDateFilter = (props) => {
   const { startDate, updateFilters, placeholderText, isClearable } = props;
 
-  function handleChange(selectedDate) {
-    let dateVal = selectedDate;
-
-    if (moment(selectedDate).isSame(moment(), 'day')) {
-      dateVal = null;
-    }
-
-    updateFilters({ startDate: dateVal });
-  }
-
   return (
-    <div className={styles.dateFilterInput}>
+    <div className={styles.dateFilter}>
       <DatePicker
         dateFormat="ddd MMM D"
         selected={startDate}
-        onChange={date => handleChange(date)}
+        customInput={<CustomDatepickerInput />}
+        onChange={date => handleChange(updateFilters, date)}
         isClearable={isClearable}
         placeholderText={placeholderText}
         readOnly

@@ -1,186 +1,189 @@
 @import "~style/utils/variables.sass"
 @import "~style/utils/mixins.sass"
 
-// Loading wrapper
-.loading-wrapper
-  padding: 50px
+.container
+  margin-top: $event-filters-height
+  padding-top: 25px
 
-// Default msg when no event data
-.no-data-msg
-  padding: $gutter-margin * 2
-  font-size: 1.2em
-  font-weight: 700
-  text-align: center
-  padding: 50px
+  // Loading wrapper
+  .loading-wrapper
+    padding: 50px
 
-.title-wrapper,
-.content
-
-// Upper title section
-.title-wrapper
-  padding: $gutter-margin
-  border-bottom: $border-thickness-small solid $main-medium-gray
-  max-width: $max-width
-  margin: 0 auto
-
-  &>*:not(:last-child)
-    margin-bottom: 15px
-
-  h1
-    font-size: 1.6em
+  // Default msg when no event data
+  .no-data-msg
+    padding: $gutter-margin * 2
+    font-size: 1.2em
     font-weight: 700
+    text-align: center
+    padding: 50px
 
-  .location
-    font-weight: 700
+  .title-wrapper,
+  .content
 
-.content
-  flex-direction: column
-  display: flex
-  padding: $gutter-margin
-  margin-right: 0
-  max-width: $max-width
-  margin: 0 auto
-
-  @include breakpoint(md)
+  // Upper title section
+  .title-wrapper
     padding: $gutter-margin
+    border-bottom: $border-thickness-small solid $main-medium-gray
+    max-width: $max-width
+    margin: 0 auto
+
+    &>*:not(:last-child)
+      margin-bottom: 15px
+
+    h1
+      font-size: 1.6em
+      font-weight: 700
+
+    .location
+      font-weight: 700
+
+  .content
+    flex-direction: column
     display: flex
-    flex-flow: row wrap
-
-  .left,
-  .right,
-  .description
-    @include breakpoint(md)
-      flex: 1 100%
-
-  .left,
-  .right
-    @include breakpoint(md)
-      flex-basis: 25%
-
-
-  .left
-    flex: 2
-    margin-bottom: $gutter-margin
+    padding: $gutter-margin
+    max-width: $max-width
+    margin: 0 auto
 
     @include breakpoint(md)
-      margin-right: $gutter-margin
-      flex: 3
+      padding: $gutter-margin
+      display: flex
+      flex-flow: row wrap
 
-    img
-      max-width: 100%
-      border: $border-thickness-small solid $main-dark-gray
+    .left,
+    .right,
+    .description
+      @include breakpoint(md)
+        flex: 1 100%
 
-  .right
-    font-size: 0.8em
-    display: flex
-    flex-flow: row wrap
+    .left,
+    .right
+      @include breakpoint(md)
+        flex-basis: 25%
 
-    @include breakpoint(md)
-      flex: 1
-      align-self: flex-start
 
-    .info-links
-      flex: 2 0 0
+    .left
+      flex: 2
+      margin-bottom: $gutter-margin
+
+      @include breakpoint(md)
+        margin-right: $gutter-margin
+        flex: 3
+
+      img
+        max-width: 100%
+        border: $border-thickness-small solid $main-dark-gray
+
+    .right
+      font-size: 0.8em
       display: flex
       flex-flow: row wrap
 
       @include breakpoint(md)
-        display: flex
         flex: 1
+        align-self: flex-start
 
-      .event-link,
-      .sharing,
+      .info-links
+        flex: 2 0 0
+        display: flex
+        flex-flow: row wrap
+
+        @include breakpoint(md)
+          display: flex
+          flex: 1
+
+        .event-link,
+        .sharing,
+        .location-and-date
+          flex: 1
+          flex-basis: 50%
+          flex-grow: 1
+
+          @include breakpoint(md)
+            flex: none
+            flex-basis: 100%
+
+        .sharing
+          text-align: right
+
       .location-and-date
-        flex: 1
-        flex-basis: 50%
-        flex-grow: 1
+        @include breakpoint(md)
+          order: 2
 
         @include breakpoint(md)
           flex: none
-          flex-basis: 100%
+          display: block
 
-      .sharing
-        text-align: right
-
-    .location-and-date
-      @include breakpoint(md)
-        order: 2
-
-      @include breakpoint(md)
-        flex: none
-        display: block
-
-    .share-btn,
-    .event-btn
-      @include button($main-green, $main-black, $main-white)
-
-    .event-link
-      @include breakpoint(md)
-        order: 1
-
+      .share-btn,
       .event-btn
-        background-color: $main-dark-gray
-        color: $main-white
-        border-color: $main-dark-gray
+        @include button($main-green, $main-black, $main-white)
 
+      .event-link
         @include breakpoint(md)
-          @include button($main-green, $main-black, $main-white)
+          order: 1
 
-        span
-          display: none
+        .event-btn
+          background-color: $main-dark-gray
+          color: $main-white
+          border-color: $main-dark-gray
 
           @include breakpoint(md)
-            display: inline
+            @include button($main-green, $main-black, $main-white)
 
-    .sharing
-      margin-top: 0
-      position: relative
+          span
+            display: none
 
-      @include breakpoint(md)
-        order: 3
-        margin: 30px 0
+            @include breakpoint(md)
+              display: inline
 
-    .desktop-sharing
-      display: none
+      .sharing
+        margin-top: 0
+        position: relative
 
-      @include breakpoint(md)
-        display: block
+        @include breakpoint(md)
+          order: 3
+          margin: 30px 0
 
-    .info
-      line-height: 1.4
-
-      @include breakpoint(md)
-        display: block
-
-    .info-label
-      margin: 30px 0 8px
-      font-weight: 700
-      text-transform: uppercase
-
-    .share-btn-mobile
-      display: block
-      @include button($main-green, $main-black, $main-white)
-      width: 125px
-      text-align: center
-      font-size: 100%
-      max-height: 38px
-      position: relative
-
-      @include breakpoint(md)
+      .desktop-sharing
         display: none
 
-      .popover-wrapper
-        @include popover-wrapper(250px, 29px, right, -33px, 85px)
+        @include breakpoint(md)
+          display: block
 
-        a
-          margin-right: 0
+      .info
+        line-height: 1.4
 
-          &:first-child
-            margin-top: 0
+        @include breakpoint(md)
+          display: block
 
-  .description
-    display: flex
-    flex-direction: column
-    font-size: 0.8em
-    margin: 15px 0
-    line-height: 1.4
+      .info-label
+        margin: 30px 0 8px
+        font-weight: 700
+        text-transform: uppercase
+
+      .share-btn-mobile
+        display: block
+        @include button($main-green, $main-black, $main-white)
+        width: 125px
+        text-align: center
+        font-size: 100%
+        max-height: 38px
+        position: relative
+
+        @include breakpoint(md)
+          display: none
+
+        .popover-wrapper
+          @include popover-wrapper(250px, 29px, right, -33px, 85px)
+
+          a
+            margin-right: 0
+
+            &:first-child
+              margin-top: 0
+
+    .description
+      display: flex
+      flex-direction: column
+      font-size: 0.8em
+      margin: 15px 0
+      line-height: 1.4

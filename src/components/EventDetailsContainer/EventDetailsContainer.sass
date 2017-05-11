@@ -1,11 +1,16 @@
 @import "~style/utils/variables.sass"
 
 .back-wrapper
+  position: fixed
+  top: $header-height
+  left: 0
+  right: 0
   background-color: $main-medium-gray
   padding: 20px
   font-size: 0.8em
   font-weight: 700
   text-transform: uppercase
+  z-index: 10
 
   .link-wrapper
     max-width: $max-width
