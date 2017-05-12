@@ -1,13 +1,14 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
+import withTracker from './withTracker';
 import {
   App,
   Events,
   EventDetailsContainer,
   ThankYou,
   PrivacyPolicy
-} from './components';
+} from '../components';
 
 // React router v4 - https://reacttraining.com/react-router/
 const rootRoutes = (
@@ -26,6 +27,10 @@ const RooteRoutes = () => {
   return rootRoutes;
 };
 
-const baseRoute = <Route path="/" render={(props) => <App {...props}><RooteRoutes /></App>} />;
-
-export default baseRoute;
+// Wrap routes in our Google Analytics HOC - https://github.com/ReactTraining/react-router/issues/4278#issuecomment-299692502
+export default (
+  <Route
+    path="/"
+    render={withTracker(props => <App {...props}><RooteRoutes /></App>)}
+  />
+);
