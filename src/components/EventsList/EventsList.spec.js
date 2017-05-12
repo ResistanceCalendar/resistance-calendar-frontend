@@ -15,26 +15,29 @@ describe('Component: EventsList', () => {
         location: 'nowhere'
       };
       const wrapper = shallow(<EventsList events={[]} filters={filters} />);
-      expect(wrapper.text()).toEqual('No events are coming up...Try setting a larger distance range');
+      expect(wrapper.text()).toEqual('No events are coming up... Try setting a larger distance range');
     });
+
     it('...given searchText and no location', () => {
       const filters = {
         searchText: 'asdfasdf'
       };
       const wrapper = shallow(<EventsList events={[]} filters={filters} />);
-      expect(wrapper.text()).toEqual('No events are coming up...Try searching for something else');
+      expect(wrapper.text()).toEqual('No events are coming up... Try searching for something else');
     });
+
     it('...given searchText and location', () => {
       const filters = {
         location: 'nowhere',
         searchText: 'adsfasdf'
       };
       const wrapper = shallow(<EventsList events={[]} filters={filters} />);
-      expect(wrapper.text()).toEqual('No events are coming up...Try searching for something else or setting a larger distance range');
+      expect(wrapper.text()).toEqual('No events are coming up... Try searching for something else or setting a larger distance range');
     });
+
     it('...given no filters', () => {
       const wrapper = shallow(<EventsList events={[]} filters={{}} />);
-      expect(wrapper.text()).toEqual('No events are coming up');
+      expect(wrapper.text()).toEqual('No events are coming up... ');
     });
   });
 });
