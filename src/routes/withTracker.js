@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import GoogleAnalytics from 'react-ga';
 
 // Unfortunately cannot easily test: https://github.com/react-ga/react-ga/issues/96
-GoogleAnalytics.initialize('UA-91883802-1', { debug: true });
+GoogleAnalytics.initialize('UA-91883802-1', { debug: false });
 
 // Since this is a SPA, we have to "manually" follow URL changes to make GA useful
 function trackPage(pathname, search) {
