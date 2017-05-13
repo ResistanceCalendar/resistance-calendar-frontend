@@ -4,6 +4,12 @@ import { queryBuilder } from '../utils';
 
 const BASE_URL = 'https://resistance-calendar.herokuapp.com/v1/events';
 
+// Temporary while service is not returning is_canceled flag to display flag in UI
+function removeCanceledEvents(events) {
+  const filteredEvents = events._embedded['osdi:events'].filter(event => event.browser_url);
+  return Object.assign({}, events, { _embedded: { 'osdi:events': filteredEvents } });
+}
+
 function getEvents(filterParams, odataParams) {
   const { page = 0, perPage = 25, location, range } = filterParams;
 
@@ -17,7 +23,7 @@ function getEvents(filterParams, odataParams) {
   const odataFilterUrl = queryBuilder.eventsFilter(odataParams);
 
   return axios.get(`${BASE_URL}?${pageUrl}&${perPageUrl}&${orderByUrl}${locationUrl}${odataFilterUrl}`)  // eslint-disable-line max-len
-    .then(res => res.data);
+    .then(res => removeCanceledEvents(res.data));
 }
 
 function getEventById(id) {
