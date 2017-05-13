@@ -12,14 +12,14 @@ function renderEvents(events, filters) {
     />
   );
 
-  let noEventText = 'No events are coming up';
+  let noEventText = 'No events are coming up... ';
 
   if (!filters.searchText && filters.location) {
-    noEventText += '...Try setting a larger distance range';
+    noEventText += 'Try setting a larger distance range';
   } else if (filters.searchText && !filters.location) {
-    noEventText += '...Try searching for something else';
+    noEventText += 'Try searching for something else';
   } else if (filters.searchText && filters.location) {
-    noEventText += '...Try searching for something else or setting a larger distance range';
+    noEventText += 'Try searching for something else or setting a larger distance range';
   }
 
   if (!eventCards.length) {
