@@ -27,17 +27,6 @@ CustomDatepickerInput.propTypes = {
   onClick: PropTypes.func
 };
 
-// Define fn outside of component so it's not defined on every re-render
-function handleChange(updateFilters, selectedDate) {
-  let dateVal = selectedDate;
-
-  if (moment(selectedDate).isSame(moment(), 'day')) {
-    dateVal = null;
-  }
-
-  updateFilters({ startDate: dateVal });
-}
-
 const EventDateFilter = (props) => {
   const { startDate, updateFilters, placeholderText, isClearable } = props;
 
@@ -47,7 +36,7 @@ const EventDateFilter = (props) => {
         dateFormat="ddd MMM D"
         selected={startDate}
         customInput={<CustomDatepickerInput />}
-        onChange={date => handleChange(updateFilters, date)}
+        onChange={date => updateFilters({ startDate: date })}
         isClearable={isClearable}
         popoverAttachment="top center"
         popoverTargetAttachment="bottom left"

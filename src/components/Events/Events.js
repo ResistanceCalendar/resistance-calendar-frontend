@@ -56,6 +56,9 @@ class Events extends Component {
   getEvents() {
     this.setState({ isFetchingEvents: true });
 
+    // Make sure at top of window to properly show loading icon and no-results messages
+    window.scrollTo(0, 0);
+
     const { filters } = this.state;
 
     // Filter values

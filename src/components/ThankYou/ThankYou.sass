@@ -1,11 +1,16 @@
 @import "~style/utils/variables.sass"
 
 .thank-you-wrapper
-  padding: 124px 0
-  text-align: center
-  width: 80%
-  margin: $header-height auto 0
+  margin-top: $header-height
+  display: flex
+  align-items: center
+  justify-content: center
+  min-height: 80vh
 
-  h1
-    padding-bottom: $base-padding
-    font-size: large
+  .text-wrapper
+    text-align: center
+
+    h1
+      padding-bottom: 40px
+      font-size: large
+      font-weight: 700
