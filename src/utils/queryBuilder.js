@@ -18,7 +18,7 @@ function tokenizeSearchTerms(queryString) {
 
 // Builds up filter string by filter type
 const eventFilters = new Map([
-  ['startDate', val => `start_date gt ${moment(val).format('YYYY-MM-DD')}`],
+  ['startDate', val => `start_date gt ${moment(val).startOf('day').format()}`],
   ['searchText', tokenizeSearchTerms]
 ]);
 
