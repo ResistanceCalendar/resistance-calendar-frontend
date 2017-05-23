@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { DateBlock, Loading, SocialBtns } from '../';
 import { eventsAPI } from '../../api';
-import { dateTimeUtils, urlUtils } from '../../utils';
+import { dateTimeUtils } from '../../utils';
 import { devMode } from '../../config';
 
 import styles from './EventDetails.sass';
@@ -92,9 +92,6 @@ class EventDetails extends Component {
       location
     } = event;
 
-    // Get cloudinary-improved URL to set max size on image to reduce image size
-    const featuredImageUrlResized = featuredImageUrl ? urlUtils.getImageUrl(featuredImageUrl, 'c_lfill,w_800') : null;
-
     /* eslint-disable jsx-a11y/no-static-element-interactions */
     return (
       <div className={styles.container}>
@@ -111,7 +108,7 @@ class EventDetails extends Component {
         <div className={styles.content}>
           <div className={styles.left}>
             <img
-              src={devMode || !featuredImageUrl ? '../static/img/default-event-600x360.png' : featuredImageUrlResized}
+              src={!devMode && featuredImageUrl ? featuredImageUrl : '../static/img/default-event-600x360.png'}
               alt="featured event"
             />
           </div>
