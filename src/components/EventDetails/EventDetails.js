@@ -1,9 +1,9 @@
 import React, { Component, PropTypes } from 'react';
+
 import { DateBlock, Loading, SocialBtns } from '../';
 import { eventsAPI } from '../../api';
-import { dateTimeUtils } from '../../utils';
+import { dateTimeUtils, urlUtils } from '../../utils';
 import { devMode } from '../../config';
-
 import styles from './EventDetails.sass';
 
 const renderAddress = (location) => {
@@ -92,6 +92,10 @@ class EventDetails extends Component {
       location
     } = event;
 
+    const featuredImageUrlOrDefault = (!devMode && featuredImageUrl) ?
+      urlUtils.getImageUrl(featuredImageUrl, 'c_lfill,w_800') :
+      '../static/img/default-event-600x360.png';
+
     /* eslint-disable jsx-a11y/no-static-element-interactions */
     return (
       <div className={styles.container}>
@@ -108,7 +112,7 @@ class EventDetails extends Component {
         <div className={styles.content}>
           <div className={styles.left}>
             <img
-              src={!devMode && featuredImageUrl ? featuredImageUrl : '../static/img/default-event-600x360.png'}
+              src={featuredImageUrlOrDefault}
               alt="featured event"
             />
           </div>

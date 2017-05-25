@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
-import { devMode } from '../../config';
 
-import { dateTimeUtils } from '../../utils';
+import { devMode } from '../../config';
+import { dateTimeUtils, urlUtils } from '../../utils';
 import { DateBlock } from '../';
 import styles from './EventCard.sass';
 
@@ -31,7 +31,9 @@ const EventCard = ({ event, className }) => {
     location
   } = event;
 
-  const featuredImageUrlOrDefault = (!devMode && featuredImageUrl) ? featuredImageUrl : '../static/img/default-event-200.png';
+  const featuredImageUrlOrDefault = (!devMode && featuredImageUrl) ?
+    urlUtils.getImageUrl(featuredImageUrl, 'c_thumb,g_faces:center,z_0.75,h_150,w_150') :
+    '../static/img/default-event-200.png';
 
   return (
     <li className={`${styles.card} ${className || ''}`}>
