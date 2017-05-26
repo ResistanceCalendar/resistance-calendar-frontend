@@ -7,5 +7,5 @@ export const facebookAppId = '274135313007103';
 // using this flag so as to avoid exceeding traffic limitiations
 // of Cloudinary, so CHECK WITH DEVIN OR ONE OF THE API DEVS TO
 // MAKE SURE WE AREN'T CLOSE TO OUR BANDWIDTH LIMIT.
-const overrideDevMode = false;
+const overrideDevMode = true;
 export const devMode = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') && !overrideDevMode;

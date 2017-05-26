@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router-dom';
 import _ from 'lodash';
-import { devMode } from '../../config';
 
+import { devMode } from '../../config';
 import { dateTimeUtils, urlUtils } from '../../utils';
 import { DateBlock } from '../';
 import styles from './EventCard.sass';
@@ -31,7 +31,7 @@ const EventCard = ({ event, className }) => {
     location
   } = event;
 
-  const croppedFeaturedImageUrl = !devMode && featuredImageUrl ?
+  const featuredImageUrlOrDefault = (!devMode && featuredImageUrl) ?
     urlUtils.getImageUrl(featuredImageUrl, 'c_thumb,g_faces:center,z_0.75,h_150,w_150') :
     '../static/img/default-event-200.png';
 
@@ -40,7 +40,7 @@ const EventCard = ({ event, className }) => {
       <div className={styles.imageWrapper}>
         <Link to={`/event/${_id}`}>
           <img
-            src={croppedFeaturedImageUrl}
+            src={featuredImageUrlOrDefault}
             alt="featured event"
           />
         </Link>

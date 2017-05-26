@@ -2,7 +2,8 @@ import axios from 'axios';
 
 import { queryBuilder } from '../utils';
 
-const BASE_URL = 'https://resistance-calendar.herokuapp.com/v1/events';
+// const BASE_URL = 'https://resistance-calendar.herokuapp.com/v1/events';
+const BASE_URL = 'https://resistance-calendar-pr-81.herokuapp.com/v1/events';
 
 // Temporary while service is not returning is_canceled flag to display flag in UI
 function removeCanceledEvents(events) {
