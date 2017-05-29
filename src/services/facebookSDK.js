@@ -7,7 +7,7 @@ export default {
       FB.init({
         appId      : facebookAppId,
         xfbml      : true,
-        version    : 'v2.8'
+        version    : 'v2.9'
       });
       FB.AppEvents.logPageView();
     };
