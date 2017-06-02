@@ -4,7 +4,7 @@ import { dateTimeUtils } from '../../utils';
 import styles from './DateBlock.sass';
 
 const DateBlock = ({ startDate, endDate }) => {
-  const isMultiDayEvent = dateTimeUtils.dateTimeNoOffset(startDate, 'DDD') !== dateTimeUtils.dateTimeNoOffset(endDate, 'DDD');
+  const isMultiDayEvent = endDate ? dateTimeUtils.dateTimeNoOffset(startDate, 'DDD') !== dateTimeUtils.dateTimeNoOffset(endDate, 'DDD') : false;
 
   //  get start date values
   const [startDayName, startMonth, startDayNum] = dateTimeUtils.dateTimeNoOffset(startDate, 'ddd MMM D').split(' ');
