@@ -98,7 +98,7 @@ describe('Component: AddEvent', () => {
       });
 
       it('valid email shows no validation warning and enables submit', () => {
-        const validEmails = ['user@example.io', 'test@gmail.com', 'blacklist@account.com'];
+        const validEmails = ['user@example.io', 'test@gmail.com', 'blacklist@account.com', ''];
 
         expectFormState({
           component: wrapper,
@@ -109,7 +109,7 @@ describe('Component: AddEvent', () => {
         });
       });
       it('invalid email triggers validation warning and disables submit button', () => {
-        const invalidEmails = ['useratexample.com', 'user@afsadf', '@34awefsd.com'];
+        const invalidEmails = ['useratexample.com', '@34awefsd.com'];
 
         expectFormState({
           component: wrapper,
