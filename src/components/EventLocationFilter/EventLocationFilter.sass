@@ -1,6 +1,21 @@
 @import "~style/utils/variables.sass"
 @import "~style/utils/mixins.sass"
 
+.filter-label
+  padding-right: 10px
+  div
+    display: block
+  dt,dd
+    display: inline
+  dt::after
+    content: ": "
+  @media only screen and (max-width: $break-max-sm)
+    width: 75px
+    padding-right: 0
+    dt
+      display: none
+
+
 .location-wrapper
   display: flex
   align-items: center
@@ -26,7 +41,7 @@
     cursor: pointer
     text-align: left
 
-    &>:first-child
+    .blank-filter
       width: 80px
 
     &>span

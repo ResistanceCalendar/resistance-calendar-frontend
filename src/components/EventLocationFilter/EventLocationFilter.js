@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import FaMapMarker from 'react-icons/lib/fa/map-marker';
+import { eventsAPI } from '../../api';
 
 import styles from './EventLocationFilter.sass';
 
@@ -12,8 +13,7 @@ const distanceRange = [
   { value: 160934, label: '100 miles' },
   { value: 804672, label: '500 miles' }
 ];
-
-const defaultDistanceRange = distanceRange[3];
+const defaultRangeIndex = 3;
 
 function renderDistanceOptions() {
   return distanceRange.map(distance =>
@@ -27,14 +27,17 @@ class EventLocationFilter extends Component {
 
     this.state = {
       menuOpen: false,
+      activeFilterMsg: '',
       location: '',
-      range: defaultDistanceRange.value,
+      range: distanceRange[defaultRangeIndex],
       locationErrorMsg: null
     };
 
     this._handleDocumentClick = this.handleDocumentClick.bind(this);
     this._onLocationBlur = this.onLocationBlur.bind(this);
+    this._handleRangeChange = this.handleRangeChange.bind(this);
     this._handleOnChangeLocation = this.handleOnChangeLocation.bind(this);
+    this.getGeolocation();
   }
 
   componentDidMount() {
@@ -49,38 +52,32 @@ class EventLocationFilter extends Component {
     this.validateLocation(this.state.location);
   }
 
-  handleOnChangeLocation(e) {
-    // If user has entered exactly 5 digits, check to see if they're valid
-    // this avoids user having to trigger input blur to have field validated
-    const location = e.target.value;
-
-    this.setState({ location }, () => {
-      if (location.length === 5) {
-        this.validateLocation(location);
-      }
-    });
+  getGeolocation() {
+    if (window.navigator.geolocation) {
+      window.navigator.geolocation.getCurrentPosition((pos) => {
+        eventsAPI.getZipcode(pos.coords.longitude, pos.coords.latitude).then((res) => {
+          this.setState({ location: res.data.zipcode });
+          if (this.props.geoLocation.lat) { this.setActiveMessage(); }
+        });
+      });
+    }
   }
 
-  clearForm() {
-    this.setState({
-      location: '',
-      range: defaultDistanceRange.value,
-      menuOpen: false,
-      locationErrorMsg: null
-    });
-
-    // For service request to update
-    this.props.updateFilters({ location: null, range: null });
-  }
-
-  toggleMenu(e) {
-    e.stopPropagation();
-    this.setState({ menuOpen: !this.state.menuOpen });
-  }
-
-  // Close menu if clicking on the document (outside of the menu)
-  handleDocumentClick() {
-    this.setState({ menuOpen: false });
+  setActiveMessage() {
+    const { location, range } = this.state;
+    const activeFilterMsg = (
+      <dl className={styles.filterLabel}>
+        <div>
+          <dt>Location</dt>
+          <dd>{location}</dd>
+        </div>
+        <div>
+          <dt>Distance</dt>
+          <dd>{range.label}</dd>
+        </div>
+      </dl>
+    );
+    this.setState({ activeFilterMsg });  // close menu
   }
 
   validateLocation(location) {
@@ -93,15 +90,58 @@ class EventLocationFilter extends Component {
     }
   }
 
+  // Close menu if clicking on the document (outside of the menu)
+  handleDocumentClick() {
+    this.setState({ menuOpen: false });
+  }
+
+  toggleMenu(e) {
+    e.stopPropagation();
+    this.setState({ menuOpen: !this.state.menuOpen });
+  }
+
+  handleRangeChange(e) {
+    const range = distanceRange.find((set) => set.value === parseInt(e.target.value, 10));
+    this.setState({ range });
+  }
+
+  clearForm() {
+    this.setState({
+      location: '',
+      range: distanceRange[defaultRangeIndex],
+      activeFilterMsg: false,
+      menuOpen: false,
+      locationErrorMsg: null
+    });
+
+    // For service request to update
+    this.props.updateFilters({ location: null, range: distanceRange[defaultRangeIndex].value });
+    this.props.disableGeoLocation();
+  }
+
+  handleOnChangeLocation(e) {
+    // If user has entered exactly 5 digits, check to see if they're valid
+    // this avoids user having to trigger input blur to have field validated
+    const location = e.target.value;
+
+    this.setState({ location }, () => {
+      if (location.length === 5) {
+        this.validateLocation(location);
+      }
+    });
+  }
+
   submitForm(e) {
-    e.preventDefault();
+    if (e) e.preventDefault();
     const { location, range } = this.state;
-    this.props.updateFilters({ location, range });  // For service request to use
+    this.props.updateFilters({ location, range: range.value });  // For service request to use
+    this.setActiveMessage();
+    this.props.disableGeoLocation();
     this.setState({ menuOpen: false });  // close menu
   }
 
   render() {
-    const { menuOpen, location, range, locationErrorMsg } = this.state;
+    const { menuOpen, location, range, locationErrorMsg, activeFilterMsg } = this.state;
     const invalidForm = !!locationErrorMsg || location === '';
 
     /* eslint-disable jsx-a11y/no-static-element-interactions */
@@ -113,8 +153,10 @@ class EventLocationFilter extends Component {
           className={styles.toolbarBtn}
           onClick={this.toggleMenu.bind(this)}
         >
-          <span>FILTER BY LOCATION</span>
-          <span><FaMapMarker size={35} /></span>
+          {
+            activeFilterMsg || <span>FILTER BY LOCATION</span>
+          }
+          <span><FaMapMarker size={25} /></span>
         </button>
 
         <form
@@ -140,8 +182,8 @@ class EventLocationFilter extends Component {
             <label htmlFor="range">SET RANGE</label>
             <select
               name="range"
-              value={range}
-              onChange={e => this.setState({ range: Number.parseInt(e.target.value, 10) })}
+              value={range.value}
+              onChange={this._handleRangeChange}
             >
               {renderDistanceOptions()}
             </select>
@@ -170,7 +212,10 @@ class EventLocationFilter extends Component {
 }
 
 EventLocationFilter.propTypes = {
+  geoLocation: PropTypes.shape(),
+  disableGeoLocation: PropTypes.func,
   updateFilters: PropTypes.func.isRequired
 };
 
 export default EventLocationFilter;
+export { distanceRange, defaultRangeIndex };

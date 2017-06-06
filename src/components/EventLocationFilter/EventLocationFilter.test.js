@@ -8,6 +8,7 @@ describe('Component: <EventLocationFilter />', () => {
 
   beforeEach(() => {
     props.updateFilters = jest.fn();
+    props.disableGeoLocation = jest.fn();
   });
 
   it('renders without crashing', () => {
