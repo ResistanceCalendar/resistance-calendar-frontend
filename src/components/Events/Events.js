@@ -69,6 +69,8 @@ class Events extends Component {
             maxDistance: distanceRange[defaultRangeIndex].value,
           }
         }, resolve);
+      }, (reject) => {
+        resolve();
       });
     });
   }
