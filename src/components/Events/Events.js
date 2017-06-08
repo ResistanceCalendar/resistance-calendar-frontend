@@ -158,7 +158,7 @@ class Events extends Component {
   }
 
   updateQueryString() {
-    const updatedFilters = _.pickBy(_.cloneDeep(this.state.filters));
+    const updatedFilters = _.pickBy(this.state.filters);  // make new object and return new object
     updatedFilters.startDate = dateTimeUtils.getMomentISOstring(updatedFilters.startDate);
 
     const updatedQueryString = queryString.stringify(updatedFilters);

@@ -52,7 +52,7 @@ class EventLocationFilter extends Component {
 
   componentWillReceiveProps(nextProps) {
     // Set display based off of what current location and range props are
-    if (nextProps.location && (nextProps.location !== this.props.location)) {
+    if (nextProps.location && (nextProps.location !== this.props.location || nextProps.range !== this.props.range)) {  // eslint-disable-line max-len
       this.setState({
         activeFilterMsg: this.getActiveMessage(nextProps.location, this.state.range)
       });
