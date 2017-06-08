@@ -1,14 +1,17 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import _ from 'lodash';
 import moment from 'moment';
+import queryString from 'query-string';
 
 import { EventsList, EventFilters, Loading } from '../';
 import { eventsAPI } from '../../api';
+import { dateTimeUtils } from '../../utils';
 import { distanceRange, defaultRangeIndex } from '../EventLocationFilter/EventLocationFilter';
 import styles from './Events.sass';
 
 const odataFilterTypes = ['searchText', 'startDate'];
 const nonOdataFiltertypes = ['location', 'range', 'geoLocation'];
+
 
 function hasMoreEventsToLoad(currentPage, totalPages) {
   return currentPage + 1 < totalPages;
@@ -33,12 +36,16 @@ function buildFilterValues(filters, filterTypes) {
 class Events extends Component {
   constructor(props) {
     super(props);
+
+    // convert query string to object
+    const parsedQueryString = queryString.parse(this.props.location.search);
+
     this.state = {
       filters: {
-        searchText: '',
-        location: null,
-        range: null,
-        startDate: moment()
+        searchText: parsedQueryString.searchText || '',
+        location: parsedQueryString.location || null,
+        range: parseInt(parsedQueryString.range, 10) || distanceRange[defaultRangeIndex].value,
+        startDate: moment(parsedQueryString.startDate),  // if undefined, will create an object representing today
       },
       geoLocation: {
         lat: null,
@@ -52,10 +59,18 @@ class Events extends Component {
     };
 
     this._getEvents = _.debounce(this.getEvents, 400);
+    this._updateQueryString = _.debounce(this.updateQueryString, 400);
   }
 
-  componentDidMount() {
-    this.getPosition().then(() => this.getEvents());
+  async componentDidMount() {
+    const { location, range } = this.state.filters;
+
+    // No need to look up location if query string is dictating location
+    if (!location || !range) {
+      await this.getPosition();
+    }
+
+    this.getEvents();
   }
 
   getPosition() {
@@ -69,12 +84,11 @@ class Events extends Component {
             maxDistance: distanceRange[defaultRangeIndex].value,
           }
         }, resolve);
-      }, (reject) => {
-        resolve();
-      });
+      }, resolve);
     });
   }
 
+  // Initial events on load / updated search
   getEvents() {
     this.setState({ isFetchingEvents: true });
 
@@ -83,9 +97,9 @@ class Events extends Component {
 
     // Filter values
     const { filters, geoLocation } = this.state;
-    const mergedFilters = Object.assign(filters, { geoLocation });
+    const mergedFilters = Object.assign({}, filters, { geoLocation });
     const odataValues = buildFilterValues(mergedFilters, odataFilterTypes);
-    const nonOdataValues = buildFilterValues(filters, nonOdataFiltertypes);
+    const nonOdataValues = buildFilterValues(mergedFilters, nonOdataFiltertypes);
 
     eventsAPI.getEvents(nonOdataValues, odataValues)
       .then(res => this.setState({
@@ -99,6 +113,7 @@ class Events extends Component {
       });
   }
 
+  // When loading more results for a current search
   loadMoreEvents() {
     const { currentPage, events, filters } = this.state;
     const nextPage = currentPage + 1;
@@ -128,9 +143,18 @@ class Events extends Component {
         ...updatedFilters
       }
     }, () => {
-      // After state update, fetch events (via debounced function to prevent rapid service calls)
+      // After state update, update URL query params and then fetch events
+      this._updateQueryString();
       this._getEvents();
     });
+  }
+
+  updateQueryString() {
+    const updatedFilters = _.cloneDeep(this.state.filters);
+    updatedFilters.startDate = dateTimeUtils.getMomentISOstring(updatedFilters.startDate);
+
+    const updatedQueryString = queryString.stringify(updatedFilters);
+    this.props.history.push('?' + updatedQueryString);
   }
 
   renderEventsList(events, hasMoreEvents, isFetchingMoreEvents, filters) {
@@ -180,6 +204,13 @@ class Events extends Component {
   }
 }
 
-Events.propTypes = {};
+Events.propTypes = {
+  location: PropTypes.shape({
+    search: PropTypes.string
+  }),
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired
+  }).isRequired
+};
 
 export default Events;

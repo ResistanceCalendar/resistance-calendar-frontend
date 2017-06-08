@@ -73,8 +73,13 @@ function displayDateString(startDate, endDate) {
   return startDateDisplay + endDateDisplay;
 }
 
+function getMomentISOstring(val) {
+  return moment(val).startOf('day').toISOString();
+}
+
 export default {
   dateTimeNoOffset,
   displayTimeString,
-  displayDateString
+  displayDateString,
+  getMomentISOstring
 };

@@ -1,6 +1,6 @@
 import _ from 'lodash';
-import moment from 'moment';
 
+import { dateTimeUtils } from '../utils';
 
 function tokenizeSearchTerms(queryString) {
   // split prototype method is not robust enough: https://blog.tompawlak.org/split-string-into-tokens-javascript
@@ -18,7 +18,7 @@ function tokenizeSearchTerms(queryString) {
 
 // Builds up filter string by filter type
 const eventFilters = new Map([
-  ['startDate', val => `start_date gt ${moment(val).startOf('day').toISOString()}`],
+  ['startDate', val => `start_date gt ${dateTimeUtils.getMomentISOstring(val)}`],
   ['searchText', tokenizeSearchTerms]
 ]);
 

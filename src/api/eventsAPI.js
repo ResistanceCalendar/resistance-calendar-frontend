@@ -21,7 +21,7 @@ function getEvents(filterParams, odataParams) {
   const orderByUrl = '$orderby=start_date desc';
   const zipCodeUrl = location && range ? `&distance_postal_code=${location}&distance_max=${range}` : '';
   const geoLocationUrl = `&distance_coords=[${geoLocation.long},${geoLocation.lat}]&distance_max=${geoLocation.maxDistance}`; // eslint-disable-line max-len
-  const locationUrl = geoLocation.lat ? geoLocationUrl : zipCodeUrl;
+  const locationUrl = (location && range) ? zipCodeUrl : geoLocationUrl;
 
   // ODATA filter string
   const odataFilterUrl = queryBuilder.eventsFilter(odataParams);
@@ -36,7 +36,7 @@ function getEventById(id) {
 }
 
 function getZipcode(long, lat) {
-  return axios.get(`${CITY_BASE_URL}?coords=[${long},${lat}]`)
+  return axios.get(`${CITY_BASE_URL}?coords=[${long},${lat}]`);
 }
 
 export default {

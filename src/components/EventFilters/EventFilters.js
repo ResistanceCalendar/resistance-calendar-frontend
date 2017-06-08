@@ -17,6 +17,8 @@ const EventFilters = (props) => {
       </div>
       <div className={styles.eventLocationFilter}>
         <EventLocationFilter
+          location={filters.location}
+          range={filters.range}
           updateFilters={updateFilters}
           disableGeoLocation={disableGeoLocation}
           geoLocation={geoLocation}
