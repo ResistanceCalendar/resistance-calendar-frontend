@@ -76,13 +76,21 @@ class Events extends Component {
   getPosition() {
     return new Promise((resolve) => {
       if (!window.navigator.geolocation) { resolve(); }
+
       window.navigator.geolocation.getCurrentPosition((pos) => {
-        this.setState({
-          geoLocation: {
-            lat: pos.coords.latitude,
-            long: pos.coords.longitude,
-            maxDistance: distanceRange[defaultRangeIndex].value,
-          }
+        // Look up zipcode based on lat/long
+        eventsAPI.getZipcode(pos.coords.longitude, pos.coords.latitude).then((res) => {
+          this.setState({
+            filters: {
+              ...this.state.filters,
+              location: res.data.zipcode
+            },
+            geoLocation: {
+              lat: pos.coords.latitude,
+              long: pos.coords.longitude,
+              maxDistance: distanceRange[defaultRangeIndex].value,
+            }
+          }, resolve);
         }, resolve);
       }, resolve);
     });
@@ -150,7 +158,7 @@ class Events extends Component {
   }
 
   updateQueryString() {
-    const updatedFilters = _.cloneDeep(this.state.filters);
+    const updatedFilters = _.pickBy(_.cloneDeep(this.state.filters));
     updatedFilters.startDate = dateTimeUtils.getMomentISOstring(updatedFilters.startDate);
 
     const updatedQueryString = queryString.stringify(updatedFilters);

@@ -19,9 +19,9 @@ function getEvents(filterParams, odataParams) {
   const pageUrl = `page=${page}`;
   const perPageUrl = `per_page=${perPage}`;
   const orderByUrl = '$orderby=start_date desc';
-  const zipCodeUrl = location && range ? `&distance_postal_code=${location}&distance_max=${range}` : '';
-  const geoLocationUrl = `&distance_coords=[${geoLocation.long},${geoLocation.lat}]&distance_max=${geoLocation.maxDistance}`; // eslint-disable-line max-len
-  const locationUrl = (location && range) ? zipCodeUrl : geoLocationUrl;
+
+  // Build either geolocation or zipcode URL
+  const locationUrl = queryBuilder.buildLocationUrl(location, range, geoLocation);
 
   // ODATA filter string
   const odataFilterUrl = queryBuilder.eventsFilter(odataParams);

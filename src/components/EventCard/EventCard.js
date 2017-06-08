@@ -38,7 +38,14 @@ const EventCard = ({ event, className }) => {
   return (
     <li className={`${styles.card} ${className || ''}`}>
       <div className={styles.imageWrapper}>
-        <Link to={`/event/${_id}`}>
+        <Link
+          to={{
+            pathname: `/event/${_id}`,
+            state: {
+              queryString: window.location.search
+            }
+          }}
+        >
           <img
             src={featuredImageUrlOrDefault}
             alt="featured event"
@@ -52,7 +59,12 @@ const EventCard = ({ event, className }) => {
             startDate={startDate}
             endDate={endDate}
           />
-          <Link to={`/event/${_id}`}>
+          <Link
+            to={{
+              pathname: `/event/${_id}`,
+              state: { queryString: window.location.search }
+            }}
+          >
             <div className={styles.title}>{title}</div>
           </Link>
           { renderLocation(location) }

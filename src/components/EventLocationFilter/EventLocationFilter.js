@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import _ from 'lodash';
 import FaMapMarker from 'react-icons/lib/fa/map-marker';
-import { eventsAPI } from '../../api';
 
 import styles from './EventLocationFilter.sass';
 
@@ -45,15 +44,24 @@ class EventLocationFilter extends Component {
     this._onLocationBlur = this.onLocationBlur.bind(this);
     this._handleRangeChange = this.handleRangeChange.bind(this);
     this._handleOnChangeLocation = this.handleOnChangeLocation.bind(this);
-
-    // Don't set geolocation if location URL params set (default values)
-    if (!initialLocation) {
-      this.getGeolocation();
-    }
   }
 
   componentDidMount() {
     window.addEventListener('click', this._handleDocumentClick);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    // Set display based off of what current location and range props are
+    if (nextProps.location && (nextProps.location !== this.props.location)) {
+      this.setState({
+        activeFilterMsg: this.getActiveMessage(nextProps.location, this.state.range)
+      });
+    }
+
+    // In case where location is determined by geoLocation API or by query string, set it the first time here
+    if (!this.state.location && nextProps.location) {
+      this.setState({ location: nextProps.location });
+    }
   }
 
   componentWillUnmount() {
@@ -62,22 +70,6 @@ class EventLocationFilter extends Component {
 
   onLocationBlur() {
     this.validateLocation(this.state.location);
-  }
-
-  getGeolocation() {
-    if (window.navigator.geolocation) {
-      window.navigator.geolocation.getCurrentPosition((pos) => {
-        eventsAPI.getZipcode(pos.coords.longitude, pos.coords.latitude).then((res) => {
-          this.setState({ location: res.data.zipcode }, () => {
-            const { location, range } = this.state;
-
-            if (this.props.geoLocation.lat) {
-              this.setState({ activeFilterMsg: this.getActiveMessage(location, range) });
-            }
-          });
-        });
-      });
-    }
   }
 
   getActiveMessage(location, range) {
@@ -227,7 +219,6 @@ class EventLocationFilter extends Component {
 }
 
 EventLocationFilter.propTypes = {
-  geoLocation: PropTypes.shape(),
   disableGeoLocation: PropTypes.func,
   updateFilters: PropTypes.func.isRequired,
   location: PropTypes.string,

@@ -33,6 +33,16 @@ function eventsFilter(params = {}) {
   return `&$filter=${filterStrings.join(' and ')}`;
 }
 
+// If there's no zipcode set, then use geoLocation
+function buildLocationUrl(location, range, geoLocation) {
+  const zipCodeUrl = location && range ? `&distance_postal_code=${location}&distance_max=${range}` : '';
+  const geoLocationUrl = (geoLocation.long && geoLocation.lat && geoLocation.maxDistance) ?
+    `&distance_coords=[${geoLocation.long},${geoLocation.lat}]&distance_max=${geoLocation.maxDistance}` : '';
+
+  return zipCodeUrl || geoLocationUrl;
+}
+
 export default {
-  eventsFilter
+  eventsFilter,
+  buildLocationUrl
 };
