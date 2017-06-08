@@ -25,7 +25,7 @@ class EventSearchInput extends Component {
         <input
           value={filterInput}
           ref={node => this.input = node}
-          onInput={e => updateFilters({ searchText: e.target.value })}
+          onChange={e => updateFilters({ searchText: e.target.value })}
           placeholder="Search"
         />
       </div>

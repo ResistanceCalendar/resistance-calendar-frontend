@@ -18,7 +18,7 @@ describe('Component: EventSearchInput', () => {
 
   it('should call the updateFilter func onInput', () => {
     const wrapper = shallow(<EventSearchInput {...props} />);
-    wrapper.find('input').simulate('input', { target: { value: 'abc' } });
+    wrapper.find('input').simulate('change', { target: { value: 'abc' } });
 
     expect(props.updateFilters).toBeCalled();
   });

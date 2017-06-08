@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
+import _ from 'lodash';
 import FaMapMarker from 'react-icons/lib/fa/map-marker';
-import { eventsAPI } from '../../api';
 
 import styles from './EventLocationFilter.sass';
 
@@ -22,26 +22,46 @@ function renderDistanceOptions() {
 }
 
 class EventLocationFilter extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+
+    // If URL location params, set them as defaults
+    const { location: initialLocation, range: initialRange } = this.props;
+
+    // match URL value up with dropdown option object
+    const initialRangeOption = _.find(distanceRange, { value: initialRange });
 
     this.state = {
       menuOpen: false,
-      activeFilterMsg: '',
-      location: '',
-      range: distanceRange[defaultRangeIndex],
+      location: initialLocation || '',
+      range: initialRangeOption || distanceRange[defaultRangeIndex],
       locationErrorMsg: null
     };
+
+    this.state.activeFilterMsg = initialLocation ? this.getActiveMessage(this.state.location, this.state.range) : '';
 
     this._handleDocumentClick = this.handleDocumentClick.bind(this);
     this._onLocationBlur = this.onLocationBlur.bind(this);
     this._handleRangeChange = this.handleRangeChange.bind(this);
     this._handleOnChangeLocation = this.handleOnChangeLocation.bind(this);
-    this.getGeolocation();
   }
 
   componentDidMount() {
     window.addEventListener('click', this._handleDocumentClick);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    // Set display based off of what current location and range props are
+    if (nextProps.location && (nextProps.location !== this.props.location)) {
+      this.setState({
+        activeFilterMsg: this.getActiveMessage(nextProps.location, this.state.range)
+      });
+    }
+
+    // In case where location is determined by geoLocation API or by query string, set it the first time here
+    if (!this.state.location && nextProps.location) {
+      this.setState({ location: nextProps.location });
+    }
   }
 
   componentWillUnmount() {
@@ -52,20 +72,8 @@ class EventLocationFilter extends Component {
     this.validateLocation(this.state.location);
   }
 
-  getGeolocation() {
-    if (window.navigator.geolocation) {
-      window.navigator.geolocation.getCurrentPosition((pos) => {
-        eventsAPI.getZipcode(pos.coords.longitude, pos.coords.latitude).then((res) => {
-          this.setState({ location: res.data.zipcode });
-          if (this.props.geoLocation.lat) { this.setActiveMessage(); }
-        });
-      });
-    }
-  }
-
-  setActiveMessage() {
-    const { location, range } = this.state;
-    const activeFilterMsg = (
+  getActiveMessage(location, range) {
+    return (
       <dl className={styles.filterLabel}>
         <div>
           <dt>Location</dt>
@@ -77,7 +85,6 @@ class EventLocationFilter extends Component {
         </div>
       </dl>
     );
-    this.setState({ activeFilterMsg });  // close menu
   }
 
   validateLocation(location) {
@@ -135,9 +142,9 @@ class EventLocationFilter extends Component {
     if (e) e.preventDefault();
     const { location, range } = this.state;
     this.props.updateFilters({ location, range: range.value });  // For service request to use
-    this.setActiveMessage();
+    const activeMessage = this.getActiveMessage(location, range);
     this.props.disableGeoLocation();
-    this.setState({ menuOpen: false });  // close menu
+    this.setState({ menuOpen: false, activeMessage });  // close menu
   }
 
   render() {
@@ -212,9 +219,10 @@ class EventLocationFilter extends Component {
 }
 
 EventLocationFilter.propTypes = {
-  geoLocation: PropTypes.shape(),
   disableGeoLocation: PropTypes.func,
-  updateFilters: PropTypes.func.isRequired
+  updateFilters: PropTypes.func.isRequired,
+  location: PropTypes.string,
+  range: PropTypes.number
 };
 
 export default EventLocationFilter;

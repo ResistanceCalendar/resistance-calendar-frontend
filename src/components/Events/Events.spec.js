@@ -5,6 +5,7 @@ import Events from './Events';
 
 describe('Component: Events', () => {
   let event = {};
+  const props = {};
 
   beforeEach(() => {
     event = {
@@ -14,20 +15,23 @@ describe('Component: Events', () => {
       isFetchingEvents: true,
       events: []
     };
+
+    props.history = { push: () => {} };
+    props.location = { search: '' };
   });
 
   it('renders without crashing', () => {
-    const wrapper = shallow(<Events />);
+    const wrapper = shallow(<Events {...props} />);
     expect(wrapper).toHaveLength(1);
   });
 
   it('should render the loader before data is fetched', () => {
-    const wrapper = shallow(<Events />);
+    const wrapper = shallow(<Events {...props} />);
     expect(wrapper.find('Loading')).toHaveLength(1);
   });
 
   it('should render EventFilters and EventsList components', () => {
-    const wrapper = shallow(<Events />);
+    const wrapper = shallow(<Events {...props} />);
 
     wrapper.setState({ isFetchingEvents: false, event });
 
@@ -39,7 +43,7 @@ describe('Component: Events', () => {
   });
 
   it('should render disabled \'load more events\' button after click', () => {
-    const wrapper = shallow(<Events />);
+    const wrapper = shallow(<Events {...props} />);
 
     // To have events (instead of Loading component) rendered
     wrapper.setState({ isFetchingEvents: false, event });

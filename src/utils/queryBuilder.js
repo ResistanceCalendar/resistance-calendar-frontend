@@ -1,6 +1,6 @@
 import _ from 'lodash';
-import moment from 'moment';
 
+import { dateTimeUtils } from '../utils';
 
 function tokenizeSearchTerms(queryString) {
   // split prototype method is not robust enough: https://blog.tompawlak.org/split-string-into-tokens-javascript
@@ -18,7 +18,7 @@ function tokenizeSearchTerms(queryString) {
 
 // Builds up filter string by filter type
 const eventFilters = new Map([
-  ['startDate', val => `start_date gt ${moment(val).startOf('day').toISOString()}`],
+  ['startDate', val => `start_date gt ${dateTimeUtils.getMomentISOstring(val)}`],
   ['searchText', tokenizeSearchTerms]
 ]);
 
@@ -33,6 +33,16 @@ function eventsFilter(params = {}) {
   return `&$filter=${filterStrings.join(' and ')}`;
 }
 
+// If there's no zipcode set, then use geoLocation
+function buildLocationUrl(location, range, geoLocation) {
+  const zipCodeUrl = location && range ? `&distance_postal_code=${location}&distance_max=${range}` : '';
+  const geoLocationUrl = (geoLocation.long && geoLocation.lat && geoLocation.maxDistance) ?
+    `&distance_coords=[${geoLocation.long},${geoLocation.lat}]&distance_max=${geoLocation.maxDistance}` : '';
+
+  return zipCodeUrl || geoLocationUrl;
+}
+
 export default {
-  eventsFilter
+  eventsFilter,
+  buildLocationUrl
 };
