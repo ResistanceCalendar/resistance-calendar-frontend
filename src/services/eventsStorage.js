@@ -1,5 +1,5 @@
 // Naive cache to store events and event pagination data between page transitions
-const eventsStorage = {
+let eventsStorage = {
   events: [],
   hasMoreEvents: null,
   currentPage: null,
@@ -15,17 +15,6 @@ function setEventsStorage({ events, hasMoreEvents, currentPage }) {
   };
 }
 
-function getEventsStorage() {
-  const millisecondsInTenMinutes = 600000;
-
-  // Check to see if cache was ever set before, and if it is still valid
-  if (eventsStorage.expirationTimestamp && (Date.now() - eventsStorage.expirationTimestamp < millisecondsInTenMinutes)) {
-    return eventsStorage;
-  }
-
-  return clearCache();
-}
-
 function clearCache() {
   eventsStorage = {
     events: [],
@@ -35,6 +24,17 @@ function clearCache() {
   };
 
   return eventsStorage;
+}
+
+function getEventsStorage() {
+  const msInTenMinutes = 600000;
+
+  // Check to see if cache was ever set before, and if it is still valid
+  if (eventsStorage.expirationTimestamp && (Date.now() - eventsStorage.expirationTimestamp < msInTenMinutes)) {  // eslint-disable-line max-len
+    return eventsStorage;
+  }
+
+  return clearCache();
 }
 
 export default {
