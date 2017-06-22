@@ -6,6 +6,7 @@ import queryString from 'query-string';
 import { EventsList, EventFilters, Loading } from '../';
 import { eventsAPI } from '../../api';
 import { dateTimeUtils } from '../../utils';
+import { eventsStorage } from '../../services';
 import { distanceRange, defaultRangeIndex } from '../EventLocationFilter/EventLocationFilter';
 import styles from './Events.sass';
 
@@ -65,12 +66,26 @@ class Events extends Component {
   async componentDidMount() {
     const { location, range } = this.state.filters;
 
-    // No need to look up location if query string is dictating location
-    if (!location || !range) {
-      await this.getPosition();
-    }
+    // Fetch cache and see if it has anything, otherwise fetch fresh events from server
+    const eventsCache = eventsStorage.getEventsStorage();
 
-    this.getEvents();
+    if (eventsCache.events.length) {
+      this.setState({
+        events: eventsCache.events,
+        hasMoreEvents: eventsCache.hasMoreEvents,
+        currentPage: eventsCache.currentPage,
+        isFetchingEvents: false
+      }, () => {
+        window.scrollTo(0, window.document.body.scrollHeight);
+      });
+    } else {
+      // No need to look up location if query string is dictating location
+      if (!location || !range) {
+        await this.getPosition();
+      }
+
+      this.getEvents();
+    }
   }
 
   getPosition() {
@@ -110,13 +125,24 @@ class Events extends Component {
     const nonOdataValues = buildFilterValues(mergedFilters, nonOdataFiltertypes);
 
     eventsAPI.getEvents(nonOdataValues, odataValues)
-      .then(res => this.setState({
-        events: res._embedded['osdi:events'],
-        isFetchingEvents: false,
-        hasMoreEvents: hasMoreEventsToLoad(res.page, res.total_pages)
-      }))
+      .then(res => {
+        // Update state
+        this.setState({
+          events: res._embedded['osdi:events'],
+          isFetchingEvents: false,
+          hasMoreEvents: hasMoreEventsToLoad(res.page, res.total_pages)
+        }, () => {
+          // Update naive cache
+          eventsStorage.setEventsStorage({
+            events: this.state.events,
+            hasMoreEvents: this.state.hasMoreEvents,
+            currentPage: this.state.currentPage
+          });
+        });
+      })
       .catch(err => {
         console.error(err);
+        eventsStorage.clearCache();
         this.setState({ isFetchingEvents: false });
       });
   }
@@ -133,13 +159,23 @@ class Events extends Component {
     this.setState({ currentPage: nextPage, isFetchingMoreEvents: true });
 
     eventsAPI.getEvents({ page: nextPage, ...nonOdataValues }, odataValues)
-      .then(res => this.setState({
-        events: [...events, ...res._embedded['osdi:events']],
-        isFetchingMoreEvents: false,
-        hasMoreEvents: hasMoreEventsToLoad(res.page, res.total_pages)
-      }))
+      .then(res => {
+        this.setState({
+          events: [...events, ...res._embedded['osdi:events']],
+          isFetchingMoreEvents: false,
+          hasMoreEvents: hasMoreEventsToLoad(res.page, res.total_pages)
+        }, () => {
+          // Update naive cache
+          eventsStorage.setEventsStorage({
+            events: this.state.events,
+            hasMoreEvents: this.state.hasMoreEvents,
+            currentPage: this.state.currentPage
+          });
+        });
+      })
       .catch(err => {
         this.setState({ isFetchingMoreEvents: false });
+        eventsStorage.clearCache();
         console.error(err);
       });
   }
