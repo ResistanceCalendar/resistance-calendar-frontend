@@ -3,15 +3,24 @@ let eventsStorage = {
   events: [],
   hasMoreEvents: null,
   currentPage: null,
-  expirationTimestamp: null
+  expirationTimestamp: null,
+  scrollPosY: 0
 };
 
 function setEventsStorage({ events, hasMoreEvents, currentPage }) {
   eventsStorage = {
+    ...eventsStorage,
     events,
     hasMoreEvents,
     currentPage,
     expirationTimestamp: Date.now()
+  };
+}
+
+function setScrollPos(scrollPosY) {
+  eventsStorage = {
+    ...eventsStorage,
+    scrollPosY
   };
 }
 
@@ -20,7 +29,8 @@ function clearCache() {
     events: [],
     hasMoreEvents: null,
     currentPage: null,
-    expirationTimestamp: null
+    expirationTimestamp: null,
+    scrollPosY: 0
   };
 
   return eventsStorage;
@@ -39,6 +49,7 @@ function getEventsStorage() {
 
 export default {
   setEventsStorage,
+  setScrollPos,
   getEventsStorage,
   clearCache
 };

@@ -61,6 +61,7 @@ class Events extends Component {
 
     this._getEvents = _.debounce(this.getEvents, 400);
     this._updateQueryString = _.debounce(this.updateQueryString, 400);
+    this._updateScrollPosInCache = _.debounce(this.updateScrollPosInCache.bind(this), 200);
   }
 
   async componentDidMount() {
@@ -76,7 +77,7 @@ class Events extends Component {
         currentPage: eventsCache.currentPage,
         isFetchingEvents: false
       }, () => {
-        window.scrollTo(0, window.document.body.scrollHeight);
+        window.scrollTo(0, eventsCache.scrollPosY);
       });
     } else {
       // No need to look up location if query string is dictating location
@@ -86,6 +87,13 @@ class Events extends Component {
 
       this.getEvents();
     }
+
+    // setup scroll event listener
+    window.addEventListener('scroll', this._updateScrollPosInCache);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this._updateScrollPosInCache);
   }
 
   getPosition() {
@@ -199,6 +207,10 @@ class Events extends Component {
 
     const updatedQueryString = queryString.stringify(updatedFilters);
     this.props.history.push('?' + updatedQueryString);
+  }
+
+  updateScrollPosInCache() {
+    eventsStorage.setScrollPos(window.scrollY);
   }
 
   renderEventsList(events, hasMoreEvents, isFetchingMoreEvents, filters) {
