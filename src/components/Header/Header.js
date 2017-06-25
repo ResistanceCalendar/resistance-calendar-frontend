@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import axios from 'axios';
 
 import { ResistanceLogo, AddEventButton, AddEvent } from '../';
@@ -13,6 +13,7 @@ class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      addEventModalExists: false,
       addEventModalOpen: false
     };
 
@@ -28,13 +29,22 @@ class Header extends Component {
     window.removeEventListener('click', this._handleDocumentClick);
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.location !== prevProps.location) {
+      this.setState({ addEventModalExists: false})
+    }
+  }
+
   // Close menu if clicking on the document (outside of the menu)
   handleDocumentClick() {
     this.setState({ addEventModalOpen: false });
   }
 
   toggleModalState() {
-    this.setState({ addEventModalOpen: !this.state.addEventModalOpen });
+    this.setState({
+      addEventModalExists: true,
+      addEventModalOpen: !this.state.addEventModalOpen
+    });
   }
 
   renderAddEventModal() {
@@ -58,7 +68,7 @@ class Header extends Component {
           </div>
           <div className={styles.headerRightSection} onClick={e => e.stopPropagation()}>
             <AddEventButton className="add-event-btn" handleButtonClick={this.toggleModalState} />
-            {this.renderAddEventModal()}
+            {this.state.addEventModalExists && this.renderAddEventModal()}
           </div>
         </header>
       </div>
@@ -70,4 +80,4 @@ class Header extends Component {
 Header.propTypes = {
 };
 
-export default Header;
+export default withRouter(Header);
