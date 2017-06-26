@@ -13,7 +13,7 @@ const distanceRange = [
   { value: 160934, label: '100 miles' },
   { value: 804672, label: '500 miles' }
 ];
-const defaultRangeIndex = 3;
+const defaultRangeIndex = 4;
 
 function renderDistanceOptions() {
   return distanceRange.map(distance =>
