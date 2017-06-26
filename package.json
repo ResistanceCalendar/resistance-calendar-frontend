@@ -5,7 +5,7 @@
   "scripts": {
     "build": "rimraf dist && webpack -p",
     "dev": "webpack-dev-server",
-    "start": " serve -s dist",
+    "start": "yarn install  && serve -s dist",
     "heroku-postbuild": "rm -rf dist && NODE_ENV=production webpack -p --progress --colors",
     "test": "jest --config=testConfig/jest.config.json --coverage",
     "test:watch": "jest --config=testConfig/jest.config.json --watch --coverage",
