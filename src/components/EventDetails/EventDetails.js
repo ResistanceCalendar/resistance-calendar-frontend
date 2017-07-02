@@ -92,11 +92,14 @@ class EventDetails extends Component {
       location
     } = event;
 
+    const descriptionHtml = { __html: description.replace(/\n/g, '<br/>') };
+
     const featuredImageUrlOrDefault = (!devMode && featuredImageUrl) ?
       urlUtils.getImageUrl(featuredImageUrl, 'c_lfill,w_800') :
       '../static/img/default-event-600x360.png';
 
     /* eslint-disable jsx-a11y/no-static-element-interactions */
+    /* eslint-disable react/no-danger */
     return (
       <div className={styles.container}>
         <div className={styles.titleWrapper}>
@@ -171,14 +174,13 @@ class EventDetails extends Component {
           </div>
 
           <div className={styles.description}>
-            <p>
-              {description}
-            </p>
+            <p dangerouslySetInnerHTML={descriptionHtml} />
           </div>
         </div>
       </div>
     );
     /* eslint-enable jsx-a11y/no-static-element-interactions */
+    /* eslint-enable react/no-danger */
   }
 }
 

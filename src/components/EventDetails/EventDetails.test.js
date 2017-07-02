@@ -64,4 +64,16 @@ describe('Component: EventDetails', () => {
 
     expect(dateTimeUtils.displayTimeString(event.start_date, event.end_date).toLowerCase()).toBe('6:00 pm');
   });
+
+  it('keeps linebreaks in descriptions', () => {
+    event.description = `Protest Illiad.
+
+      God, the Pence Administration sucks.
+    `;
+
+    const wrapper = shallow(<EventDetails {...props} />);
+    wrapper.setState({ event, isFetchingEvent: false });
+
+    expect(wrapper.html().includes('<br/>')).toBe(true);
+  });
 });
