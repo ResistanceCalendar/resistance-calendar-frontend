@@ -92,7 +92,7 @@ class EventDetails extends Component {
       location
     } = event;
 
-    const descriptionHtml = { __html: description.replace(/\n/g, '<br/>') };
+    const descriptionHtml = description ? { __html: description.replace(/\n/g, '<br/>') } : null;
 
     const featuredImageUrlOrDefault = (!devMode && featuredImageUrl) ?
       urlUtils.getImageUrl(featuredImageUrl, 'c_lfill,w_800') :
