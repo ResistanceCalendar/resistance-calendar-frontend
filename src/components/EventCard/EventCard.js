@@ -4,7 +4,7 @@ import _ from 'lodash';
 
 import { devMode } from '../../config';
 import { dateTimeUtils, urlUtils } from '../../utils';
-import { DateBlock } from '../';
+import { DateBlock, RsvpBadge } from '../';
 import styles from './EventCard.sass';
 
 const truncateOptions = {
@@ -36,7 +36,6 @@ const EventCard = ({ event, className }) => {
     urlUtils.getImageUrl(featuredImageUrl, 'c_thumb,g_faces:center,z_0.75,h_150,w_150') :
     '../static/img/default-event-200.png';
 
-  console.log("😎 styles", styles);
   return (
     <li className={`${styles.card} ${className || ''}`}>
       <div className={styles.imageAndRsvpWrapper}>
@@ -56,14 +55,7 @@ const EventCard = ({ event, className }) => {
           </Link>
         </div>
 
-        <div className={styles.rsvpWrapper}>
-          <div className={styles.rsvpLeft}>
-            {totalAccepted}
-          </div>
-          <div className={styles.rsvpRight}>
-            RSVPS
-          </div>
-        </div>
+        <RsvpBadge totalAccepted={totalAccepted} />
       </div>
 
       <div className={styles.contentWrapper}>

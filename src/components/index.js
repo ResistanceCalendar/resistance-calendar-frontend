@@ -19,3 +19,4 @@ export { default as EventDetailsContainer } from './EventDetailsContainer/EventD
 export { default as SocialBtns } from './SocialBtns/SocialBtns';
 export { default as ThankYou } from './ThankYou/ThankYou';
 export { default as PrivacyPolicy } from './PrivacyPolicy/PrivacyPolicy';
+export { default as RsvpBadge } from './RsvpBadge/RsvpBadge';
