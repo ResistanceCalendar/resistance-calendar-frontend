@@ -55,7 +55,7 @@ const EventCard = ({ event, className }) => {
           </Link>
         </div>
 
-        <RsvpBadge totalAccepted={totalAccepted} />
+        <RsvpBadge totalAccepted={totalAccepted} center />
       </div>
 
       <div className={styles.contentWrapper}>

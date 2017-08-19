@@ -5,9 +5,11 @@ const toK = (n) => {
   return n >= 1000 ? (n / 1000).toFixed(1) + 'K' : n;
 };
 
-const RsvpBadge = ({ totalAccepted }) => {
+const RsvpBadge = ({ totalAccepted, center }) => {
+  const alignStyle = center ? styles.wrapperCenter : styles.wrapperRight;
+
   return (
-    <div className={styles.wrapper}>
+    <div className={[styles.wrapper, alignStyle].join(' ')}>
       <div className={styles.left}>
         {toK(totalAccepted)}
       </div>
@@ -19,7 +21,8 @@ const RsvpBadge = ({ totalAccepted }) => {
 };
 
 RsvpBadge.propTypes = {
-  totalAccepted: PropTypes.number
+  totalAccepted: PropTypes.number.isRequired,
+  center: PropTypes.bool
 };
 
 export default RsvpBadge;

@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-import { DateBlock, Loading, SocialBtns } from '../';
+import { DateBlock, RsvpBadge, Loading, SocialBtns } from '../';
 import { eventsAPI } from '../../api';
 import { dateTimeUtils, urlUtils } from '../../utils';
 import { devMode } from '../../config';
@@ -89,6 +89,7 @@ class EventDetails extends Component {
       browser_url: browserUrl,
       featured_image_url: featuredImageUrl,
       description,
+      total_accepted: totalAccepted,
       location
     } = event;
 
@@ -103,10 +104,16 @@ class EventDetails extends Component {
     return (
       <div className={styles.container}>
         <div className={styles.titleWrapper}>
-          <DateBlock
-            startDate={startDate}
-            endDate={endDate}
-          />
+          <div className={styles.badgesWrapper}>
+            <DateBlock
+              startDate={startDate}
+              endDate={endDate}
+            />
+
+            <RsvpBadge
+              totalAccepted={totalAccepted}
+            />
+          </div>
           <h1>{title}</h1>
           { location && location.locality &&
             <div className={styles.location}>{location.locality}, {location.region}</div>
