@@ -8,7 +8,7 @@ import { DateBlock } from '../';
 import styles from './EventCard.sass';
 
 const truncateOptions = {
-  length: 250,
+  length: 350,
   separator: /, +/  // break on commas and spaces
 };
 
@@ -28,6 +28,7 @@ const EventCard = ({ event, className }) => {
     title,
     description,
     _id,
+    total_accepted: totalAccepted,
     location
   } = event;
 
@@ -35,22 +36,34 @@ const EventCard = ({ event, className }) => {
     urlUtils.getImageUrl(featuredImageUrl, 'c_thumb,g_faces:center,z_0.75,h_150,w_150') :
     '../static/img/default-event-200.png';
 
+  console.log("😎 styles", styles);
   return (
     <li className={`${styles.card} ${className || ''}`}>
-      <div className={styles.imageWrapper}>
-        <Link
-          to={{
-            pathname: `/event/${_id}`,
-            state: {
-              queryString: window.location.search
-            }
-          }}
-        >
-          <img
-            src={featuredImageUrlOrDefault}
-            alt="featured event"
-          />
-        </Link>
+      <div className={styles.imageAndRsvpWrapper}>
+        <div className={styles.imageWrapper}>
+          <Link
+            to={{
+              pathname: `/event/${_id}`,
+              state: {
+                queryString: window.location.search
+              }
+            }}
+          >
+            <img
+              src={featuredImageUrlOrDefault}
+              alt="featured event"
+            />
+          </Link>
+        </div>
+
+        <div className={styles.rsvpWrapper}>
+          <div className={styles.rsvpLeft}>
+            {totalAccepted}
+          </div>
+          <div className={styles.rsvpRight}>
+            RSVPS
+          </div>
+        </div>
       </div>
 
       <div className={styles.contentWrapper}>
