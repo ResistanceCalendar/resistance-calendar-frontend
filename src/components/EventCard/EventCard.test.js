@@ -27,18 +27,12 @@ describe('Component: EventCard', () => {
 
   it('displays the correct time format', () => {
     const wrapper = shallow(<EventCard {...props} />);
-    const dateDisplay = wrapper.find('div').at(1).children('div').at(1)
-    .text()
-    .toLowerCase();
-    expect(dateDisplay).toBe('6:00 to 9:00 pm');
+    expect(wrapper.text().toLowerCase()).toMatch('6:00 to 9:00 pm');
   });
 
   it('displays the correct time format for multi-day event', () => {
     props.event.end_date = '2017-04-30T21:00:00-07:00';
     const wrapper = shallow(<EventCard {...props} />);
-    const dateDisplay = wrapper.find('div').at(1).children('div').at(1)
-    .text()
-    .toLowerCase();
-    expect(dateDisplay).toBe('6:00 pm apr 29 - 9:00 pm apr 30');
+    expect(wrapper.text().toLowerCase()).toMatch('6:00 pm apr 29 - 9:00 pm apr 30');
   });
 });
