@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 
 import RsvpBadge from './RsvpBadge';
 
-describe('Component: DateBlock', () => {
+describe('Component: RsvpBadge', () => {
   it('rounds to the nearest K when over 1000', () => {
     const props = { totalAccepted: 1200 };
     const wrapper = shallow(<RsvpBadge {...props} />);
