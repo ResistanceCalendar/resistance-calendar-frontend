@@ -6,6 +6,10 @@
   padding: 20px
   list-style-type: none
 
+  .image-and-rsvp-wrapper
+    display: flex
+    flex-direction: column
+
   .image-wrapper
     display: inline-block
     position: relative
@@ -66,8 +70,7 @@
 // Breakpoints
 @media only screen and (max-width: $break-min-md)
   .card
-
-    .image-wrapper
+    .image-and-rsvp-wrapper
       order: 2
 
     .content-wrapper

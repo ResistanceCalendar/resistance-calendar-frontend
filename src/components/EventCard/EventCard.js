@@ -4,11 +4,11 @@ import _ from 'lodash';
 
 import { devMode } from '../../config';
 import { dateTimeUtils, urlUtils } from '../../utils';
-import { DateBlock } from '../';
+import { DateBlock, RsvpBadge } from '../';
 import styles from './EventCard.sass';
 
 const truncateOptions = {
-  length: 250,
+  length: 350,
   separator: /, +/  // break on commas and spaces
 };
 
@@ -28,6 +28,7 @@ const EventCard = ({ event, className }) => {
     title,
     description,
     _id,
+    total_accepted: totalAccepted,
     location
   } = event;
 
@@ -37,20 +38,24 @@ const EventCard = ({ event, className }) => {
 
   return (
     <li className={`${styles.card} ${className || ''}`}>
-      <div className={styles.imageWrapper}>
-        <Link
-          to={{
-            pathname: `/event/${_id}`,
-            state: {
-              queryString: window.location.search
-            }
-          }}
-        >
-          <img
-            src={featuredImageUrlOrDefault}
-            alt="featured event"
-          />
-        </Link>
+      <div className={styles.imageAndRsvpWrapper}>
+        <div className={styles.imageWrapper}>
+          <Link
+            to={{
+              pathname: `/event/${_id}`,
+              state: {
+                queryString: window.location.search
+              }
+            }}
+          >
+            <img
+              src={featuredImageUrlOrDefault}
+              alt="featured event"
+            />
+          </Link>
+        </div>
+
+        <RsvpBadge totalAccepted={totalAccepted} center />
       </div>
 
       <div className={styles.contentWrapper}>

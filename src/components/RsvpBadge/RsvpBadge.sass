@@ -1,15 +1,21 @@
 @import "~style/utils/variables.sass"
 
-.container
+.wrapper
   display: flex
   flex: 1
   text-transform: uppercase
   padding: 6px 0
-  box-sizing: border-box
+  max-height: 26px
+
+.wrapper-center
+  justify-content: center
+
+.wrapper-right
+  justify-content: flex-end
 
 .left
-  padding: 2px 4px
-  background-color: $main-black
+  padding: 2px 6px
+  background-color: $main-pink
   color: white
   border: $border-thickness-normal solid $main-black
   border-radius: $border-radius-small 0 0 $border-radius-small
@@ -20,3 +26,7 @@
   color: black
   border: $border-thickness-normal solid $main-black
   border-radius: 0 $border-radius-small $border-radius-small 0
+
+@media only screen and (max-width: $break-min-sm)
+  .wrapper-center
+    display: none
