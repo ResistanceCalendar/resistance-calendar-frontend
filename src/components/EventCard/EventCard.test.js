@@ -9,7 +9,8 @@ describe('Component: EventCard', () => {
   beforeEach(() => {
     props.event = {
       start_date: '2017-04-29T18:00:00-07:00',
-      end_date: '2017-04-29T21:00:00-07:00'
+      end_date: '2017-04-29T21:00:00-07:00',
+      total_accepted: 1200,
     };
   });
 

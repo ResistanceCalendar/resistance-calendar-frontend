@@ -21,7 +21,8 @@ describe('Component: EventDetails', () => {
       summary: '',
       location: {
         address_lines: []
-      }
+      },
+      total_accepted: 1200,
     };
   });
 

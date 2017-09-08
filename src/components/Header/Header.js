@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
+
 import { withRouter, Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -25,14 +26,16 @@ class Header extends Component {
     window.addEventListener('click', this._handleDocumentClick);
   }
 
-  componentWillUnmount() {
-    window.removeEventListener('click', this._handleDocumentClick);
-  }
-
   componentDidUpdate(prevProps) {
     if (this.props.location !== prevProps.location) {
-      this.setState({ addEventModalExists: false})
+      /* eslint-disable react/no-did-update-set-state */
+      this.setState({ addEventModalExists: false });
+      /* eslint-enable react/no-did-update-set-state */
     }
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('click', this._handleDocumentClick);
   }
 
   // Close menu if clicking on the document (outside of the menu)
@@ -78,6 +81,7 @@ class Header extends Component {
 }
 
 Header.propTypes = {
+  location: PropTypes.shape(),
 };
 
 export default withRouter(Header);
