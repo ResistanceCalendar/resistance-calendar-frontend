@@ -1,0 +1,35 @@
+@import "~style/utils/variables.sass"
+@import "~style/utils/mixins.sass"
+
+.rsvp-filter
+  margin-top: 3px
+  height: 33px
+  button
+    padding-left: $gutter-margin-mobile
+    @include button($main-medium-dark-gray, $main-dark-gray, $main-medium-light-gray)
+    display: flex
+    font-size: 1em
+    font-weight: 700
+    border-width: $border-thickness-small
+    cursor: pointer
+    padding: 4px 10px
+    display: block
+    text-transform: capitalize
+
+
+.modalContainer
+  @include popover-wrapper(125px, 7px, right, 0px, 10px, white)
+  position: relative
+  .dateButton,
+  .sizeButton
+    font-weight: 700
+    color: white
+    text-transform: uppercase
+    cursor: pointer
+
+  .dateButton
+    background-color: $main-green
+    margin-top: 1em
+
+  .sizeButton
+    background-color: $main-dark-gray

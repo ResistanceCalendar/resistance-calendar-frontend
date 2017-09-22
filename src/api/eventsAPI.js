@@ -13,12 +13,13 @@ function removeCanceledEvents(events) {
 }
 
 function getEvents(filterParams, odataParams) {
-  const { page = 0, perPage = 25, location, range, geoLocation } = filterParams;
+
+  const { page = 0, perPage = 25, location, range, geoLocation, orderby } = filterParams;
 
   // Establish URL string parts
   const pageUrl = `page=${page}`;
   const perPageUrl = `per_page=${perPage}`;
-  const orderByUrl = '$orderby=start_date desc';
+  const orderByUrl = `$orderby=${orderby}`;
 
   // Build either geolocation or zipcode URL
   const locationUrl = queryBuilder.buildLocationUrl(location, range, geoLocation);
