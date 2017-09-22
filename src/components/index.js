@@ -9,6 +9,7 @@ export { default as EventsList } from './EventsList/EventsList';
 export { default as EventCard } from './EventCard/EventCard';
 export { default as EventSearchInput } from './EventSearchInput/EventSearchInput';
 export { default as EventLocationFilter } from './EventLocationFilter/EventLocationFilter';
+export { default as RsvpFilter } from './RsvpFilter/RsvpFilter';
 export { default as EventDateFilter } from './EventDateFilter/EventDateFilter';
 export { default as EventFilters } from './EventFilters/EventFilters';
 export { default as EventDetails } from './EventDetails/EventDetails';

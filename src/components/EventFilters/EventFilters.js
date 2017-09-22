@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-import { EventSearchInput, EventDateFilter, EventLocationFilter } from '../';
+import { EventSearchInput, EventDateFilter, EventLocationFilter, RsvpFilter } from '../';
 import styles from './EventFilters.sass';
 
 
@@ -22,6 +22,13 @@ const EventFilters = (props) => {
           updateFilters={updateFilters}
           disableGeoLocation={disableGeoLocation}
           geoLocation={geoLocation}
+        />
+      </div>
+      <div className={styles.rsvpFilter}>
+        <RsvpFilter
+          updateFilters={updateFilters}
+          sortOption={filters.orderby}
+          className={styles.rsvpFilter}
         />
       </div>
       <div className={styles.eventDateFilter}>
