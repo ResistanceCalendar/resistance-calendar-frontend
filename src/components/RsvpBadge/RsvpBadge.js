@@ -21,7 +21,7 @@ const RsvpBadge = ({ totalAccepted, center }) => {
 };
 
 RsvpBadge.propTypes = {
-  totalAccepted: PropTypes.number.isRequired,
+  totalAccepted: PropTypes.number,
   center: PropTypes.bool
 };
 
