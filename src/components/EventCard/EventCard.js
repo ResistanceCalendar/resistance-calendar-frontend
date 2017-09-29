@@ -55,15 +55,19 @@ const EventCard = ({ event, className }) => {
           </Link>
         </div>
 
-        <RsvpBadge totalAccepted={totalAccepted} center />
+        <RsvpBadge totalAccepted={totalAccepted} center type='desktopOnly'/>
       </div>
 
       <div className={styles.contentWrapper}>
         <div className={styles.dateLocation}>
-          <DateBlock
-            startDate={startDate}
-            endDate={endDate}
-          />
+          <div>
+            <DateBlock
+              startDate={startDate}
+              endDate={endDate}
+            />
+            <RsvpBadge totalAccepted={totalAccepted} type='mobileOnly'/>
+          </div>
+
           <Link
             to={{
               pathname: `/event/${_id}`,

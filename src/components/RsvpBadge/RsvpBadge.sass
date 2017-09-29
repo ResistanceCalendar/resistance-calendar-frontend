@@ -1,5 +1,12 @@
 @import "~style/utils/variables.sass"
 
+.short-text
+  display: none
+  padding-left: 10px
+  text-transform: uppercase
+  color: $main-medium-dark-gray
+  font-size: 0.8em
+
 .wrapper
   display: flex
   flex: 1
@@ -28,5 +35,9 @@
   border-radius: 0 $border-radius-small $border-radius-small 0
 
 @media only screen and (max-width: $break-min-sm)
+  .short-text
+    display: inline-block
+
+  .wrapper,
   .wrapper-center
     display: none
