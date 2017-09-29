@@ -9,7 +9,8 @@ describe('Component: EventCard', () => {
   beforeEach(() => {
     props.event = {
       start_date: '2017-04-29T18:00:00-07:00',
-      end_date: '2017-04-29T21:00:00-07:00'
+      end_date: '2017-04-29T21:00:00-07:00',
+      total_accepted: 1,
     };
   });
 
@@ -23,6 +24,18 @@ describe('Component: EventCard', () => {
 
     expect(wrapper.find('Link')).toHaveLength(2);
     expect(wrapper.find('img')).toHaveLength(1);
+  });
+
+  it('renders RsvpBadge if there are one or more RSVPs', () => {
+    const wrapper = shallow(<EventCard {...props} />);
+
+    expect(wrapper.find('RsvpBadge')).toHaveLength(1);
+  });
+
+  it('does NOT render RsvpBadge if there no RSVPs', () => {
+    props.event.total_accepted = 0;
+    const wrapper = shallow(<EventCard {...props} />);
+    expect(wrapper.find('RsvpBadge').exists()).toBe(false);
   });
 
   it('displays the correct time format', () => {

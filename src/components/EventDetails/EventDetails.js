@@ -110,9 +110,12 @@ class EventDetails extends Component {
               endDate={endDate}
             />
 
-            <RsvpBadge
-              totalAccepted={totalAccepted}
-            />
+            {
+              totalAccepted > 0 &&
+              <RsvpBadge
+                totalAccepted={totalAccepted}
+              />
+            }
           </div>
           <h1>{title}</h1>
           { location && location.locality &&
