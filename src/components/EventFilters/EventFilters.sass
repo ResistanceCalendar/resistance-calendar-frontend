@@ -4,39 +4,66 @@
 .filters-border
   max-width: $max-width
   padding-top: $gutter-margin-mobile
-  margin: 0 auto
+  margin: 0 $gutter-margin-mobile
   display: flex
-  flex-direction: row
-  flex-wrap: wrap
-  justify-content: flex-start
+  // flex-direction: row
+  flex-flow: row wrap
+  //justify-content: flex-start
   align-content: space-between
-  align-items: flex-start
+  // align-items: flex-start
+
+  .event-search-input,
+  .event-location-filter,
+  .event-date-filter,
+  .rsvpFilter
+    flex: 2 0 50%
+    width: 50%
+
+  .event-location-filter,
+  .event-date-filter,
+    text-align: right
+    display: inline-block
+
+  .rsvpFilter,
+  .event-date-filter
+    @media only screen and (max-width: $break-max-sm)
+      margin-top: 3px
+
+      button
+        font-size: 16px
 
   .event-search-input
     margin-top: 2px
-    flex: 7 1 10%
-    padding-left: $gutter-margin-mobile
+    //flex: 7 1 10%
+    //padding-left: $gutter-margin-mobile
 
   .event-location-filter
-    flex: 3 1 10%
-    align-self: flex-start
-    display: flex
-    justify-content: flex-end
-    padding-left: $gutter-margin-mobile
-    flex-basis: inherit
+    //flex: 3 1 10%
+    //align-self: flex-start
+    //display: flex
+    //justify-content: flex-end
+    //padding-left: $gutter-margin-mobile
+    //flex-basis: inherit
 
-  .event-date-filter, .rsvpFilter
+    @media only screen and (max-width: $break-min-md)
+      //flex: 5 1 10%
+
+  .event-date-filter,
+  .rsvpFilter
     margin-top: $gutter-margin-mobile
-    flex: 4 1 100%
+    //flex: 10 1 100%
     align-self: auto
     @include border-line(top)
     padding: 5px 0
 
     @media only screen and (max-width: $max-width)
-      margin-right: $gutter-margin-mobile
+      //margin-right: $gutter-margin-mobile
+
+    @media only screen and (max-width: $break-min-md)
+      //flex: 1 1 30%
 
     @media only screen and (min-width: $break-max-md)
-      flex: inherit
+      //flex: inherit
       margin-top: auto
       margin-bottom: auto
       padding: 0px
