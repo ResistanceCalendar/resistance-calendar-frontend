@@ -28,8 +28,7 @@ describe('Component: EventCard', () => {
 
   it('renders RsvpBadge if there are one or more RSVPs', () => {
     const wrapper = shallow(<EventCard {...props} />);
-
-    expect(wrapper.find('RsvpBadge')).toHaveLength(1);
+    expect(wrapper.find('RsvpBadge').exists()).toBe(true);
   });
 
   it('does NOT render RsvpBadge if there no RSVPs', () => {

@@ -68,7 +68,10 @@ const EventCard = ({ event, className }) => {
               startDate={startDate}
               endDate={endDate}
             />
-            <RsvpBadge totalAccepted={totalAccepted} type="mobileOnly" />
+            {
+              totalAccepted > 0 &&
+              <RsvpBadge totalAccepted={totalAccepted} type="mobileOnly" />
+            }
           </div>
 
           <Link

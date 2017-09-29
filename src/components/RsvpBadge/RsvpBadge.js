@@ -13,9 +13,6 @@ const RsvpBadge = ({ totalAccepted, center, type }) => {
   }
   return (
     <div>
-      {
-        (type !== 'desktopOnly') && spanRSVP
-      }
       <div className={[styles.wrapper, alignStyle].join(' ')}>
         <div className={styles.left}>
           {toK(totalAccepted)}
