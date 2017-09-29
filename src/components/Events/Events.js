@@ -128,7 +128,8 @@ class Events extends Component {
 
     // Filter values
     const { filters, geoLocation } = this.state;
-    const mergedFilters = Object.assign({}, filters, { geoLocation });
+
+    const mergedFilters = Object.assign({}, this.cleanSearchText(filters), { geoLocation });
     const odataValues = buildFilterValues(mergedFilters, odataFilterTypes);
     const nonOdataValues = buildFilterValues(mergedFilters, nonOdataFiltertypes);
 
@@ -153,6 +154,16 @@ class Events extends Component {
         eventsStorage.clearCache();
         this.setState({ isFetchingEvents: false });
       });
+  }
+
+  cleanSearchText(filterData) {
+    // removes apostrophes from user input to avoid broken searches
+    // without affecting what the user sees in the search box
+    const filtersClean = Object.assign({}, filterData);
+    if (filtersClean.searchText) {
+      filtersClean.searchText = filtersClean.searchText.replace(/'/g, '');
+    }
+    return filtersClean;
   }
 
   // When loading more results for a current search
@@ -203,9 +214,9 @@ class Events extends Component {
 
   updateQueryString() {
     const updatedFilters = _.pickBy(this.state.filters);  // make new object and return new object
-    updatedFilters.startDate = dateTimeUtils.getMomentISOstring(updatedFilters.startDate);
 
-    const updatedQueryString = queryString.stringify(updatedFilters);
+    updatedFilters.startDate = dateTimeUtils.getMomentISOstring(updatedFilters.startDate);
+    const updatedQueryString = queryString.stringify(this.cleanSearchText(updatedFilters));
     this.props.history.push('?' + updatedQueryString);
   }
 
