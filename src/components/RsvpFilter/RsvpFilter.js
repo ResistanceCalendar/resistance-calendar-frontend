@@ -2,9 +2,9 @@ import React, { PropTypes, Component } from 'react';
 import styles from './RsvpFilter.sass';
 
 const displayName = {
-  'total_accepted': 'size',
+  total_accepted: 'size',
   'start_date desc': 'date'
-}
+};
 
 class RsvpFilter extends Component {
   constructor(props) {
@@ -17,18 +17,6 @@ class RsvpFilter extends Component {
     this.toggleModalState = this.toggleModalState.bind(this);
     this.sortEvents = this.sortEvents.bind(this);
     this._handleDocumentClick = this.handleDocumentClick.bind(this);
-
-  }
-  toggleModalState(e) {
-    e.stopPropagation();
-    this.setState({
-      rsvpModalOpen: !this.state.rsvpModalOpen
-    });
-  }
-
-  // Close menu if clicking on the document (outside of the menu)
-  handleDocumentClick() {
-    this.setState({ rsvpModalOpen: false });
   }
 
   componentDidMount() {
@@ -39,10 +27,22 @@ class RsvpFilter extends Component {
     window.removeEventListener('click', this._handleDocumentClick);
   }
 
+  // Close menu if clicking on the document (outside of the menu)
+  handleDocumentClick() {
+    this.setState({ rsvpModalOpen: false });
+  }
+
+  toggleModalState(e) {
+    e.stopPropagation();
+    this.setState({
+      rsvpModalOpen: !this.state.rsvpModalOpen
+    });
+  }
+
   sortEvents(attribute) {
     this.toggleModalState();
-    this.setState({sortOption: attribute});
-    this.props.updateFilters({orderby: attribute});
+    this.setState({ sortOption: attribute });
+    this.props.updateFilters({ orderby: attribute });
   }
 
   renderSortFilterModal() {
@@ -53,13 +53,13 @@ class RsvpFilter extends Component {
           type="button"
           className={styles.sizeButton}
           value="Event Size"
-          onClick={()=> this.sortEvents('total_accepted')}
+          onClick={() => this.sortEvents('total_accepted')}
         />
         <input
           type="button"
           className={styles.dateButton}
           value="Date"
-          onClick={()=> this.sortEvents('start_date desc')}
+          onClick={() => this.sortEvents('start_date desc')}
         />
       </div>
     );
@@ -75,7 +75,7 @@ class RsvpFilter extends Component {
       </div>
     );
   }
-};
+}
 
 RsvpFilter.propTypes = {
   updateFilters: PropTypes.func.isRequired,

@@ -13,7 +13,6 @@ function removeCanceledEvents(events) {
 }
 
 function getEvents(filterParams, odataParams) {
-
   const { page = 0, perPage = 25, location, range, geoLocation, orderby } = filterParams;
 
   // Establish URL string parts
