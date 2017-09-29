@@ -6,64 +6,68 @@
   padding-top: $gutter-margin-mobile
   margin: 0 $gutter-margin-mobile
   display: flex
-  // flex-direction: row
   flex-flow: row wrap
-  //justify-content: flex-start
   align-content: space-between
-  // align-items: flex-start
+
+  @media only screen and (min-width: $break-min-md)
+    margin: 0 auto
+    flex-direction: row
+    flex-wrap: wrap
+    justify-content: flex-start
+    align-items: flex-start
 
   .event-search-input,
   .event-location-filter,
   .event-date-filter,
   .rsvpFilter
-    flex: 2 0 50%
-    width: 50%
+    @media only screen and (max-width: $break-max-md)
+      flex: 2 0 50%
+      width: 50%
 
   .event-location-filter,
   .event-date-filter,
-    text-align: right
-    display: inline-block
+    @media only screen and (max-width: $break-max-md)
+      text-align: right
+      display: inline-block
 
   .rsvpFilter,
   .event-date-filter
-    @media only screen and (max-width: $break-max-sm)
-      margin-top: 3px
+    margin-top: 3px
 
+    @media only screen and (max-width: $break-max-sm)
       button
         font-size: 16px
 
   .event-search-input
     margin-top: 2px
-    //flex: 7 1 10%
-    //padding-left: $gutter-margin-mobile
+
+    @media only screen and (min-width: $break-min-md)
+      flex: 7 1 10%
 
   .event-location-filter
-    //flex: 3 1 10%
-    //align-self: flex-start
-    //display: flex
-    //justify-content: flex-end
-    //padding-left: $gutter-margin-mobile
-    //flex-basis: inherit
-
-    @media only screen and (max-width: $break-min-md)
-      //flex: 5 1 10%
+    @media only screen and (min-width: $break-min-lg)
+      flex: 3 1 10%
+      align-self: flex-start
+      display: flex
+      justify-content: flex-end
+      padding-left: $gutter-margin-mobile
+      flex-basis: inherit
 
   .event-date-filter,
   .rsvpFilter
     margin-top: $gutter-margin-mobile
-    //flex: 10 1 100%
     align-self: auto
     @include border-line(top)
     padding: 5px 0
 
-    @media only screen and (max-width: $max-width)
-      //margin-right: $gutter-margin-mobile
+    @media only screen and (min-width: $break-min-lg)
+      flex: 4 1 100%
 
-    @media only screen and (max-width: $break-min-md)
-      //flex: 1 1 30%
+    @media only screen and (min-width: $break-min-md)
+      margin-right: $gutter-margin-mobile
 
     @media only screen and (min-width: $break-max-md)
-      //flex: inherit
+      flex: inherit
       margin-top: auto
       margin-bottom: auto
       padding: 0px
