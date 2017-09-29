@@ -30,19 +30,12 @@
       text-align: right
       display: inline-block
 
-  .rsvpFilter,
-  .event-date-filter
-    margin-top: 3px
-
-    @media only screen and (max-width: $break-max-sm)
-      button
-        font-size: 16px
-
   .event-search-input
     margin-top: 2px
 
     @media only screen and (min-width: $break-min-md)
       flex: 7 1 10%
+      margin-left: $gutter-margin-mobile
 
   .event-location-filter
     @media only screen and (min-width: $break-min-lg)
@@ -52,6 +45,7 @@
       justify-content: flex-end
       padding-left: $gutter-margin-mobile
       flex-basis: inherit
+      margin-top: 3px
 
   .event-date-filter,
   .rsvpFilter
@@ -60,15 +54,18 @@
     @include border-line(top)
     padding: 5px 0
 
+    @media only screen and (max-width: $break-max-sm)
+      button
+        font-size: 16px
+
     @media only screen and (min-width: $break-min-lg)
       flex: 4 1 100%
+      margin-right: 0
 
     @media only screen and (min-width: $break-min-md)
       margin-right: $gutter-margin-mobile
-
-    @media only screen and (min-width: $break-max-md)
       flex: inherit
-      margin-top: auto
+      margin-top: 3px
       margin-bottom: auto
       padding: 0px
       border: none

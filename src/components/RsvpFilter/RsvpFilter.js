@@ -16,11 +16,27 @@ class RsvpFilter extends Component {
     };
     this.toggleModalState = this.toggleModalState.bind(this);
     this.sortEvents = this.sortEvents.bind(this);
+    this._handleDocumentClick = this.handleDocumentClick.bind(this);
+
   }
-  toggleModalState() {
+  toggleModalState(e) {
+    e.stopPropagation();
     this.setState({
       rsvpModalOpen: !this.state.rsvpModalOpen
     });
+  }
+
+  // Close menu if clicking on the document (outside of the menu)
+  handleDocumentClick() {
+    this.setState({ rsvpModalOpen: false });
+  }
+
+  componentDidMount() {
+    window.addEventListener('click', this._handleDocumentClick);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('click', this._handleDocumentClick);
   }
 
   sortEvents(attribute) {
