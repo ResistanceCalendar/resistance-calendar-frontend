@@ -57,7 +57,11 @@ const EventCard = ({ event, className }) => {
 
         {
           totalAccepted > 0 &&
-          <RsvpBadge totalAccepted={totalAccepted} center />
+          <RsvpBadge
+            totalAccepted={totalAccepted}
+            center
+            type="desktopOnly"
+          />
         }
       </div>
 
@@ -70,7 +74,10 @@ const EventCard = ({ event, className }) => {
             />
             {
               totalAccepted > 0 &&
-              <RsvpBadge totalAccepted={totalAccepted} type="mobileOnly" />
+              <RsvpBadge
+                totalAccepted={totalAccepted}
+                type="mobileOnly"
+              />
             }
           </div>
 

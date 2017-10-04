@@ -7,12 +7,15 @@ const toK = (n) => {
 
 const RsvpBadge = ({ totalAccepted, center, type }) => {
   const alignStyle = center ? styles.wrapperCenter : styles.wrapperRight;
-  const spanRSVP = <span className={styles.shortText}>{totalAccepted}+ Going</span>;
+  const spanRSVP = <span className={styles.shortText}>{toK(totalAccepted)}+ Going</span>;
   if (type === 'mobileOnly') {
     return spanRSVP;
   }
   return (
     <div>
+      {
+        (type !== 'desktopOnly') && spanRSVP
+      }
       <div className={[styles.wrapper, alignStyle].join(' ')}>
         <div className={styles.left}>
           {toK(totalAccepted)}

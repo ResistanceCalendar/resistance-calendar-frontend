@@ -33,7 +33,10 @@ class RsvpFilter extends Component {
   }
 
   toggleModalState(e) {
-    e.stopPropagation();
+    if (e) {
+      e.stopPropagation();
+    }
+
     this.setState({
       rsvpModalOpen: !this.state.rsvpModalOpen
     });
