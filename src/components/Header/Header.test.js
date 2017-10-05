@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import { MemoryRouter } from 'react-router';
+import { MemoryRouter } from 'react-router-dom';
 import Header from './Header';
 
 describe('Component: Header', () => {
@@ -16,7 +16,7 @@ describe('Component: Header', () => {
     expect(header.find('#modal-container').length).toBe(0);
     expect(header.find('AddEvent')).toHaveLength(0);
 
-    header.find("button").simulate('click')
+    header.find('button').simulate('click');
 
     expect(header.find('#modal-container').length).toBe(1);
     expect(header.find('AddEvent')).toHaveLength(1);

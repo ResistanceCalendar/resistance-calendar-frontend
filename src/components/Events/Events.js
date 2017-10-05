@@ -11,7 +11,7 @@ import { distanceRange, defaultRangeIndex } from '../EventLocationFilter/EventLo
 import styles from './Events.sass';
 
 const odataFilterTypes = ['searchText', 'startDate'];
-const nonOdataFiltertypes = ['location', 'range', 'geoLocation'];
+const nonOdataFiltertypes = ['location', 'range', 'geoLocation', 'orderby'];
 
 
 function hasMoreEventsToLoad(currentPage, totalPages) {
@@ -45,6 +45,7 @@ class Events extends Component {
       filters: {
         searchText: parsedQueryString.searchText || '',
         location: parsedQueryString.location || null,
+        orderby: parsedQueryString.orderby || 'total_accepted',
         range: parseInt(parsedQueryString.range, 10) || distanceRange[defaultRangeIndex].value,
         startDate: moment(parsedQueryString.startDate),  // if undefined, will create an object representing today
       },

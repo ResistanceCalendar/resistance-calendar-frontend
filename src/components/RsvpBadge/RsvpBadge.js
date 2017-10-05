@@ -6,8 +6,8 @@ const toK = (n) => {
 };
 
 const RsvpBadge = ({ totalAccepted, center, type }) => {
-  const alignStyle = center ? styles.wrapperCenter : styles.wrapperRight,
-    spanRSVP = <span className={styles.shortText}>{totalAccepted}+ Going</span>
+  const alignStyle = center ? styles.wrapperCenter : styles.wrapperRight;
+  const spanRSVP = <span className={styles.shortText}>{toK(totalAccepted)}+ Going</span>;
   if (type === 'mobileOnly') {
     return spanRSVP;
   }
