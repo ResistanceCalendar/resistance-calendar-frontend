@@ -161,7 +161,10 @@ class EventLocationFilter extends Component {
           onClick={this.toggleMenu.bind(this)}
         >
           {
-            activeFilterMsg || <span>FILTER BY LOCATION</span>
+            activeFilterMsg ||
+            <span className={styles.filterDefaultLabel}>
+              FILTER BY LOCATION
+            </span>
           }
           <span><FaMapMarker size={25} /></span>
         </button>
