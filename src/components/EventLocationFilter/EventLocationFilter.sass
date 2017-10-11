@@ -40,12 +40,18 @@
     font-weight: 700
     cursor: pointer
     text-align: left
+    justify-content: flex-end
 
     .blank-filter
       width: 80px
 
     &>span
       flex: none
+
+    span
+      &.filterDefaultLabel
+        max-width: 70%
+        text-align: right
 
   .popover-wrapper
     @include popover-wrapper(300px, 38px, right, 0, 55px)
