@@ -45,7 +45,7 @@ class Events extends Component {
       filters: {
         searchText: parsedQueryString.searchText || '',
         location: parsedQueryString.location || null,
-        orderby: parsedQueryString.orderby || 'total_accepted',
+        orderby: parsedQueryString.orderby || 'start_date desc',
         range: parseInt(parsedQueryString.range, 10) || distanceRange[defaultRangeIndex].value,
         startDate: moment(parsedQueryString.startDate),  // if undefined, will create an object representing today
       },
