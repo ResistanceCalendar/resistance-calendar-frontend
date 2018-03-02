@@ -8,14 +8,19 @@ import styles from './EventDetails.sass';
 
 const renderAddress = (location) => {
   const { address_lines: addressLines, locality, region, postal_code: postalCode } = location;
-  // Will have to see how this data structure holds up over different events
-  return (
-    <div className={styles.info}>
-      <div className={styles.infoLabel}>location</div>
-      { addressLines[0] && <div>{addressLines[0]}</div> }
-      <div>{locality} {region}, {postalCode}</div>
-    </div>
-  );
+  const hasAddressFields = [locality, region, addressLines[0]].some((attr)=> !!attr)
+
+  if (hasAddressFields){
+    return (
+      <div className={styles.info}>
+        <div className={styles.infoLabel}>location</div>
+        {
+          addressLines.map((line, index) => line && <div key={index}>{line}</div>)
+        }
+        <div>{locality} {region}{postalCode && `, ${postalCode}`} </div>
+      </div>
+    );
+  }
 };
 
 const renderTimeRange = (startDate, endDate) => {
