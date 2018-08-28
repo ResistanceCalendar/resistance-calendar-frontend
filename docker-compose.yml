@@ -1,0 +1,9 @@
+version: '2'
+
+services:
+  web:
+    build: .
+    ports:
+      - 5050:5050
+    environment:
+        NODE_ENV: development
